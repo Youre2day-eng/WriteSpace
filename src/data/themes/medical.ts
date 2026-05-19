@@ -1,0 +1,9 @@
+import type { Theme } from '../../types';
+
+export const medicalThemes: Theme[] = [
+  { id: 'dental-pro', name: 'Dental Pro', category: 'Medical/Dental', backgroundColor: '#ffffff', textColor: '#1a2744', primaryColor: '#1a2744', secondaryColor: '#4a90d9', accentColor: '#4a90d9', fontFamily: 'Georgia, serif', borderColor: '#1a2744', headerBg: '#1a2744', headerText: '#ffffff', suggestedLayout: 'standard' },
+  { id: 'pediatric-care', name: 'Pediatric Care', category: 'Medical/Dental', backgroundColor: '#fffbf0', textColor: '#2a1a2e', primaryColor: '#7c3aed', secondaryColor: '#fce7fe', accentColor: '#f59e0b', fontFamily: "'Trebuchet MS', 'Lucida Grande', sans-serif", borderColor: '#7c3aed', headerBg: 'linear-gradient(90deg,#f59e0b,#7c3aed)', headerText: '#ffffff', suggestedLayout: 'standard' },
+  { id: 'orthodontics', name: 'Orthodontics', category: 'Medical/Dental', backgroundColor: '#f0fdff', textColor: '#0c3040', primaryColor: '#0891b2', secondaryColor: '#cffafe', accentColor: '#06b6d4', fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, sans-serif", borderColor: '#0891b2', headerBg: '#0891b2', headerText: '#ffffff', suggestedLayout: 'standard' },
+  { id: 'chiropractic', name: 'Chiropractic', category: 'Medical/Dental', backgroundColor: '#f7f9f4', textColor: '#1a2e1a', primaryColor: '#2d6a2d', secondaryColor: '#e8f5e8', accentColor: '#4a9e4a', fontFamily: "Georgia, 'Times New Roman', serif", borderColor: '#2d6a2d', headerBg: '#2d6a2d', headerText: '#f0f8f0', suggestedLayout: 'minimal' },
+  { id: 'clinical-white', name: 'Clinical White', category: 'Medical/Dental', backgroundColor: '#ffffff', textColor: '#0a1628', primaryColor: '#1d4ed8', secondaryColor: '#eff6ff', accentColor: '#3b82f6', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", borderColor: '#1d4ed8', headerBg: '#1d4ed8', headerText: '#ffffff', suggestedLayout: 'minimal' },
+];

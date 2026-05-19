@@ -1,0 +1,66 @@
+import type { BrandPreset } from '../../types';
+
+export const DEFAULT_PRESETS: BrandPreset[] = [
+  {
+    id: 'preset-aurora', name: 'Aurora Agency', themeId: 'aurora-borealis',
+    primaryColor: '#0d9488', secondaryColor: '#1e1040', accentColor: '#34d399',
+    fontFamily: "'Inter', system-ui, sans-serif", logoText: '✦',
+    companyName: 'Aurora Creative Agency', tagline: 'Where ideas become light',
+    headerGradient: true, headerBgOverride: '#7c3aed', headerGradientColor2: '#0d9488', headerGradientAngle: 135,
+    headerFontSize: 26, bodyFontSize: 14,
+  },
+  {
+    id: 'preset-cosmic', name: 'Cosmic Galaxy', themeId: 'cosmic-galaxy',
+    primaryColor: '#7c3aed', secondaryColor: '#0d0d24', accentColor: '#a78bfa',
+    fontFamily: "'Inter', system-ui, sans-serif", logoText: '🌌',
+    companyName: 'Cosmic Labs', tagline: 'Beyond the known universe',
+    headerGradient: true, headerBgOverride: '#7c3aed', headerGradientColor2: '#1e1b4b', headerGradientAngle: 135,
+    headerFontSize: 28, bodyFontSize: 13,
+  },
+  {
+    id: 'preset-sunset', name: 'Sunset Studio', themeId: 'sunset-blaze',
+    primaryColor: '#f97316', secondaryColor: '#fff0e8', accentColor: '#db2777',
+    fontFamily: "'Georgia', serif", logoText: '🌅',
+    companyName: 'Sunset Creative Studio', tagline: 'Every project is golden hour',
+    headerGradient: true, headerBgOverride: '#f97316', headerGradientColor2: '#db2777', headerGradientAngle: 135,
+    headerFontSize: 24, bodyFontSize: 13,
+  },
+  {
+    id: 'preset-velvet', name: 'Velvet Luxe', themeId: 'velvet-luxe',
+    primaryColor: '#9b1c4a', secondaryColor: '#150010', accentColor: '#c084fc',
+    fontFamily: "'Times New Roman', Times, serif", logoText: '♛',
+    companyName: 'Velvet & Co.', tagline: 'Luxury without apology',
+    headerGradient: true, headerBgOverride: '#7f1d1d', headerGradientColor2: '#4c1d95', headerGradientAngle: 135,
+    headerFontSize: 26, bodyFontSize: 13,
+  },
+  {
+    id: 'preset-ocean', name: 'Ocean Capital', themeId: 'ocean-depth',
+    primaryColor: '#0891b2', secondaryColor: '#051020', accentColor: '#38bdf8',
+    fontFamily: "'Helvetica Neue', Helvetica, sans-serif", logoText: '🌊',
+    companyName: 'Ocean Capital Partners', tagline: 'Navigate with confidence',
+    headerGradient: true, headerBgOverride: '#0891b2', headerGradientColor2: '#1e3a5f', headerGradientAngle: 135,
+    headerFontSize: 24, bodyFontSize: 14,
+  },
+  {
+    id: 'preset-emerald', name: 'Emerald Society', themeId: 'emerald-prestige',
+    primaryColor: '#d4a843', secondaryColor: '#0d3320', accentColor: '#d4a843',
+    fontFamily: "'Garamond', Georgia, serif", logoText: '◆',
+    companyName: 'The Emerald Society', tagline: 'Excellence is a tradition',
+    headerFontSize: 26, bodyFontSize: 13,
+  },
+  {
+    id: 'preset-cyberpunk', name: 'Cyberpunk Labs', themeId: 'neon-cyberpunk',
+    primaryColor: '#ff00cc', secondaryColor: '#00ffee', accentColor: '#00ffee',
+    fontFamily: "'Courier New', Courier, monospace", logoText: '⚡',
+    companyName: 'CyberPunk Labs', tagline: 'The future is already here',
+    headerFontSize: 24, bodyFontSize: 13,
+  },
+  {
+    id: 'preset-rosegold', name: 'Rose Gold Studio', themeId: 'rose-gold-rush',
+    primaryColor: '#e11d48', secondaryColor: '#fce8e8', accentColor: '#d4a843',
+    fontFamily: "'Palatino Linotype', Palatino, serif", logoText: '🌹',
+    companyName: 'Rose Gold Studio', tagline: 'Premium beauty, elevated',
+    headerGradient: true, headerBgOverride: '#e11d48', headerGradientColor2: '#d4a843', headerGradientAngle: 135,
+    headerFontSize: 24, bodyFontSize: 13,
+  },
+];

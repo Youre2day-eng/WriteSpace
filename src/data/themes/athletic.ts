@@ -1,0 +1,9 @@
+import type { Theme } from '../../types';
+
+export const athleticThemes: Theme[] = [
+  { id: 'gym-iron', name: 'Gym Iron', category: 'Athletic', backgroundColor: '#1a1a1a', textColor: '#e0e0e0', primaryColor: '#f0c000', secondaryColor: '#333333', accentColor: '#f0c000', fontFamily: "'Arial Black', Arial, sans-serif", borderColor: '#f0c000', headerBg: '#111111', headerText: '#f0c000', suggestedLayout: 'bold' },
+  { id: 'crossfit-brutal', name: 'CrossFit Brutal', category: 'Athletic', backgroundColor: '#0a0a0a', textColor: '#f0f0f0', primaryColor: '#f97316', secondaryColor: '#1a0a00', accentColor: '#f97316', fontFamily: "'Impact', 'Arial Narrow', Arial, sans-serif", borderColor: '#f97316', headerBg: '#f97316', headerText: '#0a0a0a', suggestedLayout: 'bold' },
+  { id: 'yoga-flow', name: 'Yoga Flow', category: 'Athletic', backgroundColor: '#faf8f2', textColor: '#2d2416', primaryColor: '#6b7c4a', secondaryColor: '#eef0e8', accentColor: '#8b9e6a', fontFamily: "'Palatino Linotype', Palatino, Georgia, serif", borderColor: '#6b7c4a', headerBg: '#6b7c4a', headerText: '#faf8f2', suggestedLayout: 'minimal' },
+  { id: 'martial-arts', name: 'Martial Arts', category: 'Athletic', backgroundColor: '#0a0000', textColor: '#f0e0e0', primaryColor: '#cc0000', secondaryColor: '#1a0000', accentColor: '#ff4444', fontFamily: "'Arial Black', 'Arial Bold', Arial, sans-serif", borderColor: '#cc0000', headerBg: '#cc0000', headerText: '#ffffff', suggestedLayout: 'bold' },
+  { id: 'boxing-champ', name: 'Boxing Champion', category: 'Athletic', backgroundColor: '#080808', textColor: '#e8e8e8', primaryColor: '#c9a84c', secondaryColor: '#1a1400', accentColor: '#cc2200', fontFamily: "'Impact', 'Arial Narrow', sans-serif", borderColor: '#c9a84c', headerBg: '#0a0a0a', headerText: '#c9a84c', suggestedLayout: 'bold' },
+];

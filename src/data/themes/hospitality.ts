@@ -1,0 +1,9 @@
+import type { Theme } from '../../types';
+
+export const hospitalityThemes: Theme[] = [
+  { id: 'restaurant-fine', name: 'Restaurant Fine', category: 'Hospitality', backgroundColor: '#1a0a04', textColor: '#f5e6c8', primaryColor: '#c0392b', secondaryColor: '#2c1810', accentColor: '#e8b96a', fontFamily: "'Didot', 'Bodoni MT', Georgia, serif", borderColor: '#c0392b', headerBg: '#c0392b', headerText: '#f5e6c8', suggestedLayout: 'standard' },
+  { id: 'terra-bloom', name: 'Terra Bloom', category: 'Hospitality', backgroundColor: '#faf0e6', textColor: '#3d1f0a', primaryColor: '#c4612a', secondaryColor: '#ffe8d6', accentColor: '#a0440a', fontFamily: "'Palatino Linotype', Palatino, serif", borderColor: '#c4612a', headerBg: '#c4612a', headerText: '#fff8f0', suggestedLayout: 'standard' },
+  { id: 'bourbon-street', name: 'Bourbon Street', category: 'Hospitality', backgroundColor: '#100804', textColor: '#f0e0c0', primaryColor: '#d4891a', secondaryColor: '#2a1508', accentColor: '#f0a030', fontFamily: "'Georgia', serif", borderColor: '#d4891a', headerBg: '#1e0e06', headerText: '#d4891a', suggestedLayout: 'standard' },
+  { id: 'coffee-shop', name: 'Coffee Shop', category: 'Hospitality', backgroundColor: '#faf4ee', textColor: '#2c1808', primaryColor: '#6b3a1f', secondaryColor: '#f0e0d0', accentColor: '#9b5a30', fontFamily: "Georgia, 'Palatino Linotype', serif", borderColor: '#6b3a1f', headerBg: '#3d1c0a', headerText: '#d4a878', suggestedLayout: 'minimal' },
+  { id: 'hotel-concierge', name: 'Hotel Concierge', category: 'Hospitality', backgroundColor: '#f8f7f4', textColor: '#1a1810', primaryColor: '#4a4030', secondaryColor: '#ece8e0', accentColor: '#c9a84c', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", borderColor: '#4a4030', headerBg: '#1a1810', headerText: '#c9a84c', suggestedLayout: 'minimal' },
+];
