@@ -3,11 +3,11 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: '/WriteSpace/',
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+    base: '/',
+    plugins: [react()],
+    resolve: {
+          alias: {
+                  "@": path.resolve(__dirname, "./src"),
+          },
     },
-  },
 });
