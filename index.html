@@ -456,6 +456,34 @@ function DraggableLayer({ id, selected, onSelect, onDragStart, pos, onMove, zoom
     </div>
   );
 }
+function sanitizeSvgMarkup(markup) {
+  if (!markup || typeof markup !== 'string') return '';
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(markup, 'image/svg+xml');
+    if (doc.querySelector('parsererror')) return '';
+    const blockedTags = ['script', 'style', 'foreignobject', 'iframe', 'object', 'embed', 'link', 'use', 'image', 'animate', 'animatemotion', 'animatetransform', 'set', 'feimage'];
+    doc.querySelectorAll('*').forEach((el) => {
+      if (blockedTags.includes((el.tagName || '').toLowerCase())) { el.remove(); return; }
+      Array.from(el.attributes).forEach((attr) => {
+        const n = attr.name.toLowerCase();
+        const v = (attr.value || '').trim().toLowerCase();
+        if (n.startsWith('on')) el.removeAttribute(attr.name);
+        if (n === 'style' && (/url\s*\(/i.test(v) || /expression\s*\(/i.test(v) || /@import/i.test(v) || /-moz-binding/i.test(v))) el.removeAttribute(attr.name);
+        if ((n === 'href' || n === 'xlink:href') && !(v.startsWith('#') || v.startsWith('/'))) el.removeAttribute(attr.name);
+        if ((n === 'href' || n === 'xlink:href') && (v.startsWith('javascript:') || v.startsWith('data:'))) el.removeAttribute(attr.name);
+      });
+    });
+    return new XMLSerializer().serializeToString(doc.documentElement);
+  } catch {
+    return '';
+  }
+}
+function CustomSvg({ svg }) {
+  const safe = React.useMemo(() => sanitizeSvgMarkup(svg), [svg]);
+  if (!safe) return null;
+  return <div role="img" aria-label="Custom SVG content" style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: safe }} />;
+}
 const fmt = (n) => '$' + (Number(n) || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 function Accent({ c, set, theme, zoom, sel, onSel, onDragStart }) {
@@ -508,7 +536,7 @@ function DocBusinessCard({ theme, c, set, zoom, sel, onSel, layers, selectedLaye
           </div>
         </div>
       </DraggableLayer>
-      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
@@ -589,7 +617,7 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, on
         <Editable value={c.note} onChange={(v) => set('note', v)} multiline style={{ marginTop: 40, fontSize: 12.5, opacity: 0.65, lineHeight: 1.6, borderTop: `1px solid ${theme.border}33`, paddingTop: 16 }} />
       </div>
       </DraggableLayer>
-      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
@@ -648,7 +676,7 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
         <Editable value={c.footer} onChange={(v) => set('footer', v)} style={{ marginTop: 30, fontSize: 11, opacity: 0.5, borderTop: `1px solid ${theme.border}33`, paddingTop: 14, letterSpacing: 0.5 }} />
       </div>
       </DraggableLayer>
-      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
@@ -694,7 +722,7 @@ function DocLetterhead({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
         </div>
       </div>
       </DraggableLayer>
-      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
@@ -730,7 +758,7 @@ function DocCertificate({ theme, c, set, zoom, sel, onSel, layers, selectedLayer
         <Editable value={c.date} onChange={(v) => set('date', v)} style={{ fontSize: 12, marginTop: 26, opacity: 0.55 }} />
       </div>
       </DraggableLayer>
-      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
@@ -968,7 +996,7 @@ function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
           <button onClick={onApply}>Apply JSON</button>
           {error && <span className="ws-source-error">{error}</span>}
         </div>
-        <div className="ws-source-help">Tip: paste SVG markup into a field like <code>customSvg</code> in this JSON for AI-generated content data.</div>
+        <div className="ws-source-help">Tip: paste SVG markup into <code>customSvg</code>. Only use trusted SVG input; unsafe tags/attributes are stripped before render.</div>
       </div>
     </div>
   );
@@ -983,6 +1011,7 @@ const SHELL_MOODS = {
 };
 const ACCENTS = { ember: '#e07a3c', gold: '#d4a64a', teal: '#3fb6a8', violet: '#9a7cf0' };
 const MOTION = { lavish: '0.55s', tasteful: '0.32s', minimal: '0.14s' };
+const MAX_UNDO_HISTORY = 120;
 
 const TWEAK_DEFAULTS = { mood:"graphite", accent:"ember", motion:"tasteful", dotGrid:true, spotlight:true };
 
@@ -1041,7 +1070,7 @@ function App() {
   const pushHistory = uC(() => {
     if (!doc) return;
     undoRef.current.push(snapshot());
-    if (undoRef.current.length > 120) undoRef.current.shift();
+    if (undoRef.current.length > MAX_UNDO_HISTORY) undoRef.current.shift();
     redoRef.current = [];
   }, [doc, snapshot]);
 
@@ -1102,7 +1131,10 @@ function App() {
     try {
       const parsed = JSON.parse(sourceDraft);
       pushHistory();
-      setDoc((dd) => ({ ...dd, content: { ...parsed, layers: ensureLayers(dd.typeId, parsed) } }));
+      setDoc((dd) => {
+        const merged = { ...dd.content, ...parsed };
+        return { ...dd, content: { ...merged, layers: ensureLayers(dd.typeId, merged) } };
+      });
       setSourceError('');
     } catch (err) {
       setSourceError('Invalid JSON');
