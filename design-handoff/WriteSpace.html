@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WriteSpace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0d0d0f; --bg2:#161619; --panel:rgba(28,28,32,0.86);
+    --text:#ececf0; --muted:#8a8a93; --border:rgba(255,255,255,0.09);
+    --accent:#e07a3c; --dur:0.32s;
+    --ui:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono','Menlo',monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;overflow:hidden;}
+  body{
+    background:
+      radial-gradient(120% 90% at 50% -10%, var(--bg2), var(--bg) 60%);
+    color:var(--text); font-family:var(--ui);
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{ /* dot grid */
+    content:''; position:fixed; inset:0; pointer-events:none; opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:30px 30px; transition:opacity var(--dur) ease;
+  }
+  body.no-grid::before{opacity:0;}
+  body::after{ /* spotlight */
+    content:''; position:fixed; inset:0; pointer-events:none;
+    background:radial-gradient(60% 50% at 50% 32%, rgba(255,255,255,.06), transparent 70%);
+    transition:opacity var(--dur) ease;
+  }
+  body.no-spot::after{opacity:0;}
+
+  .ws-shell{position:fixed; inset:0;}
+  .ws-wordmark{
+    position:fixed; top:22px; left:26px; z-index:20; font-weight:700;
+    font-size:15px; letter-spacing:.5px; color:var(--text); opacity:.5;
+    user-select:none; pointer-events:none;
+  }
+  .ws-wordmark span{color:var(--accent);}
+  .ws-status{
+    position:fixed; bottom:24px; left:26px; z-index:20; font-family:var(--mono);
+    font-size:11px; color:var(--muted); letter-spacing:.3px; user-select:none; pointer-events:none;
+  }
+
+  /* ── Stage ── */
+  .ws-stage{position:absolute; inset:0; cursor:grab; touch-action:none;}
+  .ws-stage:active{cursor:grabbing;}
+  .ws-world{position:absolute; top:0; left:0; transform-origin:0 0; will-change:transform;}
+  .ws-docpos{position:relative;}
+  .ws-docframe{position:relative;}
+  .ws-docframe::before{ /* glow */
+    content:''; position:absolute; inset:-60px; border-radius:30px; z-index:-1;
+    background:radial-gradient(50% 50% at 50% 40%, rgba(255,255,255,.10), transparent 72%);
+    opacity:1; transition:opacity var(--dur) ease;
+  }
+  body.no-spot .ws-docframe::before{opacity:0;}
+  .artboard{
+    position:relative; overflow:hidden; border-radius:6px;
+    box-shadow:0 2px 4px rgba(0,0,0,.4), 0 40px 80px -20px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.04);
+  }
+
+  /* ── Editable ── */
+  .ws-editable{ cursor:text; border-radius:3px; transition:background .12s ease, box-shadow .12s ease; outline:none; }
+  .ws-editable:hover{ background:rgba(127,127,127,.16); box-shadow:0 0 0 4px rgba(127,127,127,.16); }
+  .ws-editable.is-editing{ background:rgba(127,127,127,.12); box-shadow:0 0 0 2px var(--accent); cursor:text; }
+
+  /* ── Accent flourish ── */
+  .ws-accent{position:absolute; z-index:5;}
+  .ws-accent.is-selected{outline:1px dashed var(--accent); outline-offset:6px; border-radius:6px;}
+  .ws-handle{ fill:#fff; stroke:var(--accent); stroke-width:2; cursor:grab; filter:drop-shadow(0 1px 3px rgba(0,0,0,.4)); }
+  .ws-handle:active{cursor:grabbing;}
+
+  /* invoice row controls */
+  .ws-rowdel{ opacity:0; border:none; background:none; color:#c0392b; font-size:18px; cursor:pointer; line-height:1; transition:opacity .12s; }
+  .ws-row:hover .ws-rowdel{opacity:.6;}
+  .ws-rowdel:hover{opacity:1 !important;}
+  .ws-addrow{ background:none; border:none; font-size:12px; font-weight:600; cursor:pointer; padding:10px 0 2px; opacity:.7; }
+  .ws-addrow:hover{opacity:1;}
+  .ws-check{ width:20px; height:20px; border-radius:5px; border:2px solid; display:flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer; flex-shrink:0; }
+
+  /* ── Dock ── */
+  .ws-dock{
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%); z-index:30;
+    display:flex; gap:6px; padding:8px; border-radius:18px;
+    background:var(--panel); backdrop-filter:blur(20px); border:1px solid var(--border);
+    box-shadow:0 16px 40px -12px rgba(0,0,0,.6);
+  }
+  .ws-dock-btn{
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    width:54px; padding:9px 6px 7px; border:none; border-radius:12px; cursor:pointer;
+    background:transparent; color:var(--text); transition:transform var(--dur) cubic-bezier(.2,.9,.3,1.4), background .15s;
+  }
+  .ws-dock-btn:hover{ background:rgba(255,255,255,.08); transform:translateY(-6px) scale(1.06); }
+  .ws-dock-btn.is-active{ color:var(--accent); background:rgba(255,255,255,.06); }
+  .ws-dock-label{ font-size:9.5px; letter-spacing:.3px; opacity:.7; }
+
+  /* ── Theme panel ── */
+  .ws-themepanel{
+    position:fixed; top:0; right:0; height:100%; width:340px; z-index:40;
+    background:var(--panel); backdrop-filter:blur(24px); border-left:1px solid var(--border);
+    transform:translateX(108%); transition:transform var(--dur) cubic-bezier(.4,0,.2,1);
+    display:flex; flex-direction:column; box-shadow:-20px 0 50px -20px rgba(0,0,0,.6);
+  }
+  .ws-themepanel.is-open{transform:translateX(0);}
+  .ws-tp-head{ display:flex; justify-content:space-between; align-items:center; padding:20px 22px 12px; font-weight:700; font-size:16px; }
+  .ws-tp-close{ background:none; border:none; color:var(--muted); font-size:22px; cursor:pointer; line-height:1; }
+  .ws-tp-close:hover{color:var(--text);}
+  .ws-tp-cats{ display:flex; flex-wrap:wrap; gap:6px; padding:0 18px 14px; }
+  .ws-tp-cat{ font-size:11px; padding:5px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; }
+  .ws-tp-cat.is-active{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .ws-tp-grid{ flex:1; overflow-y:auto; display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:4px 18px 24px; }
+  .ws-tp-card{ text-align:left; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:rgba(255,255,255,.02); cursor:pointer; padding:0 0 8px; transition:transform .15s, border-color .15s; }
+  .ws-tp-card:hover{ transform:translateY(-3px); border-color:var(--accent); }
+  .ws-tp-card.is-current{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
+  .ws-tp-preview{ position:relative; height:74px; border-radius:8px 8px 0 0; overflow:hidden; }
+  .ws-tp-band{ height:22px; width:100%; }
+  .ws-tp-lines{ padding:8px 10px; display:flex; flex-direction:column; gap:5px; }
+  .ws-tp-lines span{ height:4px; border-radius:2px; display:block; }
+  .ws-tp-dot{ position:absolute; right:8px; bottom:8px; width:12px; height:12px; border-radius:50%; }
+  .ws-tp-name{ font-size:12px; font-weight:600; padding:8px 10px 0; }
+  .ws-tp-cat-label{ font-size:10px; color:var(--muted); padding:1px 10px 0; }
+
+  /* ── Launcher ── */
+  .ws-launcher{ position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center; background:rgba(8,8,10,.55); backdrop-filter:blur(14px); animation:wsFade var(--dur) ease; }
+  @keyframes wsFade{from{opacity:0;}to{opacity:1;}}
+  .ws-launcher-card{ width:min(760px,92vw); background:var(--panel); border:1px solid var(--border); border-radius:22px; padding:28px; box-shadow:0 40px 100px -30px rgba(0,0,0,.8); animation:wsPop var(--dur) cubic-bezier(.2,.9,.3,1.3); }
+  @keyframes wsPop{from{opacity:0; transform:translateY(14px) scale(.97);}to{opacity:1; transform:none;}}
+  .ws-launcher-head{ display:flex; align-items:center; gap:12px; font-size:20px; font-weight:700; margin-bottom:20px; }
+  .ws-spark{ width:14px; height:14px; border-radius:50%; background:var(--accent); box-shadow:0 0 18px var(--accent); }
+  .ws-launcher-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; }
+  .ws-launch-tile{ text-align:left; background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:16px; padding:18px; cursor:pointer; transition:transform .16s, border-color .16s, background .16s; }
+  .ws-launch-tile:hover{ transform:translateY(-4px); border-color:var(--accent); background:rgba(255,255,255,.06); }
+  .ws-launch-glyph{ margin-bottom:12px; }
+  .ws-launch-name{ font-size:15px; font-weight:700; }
+  .ws-launch-blurb{ font-size:11.5px; color:var(--muted); margin-top:2px; }
+  .ws-launch-swatches{ display:flex; gap:5px; margin-top:14px; }
+  .ws-launch-swatches span{ width:22px; height:10px; border-radius:3px; border:1px solid var(--border); }
+  .ws-launcher-foot{ text-align:center; font-size:11px; color:var(--muted); margin-top:22px; }
+  .ws-launcher-foot kbd{ font-family:var(--mono); background:rgba(255,255,255,.08); padding:1px 6px; border-radius:4px; }
+
+  /* ── Command palette ── */
+  .ws-palette{ position:fixed; inset:0; z-index:70; display:flex; justify-content:center; align-items:flex-start; padding-top:14vh; background:rgba(8,8,10,.5); backdrop-filter:blur(10px); animation:wsFade .18s ease; }
+  .ws-palette-card{ width:min(580px,92vw); background:var(--panel); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 40px 100px -30px rgba(0,0,0,.8); animation:wsPop .2s cubic-bezier(.2,.9,.3,1.3); }
+  .ws-palette-input{ width:100%; border:none; background:transparent; color:var(--text); font-family:var(--ui); font-size:17px; padding:18px 20px; outline:none; border-bottom:1px solid var(--border); }
+  .ws-palette-list{ max-height:46vh; overflow-y:auto; padding:8px; }
+  .ws-palette-item{ width:100%; display:flex; align-items:center; gap:10px; text-align:left; background:none; border:none; color:var(--text); padding:9px 12px; border-radius:9px; cursor:pointer; font-size:13.5px; }
+  .ws-palette-item.is-active{ background:rgba(255,255,255,.08); }
+  .ws-palette-swatch{ width:12px; height:12px; border-radius:3px; flex-shrink:0; }
+  .ws-palette-label{ flex:1; }
+  .ws-palette-group{ font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+  .ws-palette-empty{ padding:20px; text-align:center; color:var(--muted); font-size:13px; }
+
+  .ws-empty{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; }
+  .ws-empty button{ background:var(--accent); color:#fff; border:none; border-radius:12px; padding:14px 24px; font-size:15px; font-weight:600; cursor:pointer; }
+
+  /* ── Print ── */
+  @media print{ @page{ margin:0; } }
+  body.ws-printing::before, body.ws-printing::after,
+  body.ws-printing .ws-dock, body.ws-printing .ws-themepanel,
+  body.ws-printing .ws-wordmark, body.ws-printing .ws-status,
+  body.ws-printing .ws-handle, body.ws-printing .ws-accent.is-selected{ display:none !important; }
+  body.ws-printing .ws-stage{ position:static !important; overflow:visible !important; }
+  body.ws-printing .ws-world, body.ws-printing .ws-docpos{ transform:none !important; position:static !important; }
+  body.ws-printing .ws-docframe::before{ display:none !important; }
+  body.ws-printing .artboard{ box-shadow:none !important; border-radius:0 !important; }
+  body.ws-printing .ws-accent.is-selected{ outline:none !important; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="20" fill="#0d0d0f"/>
+    <rect x="34" y="26" width="32" height="44" rx="3" fill="#ececf0"/>
+    <rect x="34" y="26" width="32" height="10" rx="3" fill="#e07a3c"/>
+    <circle cx="62" cy="64" r="4" fill="#e07a3c"/>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="app/data.jsx"></script>
+<script type="text/babel" src="app/canvas.jsx"></script>
+<script type="text/babel" src="app/templates.jsx"></script>
+<script type="text/babel" src="app/chrome.jsx"></script>
+<script type="text/babel" src="app/main.jsx"></script>
+</body>
+</html>
