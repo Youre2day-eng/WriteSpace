@@ -45,6 +45,29 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-dock-btn:hover{background:rgba(255,255,255,.08);transform:translateY(-6px) scale(1.06);}
 .ws-dock-btn.is-active{color:var(--accent);background:rgba(255,255,255,.06);}
 .ws-dock-label{font-size:9.5px;letter-spacing:.3px;opacity:.7;}
+.ws-layer{position:relative;touch-action:none;}
+.ws-layer.is-selected{outline:1px solid var(--accent);outline-offset:6px;border-radius:6px;}
+.ws-layer-handles{position:absolute;inset:-8px;pointer-events:none;}
+.ws-layer-handles span{position:absolute;width:8px;height:8px;border-radius:50%;border:2px solid var(--accent);background:#fff;}
+.ws-layer-handles span:nth-child(1){left:-4px;top:-4px;}
+.ws-layer-handles span:nth-child(2){right:-4px;top:-4px;}
+.ws-layer-handles span:nth-child(3){left:-4px;bottom:-4px;}
+.ws-layer-handles span:nth-child(4){right:-4px;bottom:-4px;}
+.ws-inspector{position:fixed;left:18px;top:68px;z-index:45;width:320px;max-height:calc(100vh - 112px);display:flex;flex-direction:column;background:var(--panel);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:14px;box-shadow:0 20px 60px -25px rgba(0,0,0,.8);}
+.ws-inspector-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.ws-inspector-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;}
+.ws-inspector-close:hover{color:var(--text);}
+.ws-layer-list{padding:10px;overflow:auto;display:flex;flex-direction:column;gap:6px;}
+.ws-layer-item{width:100%;text-align:left;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 10px;font-size:12px;cursor:pointer;}
+.ws-layer-item:hover{border-color:var(--accent);}
+.ws-layer-item.is-active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
+.ws-source-wrap{padding:10px;display:flex;flex-direction:column;gap:8px;}
+.ws-source-wrap textarea{min-height:260px;resize:vertical;border:1px solid var(--border);border-radius:8px;background:rgba(0,0,0,.25);color:var(--text);font-family:var(--mono);font-size:11px;line-height:1.5;padding:10px;outline:none;}
+.ws-source-wrap textarea:focus{border-color:var(--accent);}
+.ws-source-actions{display:flex;align-items:center;gap:8px;}
+.ws-source-actions button{background:var(--accent);border:none;color:#fff;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;}
+.ws-source-error{color:#fda4af;font-size:11px;}
+.ws-source-help{font-size:11px;color:var(--muted);}
 .ws-themepanel{position:fixed;top:0;right:0;height:100%;width:340px;z-index:40;background:var(--panel);backdrop-filter:blur(24px);border-left:1px solid var(--border);transform:translateX(108%);transition:transform var(--dur) cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 50px -20px rgba(0,0,0,.6);}
 .ws-themepanel.is-open{transform:translateX(0);}
 .ws-tp-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px 12px;font-weight:700;font-size:16px;}
@@ -93,7 +116,7 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-empty{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
 .ws-empty button{background:var(--accent);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:600;cursor:pointer;}
 @media print{@page{margin:0;}}
-body.ws-printing::before,body.ws-printing::after,body.ws-printing .ws-dock,body.ws-printing .ws-themepanel,body.ws-printing .ws-wordmark,body.ws-printing .ws-status,body.ws-printing .ws-handle,body.ws-printing .ws-accent.is-selected{display:none!important;}
+body.ws-printing::before,body.ws-printing::after,body.ws-printing .ws-dock,body.ws-printing .ws-themepanel,body.ws-printing .ws-wordmark,body.ws-printing .ws-status,body.ws-printing .ws-handle,body.ws-printing .ws-accent.is-selected,body.ws-printing .ws-inspector,body.ws-printing .ws-layer-handles{display:none!important;}
 body.ws-printing .ws-stage{position:static!important;overflow:visible!important;}
 body.ws-printing .ws-world,body.ws-printing .ws-docpos{transform:none!important;position:static!important;}
 body.ws-printing .ws-docframe::before{display:none!important;}
@@ -279,7 +302,7 @@ function Editable({ value, onChange, tag = 'div', style, multiline = false, clas
       onBlur={commit}
       onKeyDown={(e) => {
         if (!multiline && e.key === 'Enter') { e.preventDefault(); ref.current.blur(); }
-        if (e.key === 'Escape') { e.preventDefault(); setEditing(false); }
+        if (e.key === 'Escape') { e.preventDefault(); commit(); }
       }}
     >
       {editing ? null : value}
@@ -289,7 +312,7 @@ function Editable({ value, onChange, tag = 'div', style, multiline = false, clas
 
 
 
-function AccentFlourish({ state, onChange, color, zoom, selected, onSelect }) {
+function AccentFlourish({ state, onChange, color, zoom, selected, onSelect, onDragStart }) {
   const W = 230, H = 150;
   const { x, y } = state.pos;
   const p1 = state.p1 || { x: 14, y: 96 };
@@ -303,6 +326,7 @@ function AccentFlourish({ state, onChange, color, zoom, selected, onSelect }) {
     e.stopPropagation();
     e.target.setPointerCapture?.(e.pointerId);
     onSelect();
+    onDragStart?.();
     drag.current = { mode, sx: e.clientX, sy: e.clientY, start: JSON.parse(JSON.stringify({ pos: state.pos, p1, p2 })) };
   };
   const onMove = (e) => {
@@ -399,26 +423,61 @@ function Stage({ view, setView, docPos, setDocPos, onDeselect, children }) {
     </div>
   );
 }
+
+function DraggableLayer({ id, selected, onSelect, onDragStart, pos, onMove, zoom, style, children }) {
+  const drag = useRef(null);
+  const p = pos || { x: 0, y: 0 };
+  const start = (e) => {
+    if (e.button !== 0) return;
+    e.stopPropagation();
+    onSelect?.(id);
+    onDragStart?.();
+    drag.current = { sx: e.clientX, sy: e.clientY, start: { ...p } };
+    e.currentTarget.setPointerCapture?.(e.pointerId);
+  };
+  const move = (e) => {
+    if (!drag.current) return;
+    const dx = (e.clientX - drag.current.sx) / zoom;
+    const dy = (e.clientY - drag.current.sy) / zoom;
+    onMove?.(id, { x: drag.current.start.x + dx, y: drag.current.start.y + dy });
+  };
+  const end = () => { drag.current = null; };
+  return (
+    <div
+      className={'ws-layer' + (selected ? ' is-selected' : '')}
+      style={{ ...style, transform: `translate(${p.x}px,${p.y}px)` }}
+      onPointerDown={start}
+      onPointerMove={move}
+      onPointerUp={end}
+      onPointerLeave={end}
+    >
+      {children}
+      {selected && <span className="ws-layer-handles"><span /><span /><span /><span /></span>}
+    </div>
+  );
+}
 const fmt = (n) => '$' + (Number(n) || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-function Accent({ c, set, theme, zoom, sel, onSel }) {
+function Accent({ c, set, theme, zoom, sel, onSel, onDragStart }) {
   return (
     <AccentFlourish
       state={c.accent || { pos: c.accentPos || { x: 60, y: 60 } }}
-      onChange={(s) => set('accent', s)}
+      onChange={(s) => set('accent', s, { track: false })}
       color={theme.accent}
       zoom={zoom}
       selected={sel}
       onSelect={onSel}
+      onDragStart={onDragStart}
     />
   );
 }
 
 
-function DocBusinessCard({ theme, c, set, zoom, sel, onSel }) {
+function DocBusinessCard({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
   return (
     <div className="artboard" style={{ width: 1050, height: 600, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
-      <div style={{ position: 'absolute', inset: 0, padding: 64, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <DraggableLayer id="brand" selected={selectedLayer === 'brand'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.brand} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 64, right: 64, top: 64 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div style={{ display: 'flex', gap: 22, alignItems: 'center' }}>
             <div style={{ width: 76, height: 76, borderRadius: 4, background: theme.headerBg, color: theme.headerText, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, fontWeight: 700 }}>
@@ -430,10 +489,14 @@ function DocBusinessCard({ theme, c, set, zoom, sel, onSel }) {
             </div>
           </div>
         </div>
-        <div>
-          <Editable value={c.name} onChange={(v) => set('name', v)} style={{ fontSize: 52, fontWeight: 700, letterSpacing: -1 }} />
-          <Editable value={c.role} onChange={(v) => set('role', v)} style={{ fontSize: 19, color: theme.primary, marginTop: 4, letterSpacing: 1 }} />
-        </div>
+      </DraggableLayer>
+      <DraggableLayer id="identity" selected={selectedLayer === 'identity'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.identity} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 64, right: 64, top: 250 }}>
+        <Editable value={c.name} onChange={(v) => set('name', v)} style={{ fontSize: 52, fontWeight: 700, letterSpacing: -1 }} />
+        <Editable value={c.role} onChange={(v) => set('role', v)} style={{ fontSize: 19, color: theme.primary, marginTop: 4, letterSpacing: 1 }} />
+      </DraggableLayer>
+      <DraggableLayer id="contacts" selected={selectedLayer === 'contacts'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.contacts} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 64, right: 64, bottom: 64 }}>
         <div style={{ display: 'flex', gap: 56, fontSize: 15, borderTop: `1px solid ${theme.border}33`, paddingTop: 22 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <Editable value={c.phone} onChange={(v) => set('phone', v)} />
@@ -444,14 +507,15 @@ function DocBusinessCard({ theme, c, set, zoom, sel, onSel }) {
             <Editable value={c.address} onChange={(v) => set('address', v)} style={{ opacity: 0.7 }} />
           </div>
         </div>
-      </div>
-      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} />
+      </DraggableLayer>
+      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
 }
 
 
-function DocInvoice({ theme, c, set, zoom, sel, onSel }) {
+function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
   const items = c.items || [];
   const subtotal = items.reduce((s, it) => s + (Number(it.qty) || 0) * (Number(it.rate) || 0), 0);
   const tax = subtotal * (Number(c.taxRate) || 0) / 100;
@@ -462,6 +526,8 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel }) {
 
   return (
     <div className="artboard" style={{ width: 816, height: 1056, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
+      <DraggableLayer id="header" selected={selectedLayer === 'header'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.header} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 0, right: 0, top: 0 }}>
       <div style={{ background: theme.headerBg, color: theme.headerText, padding: '34px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <div style={{ width: 48, height: 48, borderRadius: 6, border: `2px solid ${theme.headerText}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 700 }}>
@@ -477,7 +543,10 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel }) {
           <Editable value={c.invoiceNo} onChange={(v) => set('invoiceNo', v)} style={{ fontSize: 13, opacity: 0.85, marginTop: 2 }} />
         </div>
       </div>
+      </DraggableLayer>
 
+      <DraggableLayer id="body" selected={selectedLayer === 'body'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.body} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 0, right: 0, top: 118 }}>
       <div style={{ padding: '32px 48px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 28 }}>
           <div>
@@ -519,13 +588,15 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel }) {
 
         <Editable value={c.note} onChange={(v) => set('note', v)} multiline style={{ marginTop: 40, fontSize: 12.5, opacity: 0.65, lineHeight: 1.6, borderTop: `1px solid ${theme.border}33`, paddingTop: 16 }} />
       </div>
-      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} />
+      </DraggableLayer>
+      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
 }
 
 
-function DocGuidelines({ theme, c, set, zoom, sel, onSel }) {
+function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
   const sections = c.sections || [];
   const checklist = c.checklist || [];
   const setSection = (i, k, v) => set('sections', sections.map((s, idx) => idx === i ? { ...s, [k]: v } : s));
@@ -534,6 +605,8 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel }) {
 
   return (
     <div className="artboard" style={{ width: 816, height: 1056, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
+      <DraggableLayer id="header" selected={selectedLayer === 'header'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.header} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 0, right: 0, top: 0 }}>
       <div style={{ background: theme.headerBg, color: theme.headerText, padding: '28px 48px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ width: 46, height: 46, borderRadius: 8, background: theme.headerText, color: theme.headerBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30, fontWeight: 800, lineHeight: 1 }}>
           <Editable value={c.monogram} onChange={(v) => set('monogram', v)} />
@@ -543,6 +616,9 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel }) {
           <Editable value={c.dept} onChange={(v) => set('dept', v)} style={{ fontSize: 12, opacity: 0.8, marginTop: 2 }} />
         </div>
       </div>
+      </DraggableLayer>
+      <DraggableLayer id="content" selected={selectedLayer === 'content'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.content} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 0, right: 0, top: 106 }}>
       <div style={{ padding: '34px 48px' }}>
         <Editable value={c.title} onChange={(v) => set('title', v)} style={{ fontSize: 28, fontWeight: 700, color: theme.primary, lineHeight: 1.15 }} />
         <Editable value={c.code} onChange={(v) => set('code', v)} style={{ fontSize: 12, letterSpacing: 1, opacity: 0.55, marginTop: 6, textTransform: 'uppercase' }} />
@@ -571,15 +647,19 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel }) {
 
         <Editable value={c.footer} onChange={(v) => set('footer', v)} style={{ marginTop: 30, fontSize: 11, opacity: 0.5, borderTop: `1px solid ${theme.border}33`, paddingTop: 14, letterSpacing: 0.5 }} />
       </div>
-      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} />
+      </DraggableLayer>
+      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
 }
 
 
-function DocLetterhead({ theme, c, set, zoom, sel, onSel }) {
+function DocLetterhead({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
   return (
     <div className="artboard" style={{ width: 816, height: 1056, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
+      <DraggableLayer id="header" selected={selectedLayer === 'header'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.header} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 0, right: 0, top: 0 }}>
       <div style={{ padding: '40px 56px 22px', borderBottom: `3px double ${theme.primary}`, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <div style={{ width: 54, height: 54, borderRadius: '50%', background: theme.headerBg, color: theme.headerText, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 700 }}>
@@ -591,9 +671,15 @@ function DocLetterhead({ theme, c, set, zoom, sel, onSel }) {
           </div>
         </div>
       </div>
+      </DraggableLayer>
+      <DraggableLayer id="meta" selected={selectedLayer === 'meta'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.meta} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 0, right: 0, top: 122 }}>
       <div style={{ padding: '12px 56px 0', fontSize: 10.5, letterSpacing: 0.5, opacity: 0.6, textAlign: 'center' }}>
         <Editable value={c.contact} onChange={(v) => set('contact', v)} />
       </div>
+      </DraggableLayer>
+      <DraggableLayer id="body" selected={selectedLayer === 'body'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.body} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', left: 0, right: 0, top: 152 }}>
       <div style={{ padding: '40px 56px' }}>
         <Editable value={c.date} onChange={(v) => set('date', v)} style={{ fontSize: 13.5, opacity: 0.75 }} />
         <Editable value={c.recipient} onChange={(v) => set('recipient', v)} multiline style={{ fontSize: 13.5, lineHeight: 1.5, marginTop: 26 }} />
@@ -607,17 +693,24 @@ function DocLetterhead({ theme, c, set, zoom, sel, onSel }) {
           <Editable value={c.signerRole} onChange={(v) => set('signerRole', v)} style={{ fontSize: 12, opacity: 0.65 }} />
         </div>
       </div>
-      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} />
+      </DraggableLayer>
+      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
 }
 
 
-function DocCertificate({ theme, c, set, zoom, sel, onSel }) {
+function DocCertificate({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
   return (
     <div className="artboard" style={{ width: 1056, height: 816, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
-      <div style={{ position: 'absolute', inset: 22, border: `2px solid ${theme.primary}` }} />
-      <div style={{ position: 'absolute', inset: 30, border: `1px solid ${theme.accent}66` }} />
+      <DraggableLayer id="frame" selected={selectedLayer === 'frame'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.frame} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', inset: 0 }}>
+        <div style={{ position: 'absolute', inset: 22, border: `2px solid ${theme.primary}` }} />
+        <div style={{ position: 'absolute', inset: 30, border: `1px solid ${theme.accent}66` }} />
+      </DraggableLayer>
+      <DraggableLayer id="content" selected={selectedLayer === 'content'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.content} onMove={onMoveLayer} zoom={zoom}
+        style={{ position: 'absolute', inset: 0 }}>
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 120px' }}>
         <div style={{ fontSize: 40, color: theme.accent }}><Editable value={c.monogram} onChange={(v) => set('monogram', v)} /></div>
         <Editable value={c.org} onChange={(v) => set('org', v)} style={{ fontSize: 16, letterSpacing: 6, marginTop: 10, color: theme.primary, fontWeight: 700 }} />
@@ -636,7 +729,9 @@ function DocCertificate({ theme, c, set, zoom, sel, onSel }) {
         </div>
         <Editable value={c.date} onChange={(v) => set('date', v)} style={{ fontSize: 12, marginTop: 26, opacity: 0.55 }} />
       </div>
-      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} />
+      </DraggableLayer>
+      {c.customSvg && <div style={{ position: 'absolute', inset: 0 }} dangerouslySetInnerHTML={{ __html: c.customSvg }} />}
+      <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
   );
 }
@@ -647,6 +742,41 @@ const DOC_COMPONENTS = {
   'guidelines': DocGuidelines,
   'letterhead': DocLetterhead,
   'certificate': DocCertificate,
+};
+const LAYER_MODELS = {
+  'business-card': [
+    { id: 'brand', name: 'Brand Block' },
+    { id: 'identity', name: 'Name & Role' },
+    { id: 'contacts', name: 'Contacts' },
+    { id: 'accent', name: 'Accent Flourish' },
+  ],
+  'invoice': [
+    { id: 'header', name: 'Header Bar' },
+    { id: 'body', name: 'Invoice Body' },
+    { id: 'accent', name: 'Accent Flourish' },
+  ],
+  'guidelines': [
+    { id: 'header', name: 'Guidelines Header' },
+    { id: 'content', name: 'Protocol Content' },
+    { id: 'accent', name: 'Accent Flourish' },
+  ],
+  'letterhead': [
+    { id: 'header', name: 'Letterhead Header' },
+    { id: 'meta', name: 'Contact Strip' },
+    { id: 'body', name: 'Letter Body' },
+    { id: 'accent', name: 'Accent Flourish' },
+  ],
+  'certificate': [
+    { id: 'frame', name: 'Certificate Frame' },
+    { id: 'content', name: 'Certificate Content' },
+    { id: 'accent', name: 'Accent Flourish' },
+  ],
+};
+const ensureLayers = (typeId, content) => {
+  const defs = LAYER_MODELS[typeId] || [];
+  const next = { ...(content.layers || {}) };
+  defs.forEach((d) => { if (!next[d.id]) next[d.id] = { x: 0, y: 0 }; });
+  return next;
 };
 function Glyph({ name, size = 26 }) {
   const s = { width: size, height: size, fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round' };
@@ -661,6 +791,8 @@ function Glyph({ name, size = 26 }) {
     fit: <g><path d="M4 8V4h4" /><path d="M20 8V4h-4" /><path d="M4 16v4h4" /><path d="M20 16v4h-4" /></g>,
     cmd: <g><path d="M9 6a2.5 2.5 0 1 0 2.5 2.5V6zM15 6a2.5 2.5 0 1 1-2.5 2.5V6z" transform="translate(-1.5 1.5)" /><rect x="8" y="8" width="8" height="8" rx="1.5" /></g>,
     export: <g><path d="M12 15V4" /><path d="M8 8l4-4 4 4" /><path d="M5 16v3h14v-3" /></g>,
+    layers: <g><rect x="4" y="5" width="16" height="4" rx="1.2" /><rect x="6" y="10" width="12" height="4" rx="1.2" /><rect x="8" y="15" width="8" height="4" rx="1.2" /></g>,
+    code: <g><path d="M9 8L5 12l4 4" /><path d="M15 8l4 4-4 4" /><path d="M13 6l-2 12" /></g>,
   };
   return <svg viewBox="0 0 24 24" style={s}>{paths[name] || paths.card}</svg>;
 }
@@ -697,10 +829,12 @@ function Launcher({ open, onPick, onClose }) {
 }
 
 
-function Dock({ onNew, onThemes, onFit, onPalette, onExport, themesOpen }) {
+function Dock({ onNew, onThemes, onFit, onPalette, onLayers, onSource, onExport, themesOpen, layersOpen, sourceOpen }) {
   const items = [
     { id: 'new', glyph: 'plus', label: 'New', fn: onNew },
     { id: 'themes', glyph: 'palette', label: 'Themes', fn: onThemes, active: themesOpen },
+    { id: 'layers', glyph: 'layers', label: 'Layers', fn: onLayers, active: layersOpen },
+    { id: 'source', glyph: 'code', label: 'Code', fn: onSource, active: sourceOpen },
     { id: 'fit', glyph: 'fit', label: 'Fit', fn: onFit },
     { id: 'cmd', glyph: 'cmd', label: '⌘K', fn: onPalette },
     { id: 'export', glyph: 'export', label: 'Export', fn: onExport },
@@ -796,6 +930,49 @@ function ThemePanel({ open, current, onHover, onPick, onClose }) {
     </div>
   );
 }
+
+function LayerPanel({ open, layers, selected, onSelect, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="ws-inspector">
+      <div className="ws-inspector-head">
+        <span>Layers</span>
+        <button className="ws-inspector-close" onClick={onClose}>×</button>
+      </div>
+      <div className="ws-layer-list">
+        {layers.map((layer) => (
+          <button
+            key={layer.id}
+            className={'ws-layer-item' + (selected === layer.id ? ' is-active' : '')}
+            onClick={() => onSelect(layer.id)}
+          >
+            {layer.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="ws-inspector" style={{ left: 'auto', right: 18, width: 420 }}>
+      <div className="ws-inspector-head">
+        <span>Source</span>
+        <button className="ws-inspector-close" onClick={onClose}>×</button>
+      </div>
+      <div className="ws-source-wrap">
+        <textarea value={value} onChange={(e) => onChange(e.target.value)} spellCheck={false} />
+        <div className="ws-source-actions">
+          <button onClick={onApply}>Apply JSON</button>
+          {error && <span className="ws-source-error">{error}</span>}
+        </div>
+        <div className="ws-source-help">Tip: paste SVG markup into a field like <code>customSvg</code> in this JSON for AI-generated content data.</div>
+      </div>
+    </div>
+  );
+}
 // ─── WriteSpace · app shell ──────────────────────────────────────────────────
 const { useState: uS, useEffect: uE, useCallback: uC, useRef: uR } = React;
 
@@ -825,7 +1002,14 @@ function App() {
   const [launcher, setLauncher] = uS(true);
   const [themesOpen, setThemesOpen] = uS(false);
   const [palette, setPalette] = uS(false);
+  const [layersOpen, setLayersOpen] = uS(false);
+  const [sourceOpen, setSourceOpen] = uS(false);
+  const [sourceDraft, setSourceDraft] = uS('');
+  const [sourceError, setSourceError] = uS('');
   const [accentSel, setAccentSel] = uS(false);
+  const [selectedLayer, setSelectedLayer] = uS(null);
+  const undoRef = uR([]);
+  const redoRef = uR([]);
 
   // apply shell theme vars
   uE(() => {
@@ -839,32 +1023,111 @@ function App() {
     document.body.classList.toggle('no-spot', !t.spotlight);
   }, [t.mood, t.accent, t.motion, t.dotGrid, t.spotlight]);
 
+  const snapshot = uC(() => ({
+    doc: doc ? JSON.parse(JSON.stringify(doc)) : null,
+    themeId,
+    docPos: { ...docPos },
+  }), [doc, themeId, docPos]);
+
+  const applySnapshot = uC((s) => {
+    setDoc(s.doc ? JSON.parse(JSON.stringify(s.doc)) : null);
+    setThemeId(s.themeId);
+    setDocPos(s.docPos || { x: 0, y: 0 });
+    setPreview(null);
+    setAccentSel(false);
+    setSelectedLayer(null);
+  }, []);
+
+  const pushHistory = uC(() => {
+    if (!doc) return;
+    undoRef.current.push(snapshot());
+    if (undoRef.current.length > 120) undoRef.current.shift();
+    redoRef.current = [];
+  }, [doc, snapshot]);
+
+  const undo = uC(() => {
+    if (!undoRef.current.length) return;
+    const current = snapshot();
+    const prev = undoRef.current.pop();
+    redoRef.current.push(current);
+    applySnapshot(prev);
+  }, [snapshot, applySnapshot]);
+
+  const redo = uC(() => {
+    if (!redoRef.current.length) return;
+    const current = snapshot();
+    const next = redoRef.current.pop();
+    undoRef.current.push(current);
+    applySnapshot(next);
+  }, [snapshot, applySnapshot]);
+
   const createDoc = uC((typeId) => {
     const d = docTypeById(typeId);
     const content = JSON.parse(JSON.stringify(d.content));
     content.accent = { pos: { ...(content.accentPos || { x: 60, y: 60 }) }, p1: { x: 14, y: 96 }, p2: { x: 216, y: 54 } };
+    content.layers = ensureLayers(typeId, content);
     setDoc({ typeId, content });
     setThemeId(d.defaultTheme);
     setPreview(null);
     setLauncher(false);
     setAccentSel(false);
+    setSelectedLayer(null);
+    setLayersOpen(false);
+    setSourceOpen(false);
+    setSourceError('');
+    undoRef.current = [];
+    redoRef.current = [];
     setDocPos({ x: 0, y: 0 });
     setView(fitView(d.w, d.h));
   }, []);
 
-  const set = uC((field, value) => setDoc((dd) => ({ ...dd, content: { ...dd.content, [field]: value } })), []);
+  const set = uC((field, value, opts = {}) => {
+    if (opts.track !== false) pushHistory();
+    setDoc((dd) => ({ ...dd, content: { ...dd.content, [field]: value } }));
+  }, [pushHistory]);
+  const setLayerPos = uC((layerId, pos) => setDoc((dd) => ({
+    ...dd,
+    content: {
+      ...dd.content,
+      layers: { ...(dd.content.layers || {}), [layerId]: pos },
+    },
+  })), []);
+  const setThemeTracked = uC((id) => {
+    pushHistory();
+    setThemeId(id);
+    setPreview(null);
+  }, [pushHistory]);
+  const applySource = uC(() => {
+    if (!doc) return;
+    try {
+      const parsed = JSON.parse(sourceDraft);
+      pushHistory();
+      setDoc((dd) => ({ ...dd, content: { ...parsed, layers: ensureLayers(dd.typeId, parsed) } }));
+      setSourceError('');
+    } catch (err) {
+      setSourceError('Invalid JSON');
+    }
+  }, [doc, sourceDraft, pushHistory]);
   const fit = uC(() => { if (doc) { const d = docTypeById(doc.typeId); setDocPos({ x: 0, y: 0 }); setView(fitView(d.w, d.h)); } }, [doc]);
+  const layerDefs = doc ? (LAYER_MODELS[doc.typeId] || []) : [];
+
+  uE(() => {
+    if (!doc || !sourceOpen) return;
+    setSourceDraft(JSON.stringify(doc.content, null, 2));
+  }, [doc, sourceOpen]);
 
   // keyboard
   uE(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPalette((p) => !p); }
       else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'n') { e.preventDefault(); setLauncher(true); }
-      else if (e.key === 'Escape') { setPalette(false); setLauncher(false); setThemesOpen(false); setAccentSel(false); }
+      else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z' && e.shiftKey) { e.preventDefault(); redo(); }
+      else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); undo(); }
+      else if (e.key === 'Escape') { setPalette(false); setLauncher(false); setThemesOpen(false); setLayersOpen(false); setSourceOpen(false); setAccentSel(false); setSelectedLayer(null); }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [undo, redo]);
 
   const effTheme = themeById(preview || themeId);
   const DocComp = doc ? DOC_COMPONENTS[doc.typeId] : null;
@@ -874,11 +1137,15 @@ function App() {
   const commands = [
     ...DOC_TYPES.map((d) => ({ id: 'new-' + d.id, label: 'New · ' + d.name, group: 'Create', fn: () => createDoc(d.id) })),
     { id: 'themes', label: 'Browse themes', group: 'View', fn: () => setThemesOpen(true) },
+    { id: 'layers', label: 'Open layers panel', group: 'View', fn: () => setLayersOpen(true) },
+    { id: 'source', label: 'Open source inspector', group: 'View', fn: () => setSourceOpen(true) },
     { id: 'fit', label: 'Fit to screen', group: 'View', fn: fit },
     { id: 'zin', label: 'Zoom in', group: 'View', fn: () => setView((v) => ({ ...v, zoom: Math.min(2.4, v.zoom * 1.2) })) },
     { id: 'zout', label: 'Zoom out', group: 'View', fn: () => setView((v) => ({ ...v, zoom: Math.max(0.3, v.zoom / 1.2) })) },
+    { id: 'undo', label: 'Undo', group: 'Edit', fn: undo },
+    { id: 'redo', label: 'Redo', group: 'Edit', fn: redo },
     { id: 'export', label: 'Export / Print document', group: 'Output', fn: doExport },
-    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme · ' + th.name, group: th.category, swatch: th.primary, fn: () => { setThemeId(th.id); setPreview(null); } })),
+    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme · ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
   ];
 
   function doExport() {
@@ -893,9 +1160,21 @@ function App() {
       {doc && <div className="ws-status">{dt.name} · {effTheme.name} · {Math.round(view.zoom * 100)}%</div>}
 
       {doc && (
-        <Stage view={view} setView={setView} docPos={docPos} setDocPos={setDocPos} onDeselect={() => setAccentSel(false)}>
+        <Stage view={view} setView={setView} docPos={docPos} setDocPos={setDocPos} onDeselect={() => { setAccentSel(false); setSelectedLayer(null); }}>
           <div className="ws-docframe">
-            <DocComp theme={effTheme} c={doc.content} set={set} zoom={view.zoom} sel={accentSel} onSel={() => setAccentSel(true)} />
+            <DocComp
+              theme={effTheme}
+              c={doc.content}
+              set={set}
+              zoom={view.zoom}
+              sel={accentSel}
+              onSel={() => { setAccentSel(true); setSelectedLayer('accent'); }}
+              layers={doc.content.layers || {}}
+              selectedLayer={selectedLayer}
+              onSelectLayer={(id) => { setSelectedLayer(id); setAccentSel(id === 'accent'); }}
+              onMoveLayer={setLayerPos}
+              onLayerDragStart={pushHistory}
+            />
           </div>
         </Stage>
       )}
@@ -904,9 +1183,22 @@ function App() {
         <div className="ws-empty"><button onClick={() => setLauncher(true)}>Forge a document</button></div>
       )}
 
-      {doc && <Dock onNew={() => setLauncher(true)} onThemes={() => setThemesOpen((o) => !o)} onFit={fit} onPalette={() => setPalette(true)} onExport={doExport} themesOpen={themesOpen} />}
+      {doc && <Dock
+        onNew={() => setLauncher(true)}
+        onThemes={() => setThemesOpen((o) => !o)}
+        onLayers={() => setLayersOpen((o) => !o)}
+        onSource={() => setSourceOpen((o) => !o)}
+        onFit={fit}
+        onPalette={() => setPalette(true)}
+        onExport={doExport}
+        themesOpen={themesOpen}
+        layersOpen={layersOpen}
+        sourceOpen={sourceOpen}
+      />}
 
-      <ThemePanel open={themesOpen} current={themeId} onHover={setPreview} onPick={(id) => { setThemeId(id); setPreview(null); }} onClose={() => setThemesOpen(false)} />
+      <ThemePanel open={themesOpen} current={themeId} onHover={setPreview} onPick={setThemeTracked} onClose={() => setThemesOpen(false)} />
+      <LayerPanel open={layersOpen && !!doc} layers={layerDefs} selected={selectedLayer} onSelect={(id) => { setSelectedLayer(id); setAccentSel(id === 'accent'); }} onClose={() => setLayersOpen(false)} />
+      <SourcePanel open={sourceOpen && !!doc} value={sourceDraft} onChange={setSourceDraft} onApply={applySource} error={sourceError} onClose={() => setSourceOpen(false)} />
       <Launcher open={launcher} onPick={createDoc} onClose={() => doc && setLauncher(false)} />
       <CommandPalette open={palette} onClose={() => setPalette(false)} commands={commands} />
 
