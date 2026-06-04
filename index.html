@@ -47,8 +47,8 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-dock-label{font-size:9.5px;letter-spacing:.3px;opacity:.7;}
 .ws-layer{position:relative;touch-action:none;}
 .ws-layer.is-selected{outline:1px solid var(--accent);outline-offset:6px;border-radius:6px;}
-.ws-layer-handles{position:absolute;inset:-8px;pointer-events:none;}
-.ws-layer-handles span{position:absolute;width:8px;height:8px;border-radius:50%;border:2px solid var(--accent);background:#fff;}
+.ws-layer-handles{position:fixed;pointer-events:none;z-index:200;box-sizing:border-box;border:1px solid var(--accent);border-radius:3px;}
+.ws-layer-handles span{position:absolute;width:8px;height:8px;border-radius:50%;border:2px solid var(--accent);background:#fff;transform:translate(-50%,-50%);}
 .ws-layer-handles span:nth-child(1){left:-4px;top:-4px;}
 .ws-layer-handles span:nth-child(2){right:-4px;top:-4px;}
 .ws-layer-handles span:nth-child(3){left:-4px;bottom:-4px;}
@@ -959,7 +959,7 @@ function ThemePanel({ open, current, onHover, onPick, onClose }) {
   );
 }
 
-function LayerPanel({ open, layers, selected, onSelect, onClose }) {
+function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions, onMoveLayer }) {
   if (!open) return null;
   return (
     <div className="ws-inspector">
@@ -971,16 +971,48 @@ function LayerPanel({ open, layers, selected, onSelect, onClose }) {
         {layers.map((layer) => (
           <button
             key={layer.id}
-            className={'ws-layer-item' + (selected === layer.id ? ' is-active' : '')}
+            className={'ws-layer-item' + (selected === layer.id ? ' is-active' : '') + (layer.id === 'accent' ? ' ws-layer-accent' : '')}
             onClick={() => onSelect(layer.id)}
           >
-            {layer.name}
+            <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'〜':layer.id==='brand'||layer.id==='header'?'▣':layer.id==='frame'?'◻':'≡'}</span>{layer.name}
           </button>
         ))}
       </div>
+      {selected && (() => {
+              const pos = (layerPositions && layerPositions[selected]) || {x:0,y:0};
+              const isAccent = selected === 'accent';
+              return (
+                          <div style={{borderTop:'1px solid rgba(255,255,255,0.09)',padding:'12px 14px'}}>
+                                        <div style={{fontSize:10,fontWeight:700,letterSpacing:'.5px',textTransform:'uppercase',color:'var(--muted)',marginBottom:10}}>Properties — {selected}</div>
+                            {!isAccent && (
+                                          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
+                                                            <label style={{fontSize:11,color:'var(--muted)'}}>X offset
+                                                                                <input type="number" value={Math.round(pos.x)} onChange={e=>onMoveLayer&&onMoveLayer(selected,{...pos,x:Number(e.target.value)})}
+                                                                                                      style={{width:'100%',marginTop:3,background:'rgba(0,0,0,0.3)',border:'1px solid rgba(255,255,255,0.12)',borderRadius:5,color:'var(--text)',fontSize:12,padding:'4px 8px',fontFamily:'var(--mono)'}} />
+                                                            </label>
+                                                            <label style={{fontSize:11,color:'var(--muted)'}}>Y offset
+                                                                                <input type="number" value={Math.round(pos.y)} onChange={e=>onMoveLayer&&onMoveLayer(selected,{...pos,y:Number(e.target.value)})}
+                                                                                                      style={{width:'100%',marginTop:3,background:'rgba(0,0,0,0.3)',border:'1px solid rgba(255,255,255,0.12)',borderRadius:5,color:'var(--text)',fontSize:12,padding:'4px 8px',fontFamily:'var(--mono)'}} />
+                                                            </label>
+                                          </div>
+                                        )}
+                            {isAccent && (
+                                          <div style={{fontSize:11,color:'var(--muted)',lineHeight:1.5}}>
+                                                            <div>Drag the curve body to move.</div>
+                                                            <div>Select and drag end handles to reshape.</div>
+                                          </div>
+                                        )}
+                                        <button onClick={()=>onMoveLayer&&onMoveLayer(selected,{x:0,y:0})}
+                                                        style={{marginTop:10,width:'100%',background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.09)',color:'var(--muted)',borderRadius:6,padding:'5px 10px',fontSize:11,cursor:'pointer'}}>
+                                                        Reset position
+                                        </button>
+                          </div>
+                        );
+    })()}
     </div>
-  );
+      );
 }
+  
 
 function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
   if (!open) return null;
@@ -1229,7 +1261,7 @@ function App() {
       />}
 
       <ThemePanel open={themesOpen} current={themeId} onHover={setPreview} onPick={setThemeTracked} onClose={() => setThemesOpen(false)} />
-      <LayerPanel open={layersOpen && !!doc} layers={layerDefs} selected={selectedLayer} onSelect={(id) => { setSelectedLayer(id); setAccentSel(id === 'accent'); }} onClose={() => setLayersOpen(false)} />
+      <LayerPanel open={layersOpen && !!doc} layers={layerDefs} selected={selectedLayer} onSelect={(id) => { setSelectedLayer(id); setAccentSel(id === 'accent'); }} onClose={() => setLayersOpen(false)}  layerPositions={doc?.content?.layers || {}} onMoveLayer={setLayerPos}/>
       <SourcePanel open={sourceOpen && !!doc} value={sourceDraft} onChange={setSourceDraft} onApply={applySource} error={sourceError} onClose={() => setSourceOpen(false)} />
       <Launcher open={launcher} onPick={createDoc} onClose={() => doc && setLauncher(false)} />
       <CommandPalette open={palette} onClose={() => setPalette(false)} commands={commands} />
