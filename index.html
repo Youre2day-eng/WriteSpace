@@ -16,9 +16,16 @@ body.no-grid::before{opacity:0;}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(60% 50% at 50% 32%,rgba(255,255,255,.06),transparent 70%);transition:opacity var(--dur) ease;}
 body.no-spot::after{opacity:0;}
 .ws-shell{position:fixed;inset:0;}
-.ws-wordmark{position:fixed;top:22px;left:26px;z-index:20;font-weight:700;font-size:15px;letter-spacing:.5px;color:var(--text);opacity:.5;user-select:none;pointer-events:none;}
+.ws-wordmark{font-weight:700;font-size:15px;letter-spacing:.5px;color:var(--text);opacity:.9;user-select:none;display:flex;align-items:center;height:100%;}
 .ws-wordmark span{color:var(--accent);}
 .ws-status{position:fixed;bottom:24px;left:26px;z-index:20;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.3px;user-select:none;pointer-events:none;}
+.ws-toolbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:50;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--panel);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.ws-toolbar-group{display:flex;align-items:center;gap:4px;padding-right:8px;margin-right:2px;border-right:1px solid var(--border);}
+.ws-toolbar-group:last-child{border-right:none;padding-right:0;margin-right:0;}
+.ws-toolbar-btn{display:flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--text);font-size:12px;cursor:pointer;}
+.ws-toolbar-btn:hover{background:rgba(255,255,255,.08);}
+.ws-toolbar-btn.is-active{border-color:var(--accent);color:var(--accent);}
+.ws-toolbar-spacer{flex:1;}
 .ws-stage{position:absolute;inset:0;cursor:grab;touch-action:none;}
 .ws-stage:active{cursor:grabbing;}
 .ws-world{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform;}
@@ -40,19 +47,14 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-addrow{background:none;border:none;font-size:12px;font-weight:600;cursor:pointer;padding:10px 0 2px;opacity:.7;}
 .ws-addrow:hover{opacity:1;}
 .ws-check{width:20px;height:20px;border-radius:5px;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;flex-shrink:0;}
-.ws-dock{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;padding:8px;border-radius:18px;background:var(--panel);backdrop-filter:blur(20px);border:1px solid var(--border);box-shadow:0 16px 40px -12px rgba(0,0,0,.6);}
-.ws-dock-btn{display:flex;flex-direction:column;align-items:center;gap:3px;width:54px;padding:9px 6px 7px;border:none;border-radius:12px;cursor:pointer;background:transparent;color:var(--text);transition:transform var(--dur) cubic-bezier(.2,.9,.3,1.4),background .15s;}
-.ws-dock-btn:hover{background:rgba(255,255,255,.08);transform:translateY(-6px) scale(1.06);}
-.ws-dock-btn.is-active{color:var(--accent);background:rgba(255,255,255,.06);}
-.ws-dock-label{font-size:9.5px;letter-spacing:.3px;opacity:.7;}
 .ws-layer{position:relative;touch-action:none;}
 .ws-layer.is-selected{outline:1px solid var(--accent);outline-offset:6px;border-radius:6px;}
-.ws-layer-handles{position:absolute;inset:-8px;pointer-events:none;z-index:10;box-sizing:border-box;border:1px solid var(--accent);border-radius:3px;}
+.ws-layer-handles{position:fixed;pointer-events:none;z-index:200;box-sizing:border-box;border:1px solid var(--accent);border-radius:3px;}
 .ws-layer-handles span{position:absolute;width:8px;height:8px;border-radius:50%;border:2px solid var(--accent);background:#fff;transform:translate(-50%,-50%);}
-.ws-layer-handles span:nth-child(1){left:-4px;top:-4px;}
-.ws-layer-handles span:nth-child(2){right:-4px;top:-4px;}
-.ws-layer-handles span:nth-child(3){left:-4px;bottom:-4px;}
-.ws-layer-handles span:nth-child(4){right:-4px;bottom:-4px;}
+.ws-layer-handles span:nth-child(1){left:0;top:0;}
+.ws-layer-handles span:nth-child(2){right:0;top:0;transform:translate(50%,-50%);}
+.ws-layer-handles span:nth-child(3){left:0;bottom:0;transform:translate(-50%,50%);}
+.ws-layer-handles span:nth-child(4){right:0;bottom:0;transform:translate(50%,50%);}
 .ws-inspector{position:fixed;left:18px;top:68px;z-index:45;width:320px;max-height:calc(100vh - 112px);display:flex;flex-direction:column;background:var(--panel);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:14px;box-shadow:0 20px 60px -25px rgba(0,0,0,.8);}
 .ws-inspector-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
 .ws-inspector-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;}
@@ -61,6 +63,8 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-layer-item{width:100%;text-align:left;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 10px;font-size:12px;cursor:pointer;}
 .ws-layer-item:hover{border-color:var(--accent);}
 .ws-layer-item.is-active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
+.ws-layer-add{width:100%;text-align:center;background:rgba(255,255,255,.02);border:1px dashed var(--border);color:var(--muted);border-radius:8px;padding:8px 10px;font-size:12px;cursor:pointer;}
+.ws-layer-add:hover{border-color:var(--accent);color:var(--accent);}
 .ws-source-wrap{padding:10px;display:flex;flex-direction:column;gap:8px;}
 .ws-source-wrap textarea{min-height:260px;resize:vertical;border:1px solid var(--border);border-radius:8px;background:rgba(0,0,0,.25);color:var(--text);font-family:var(--mono);font-size:11px;line-height:1.5;padding:10px;outline:none;}
 .ws-source-wrap textarea:focus{border-color:var(--accent);}
@@ -96,6 +100,7 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-launcher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;}
 .ws-launch-tile{text-align:left;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:18px;cursor:pointer;transition:transform .16s,border-color .16s,background .16s;}
 .ws-launch-tile:hover{transform:translateY(-4px);border-color:var(--accent);background:rgba(255,255,255,.06);}
+.ws-launch-tile.is-last{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
 .ws-launch-glyph{margin-bottom:12px;}
 .ws-launch-name{font-size:15px;font-weight:700;}
 .ws-launch-blurb{font-size:11.5px;color:var(--muted);margin-top:2px;}
@@ -115,8 +120,17 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-palette-empty{padding:20px;text-align:center;color:var(--muted);font-size:13px;}
 .ws-empty{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
 .ws-empty button{background:var(--accent);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:600;cursor:pointer;}
+.ws-pages{position:fixed;left:0;top:48px;bottom:0;width:80px;z-index:30;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:12px 6px;gap:8px;overflow-y:auto;}
+.ws-page-thumb{width:60px;height:42px;border-radius:4px;border:1px solid var(--border);cursor:pointer;overflow:hidden;background:#fff;color:#222;position:relative;padding:2px;}
+.ws-page-thumb.is-active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
+.ws-page-thumb small{position:absolute;right:4px;bottom:2px;font-size:9px;color:#666;}
+.ws-page-add{width:60px;height:28px;border:1px dashed var(--border);border-radius:4px;background:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;}
+.ws-page-add:hover{border-color:var(--accent);color:var(--accent);}
+.ws-page-menu{position:fixed;z-index:80;background:var(--panel);border:1px solid var(--border);border-radius:8px;min-width:120px;overflow:hidden;box-shadow:0 12px 30px -10px rgba(0,0,0,.7);}
+.ws-page-menu button{display:block;width:100%;text-align:left;background:none;border:none;color:var(--text);padding:8px 10px;font-size:12px;cursor:pointer;}
+.ws-page-menu button:hover{background:rgba(255,255,255,.08);}
 @media print{@page{margin:0;}}
-body.ws-printing::before,body.ws-printing::after,body.ws-printing .ws-dock,body.ws-printing .ws-themepanel,body.ws-printing .ws-wordmark,body.ws-printing .ws-status,body.ws-printing .ws-handle,body.ws-printing .ws-accent.is-selected,body.ws-printing .ws-inspector,body.ws-printing .ws-layer-handles{display:none!important;}
+body.ws-printing::before,body.ws-printing::after,body.ws-printing .ws-toolbar,body.ws-printing .ws-pages,body.ws-printing .ws-themepanel,body.ws-printing .ws-wordmark,body.ws-printing .ws-status,body.ws-printing .ws-handle,body.ws-printing .ws-accent.is-selected,body.ws-printing .ws-inspector,body.ws-printing .ws-layer-handles{display:none!important;}
 body.ws-printing .ws-stage{position:static!important;overflow:visible!important;}
 body.ws-printing .ws-world,body.ws-printing .ws-docpos{transform:none!important;position:static!important;}
 body.ws-printing .ws-docframe::before{display:none!important;}
@@ -424,11 +438,18 @@ function Stage({ view, setView, docPos, setDocPos, onDeselect, children }) {
   );
 }
 
-function DraggableLayer({ id, selected, onSelect, onDragStart, pos, onMove, zoom, style, children }) {
+function DraggableLayer({ id, selected, onSelect, onDragStart, pos, onMove, zoom, style, children, extraFields, onChangeExtraFields, theme }) {
   const drag = useRef(null);
+  const divRef = useRef(null);
+  const [rect, setRect] = React.useState(null);
   const p = pos || { x: 0, y: 0 };
+  React.useLayoutEffect(() => {
+    if (!selected || !divRef.current) { setRect(null); return; }
+    setRect(divRef.current.getBoundingClientRect());
+  }, [selected, p.x, p.y, zoom]);
   const start = (e) => {
     if (e.button !== 0) return;
+    if (e.target.closest('.ws-editable')) return;
     e.stopPropagation();
     onSelect?.(id);
     onDragStart?.();
@@ -437,23 +458,48 @@ function DraggableLayer({ id, selected, onSelect, onDragStart, pos, onMove, zoom
   };
   const move = (e) => {
     if (!drag.current) return;
+    e.stopPropagation();
     const dx = (e.clientX - drag.current.sx) / zoom;
     const dy = (e.clientY - drag.current.sy) / zoom;
     onMove?.(id, { x: drag.current.start.x + dx, y: drag.current.start.y + dy });
+    if (divRef.current) setRect(divRef.current.getBoundingClientRect());
   };
   const end = () => { drag.current = null; };
+  const fields = Array.isArray(extraFields) ? extraFields : [];
   return (
-    <div
-      className={'ws-layer' + (selected ? ' is-selected' : '')}
-      style={{ ...style, transform: `translate(${p.x}px,${p.y}px)` }}
-      onPointerDown={start}
-      onPointerMove={move}
-      onPointerUp={end}
-      onPointerLeave={end}
-    >
-      {children}
-      {selected && <span className="ws-layer-handles"><span /><span /><span /><span /></span>}
-    </div>
+    <>
+      <div
+        ref={divRef}
+        className={'ws-layer' + (selected ? ' is-selected' : '')}
+        style={{ ...style, transform: `translate(${p.x}px,${p.y}px)` }}
+        onPointerDown={start}
+        onPointerMove={move}
+        onPointerUp={end}
+        onPointerLeave={end}
+      >
+        {children}
+        {fields.map((v, i) => (
+          <Editable key={id + '-extra-' + i} value={v} onChange={(nv) => onChangeExtraFields?.(fields.map((f, idx) => idx === i ? nv : f))}
+            style={{ marginTop: 10, fontSize: 13, opacity: 0.8 }} />
+        ))}
+        {onChangeExtraFields && (
+          <button className="ws-addrow" style={{ color: theme?.primary || 'var(--accent)' }}
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={() => onChangeExtraFields([...(fields || []), 'New field'])}>
+            + Add field
+          </button>
+        )}
+      </div>
+      {selected && rect && ReactDOM.createPortal(
+        <span className="ws-layer-handles" style={{
+          left: rect.left - 8, top: rect.top - 8,
+          width: rect.width + 16, height: rect.height + 16,
+        }}>
+          <span /><span /><span /><span />
+        </span>,
+        document.body
+      )}
+    </>
   );
 }
 function sanitizeSvgMarkup(markup) {
@@ -500,11 +546,38 @@ function Accent({ c, set, theme, zoom, sel, onSel, onDragStart }) {
   );
 }
 
+function CustomLayerStack({ theme, c, set, zoom, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
+  const customLayers = c.customLayers || [];
+  if (!customLayers.length) return null;
+  return customLayers.map((layer) => (
+    <DraggableLayer
+      key={layer.id}
+      id={layer.id}
+      selected={selectedLayer === layer.id}
+      onSelect={onSelectLayer}
+      onDragStart={onLayerDragStart}
+      pos={layers[layer.id]}
+      onMove={onMoveLayer}
+      zoom={zoom}
+      style={{ position: 'absolute', left: 40, top: 40, minWidth: 280 }}
+      extraFields={(c.extraFields && c.extraFields[layer.id]) || []}
+      onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), [layer.id]: rows })}
+      theme={theme}
+    >
+      <Editable value={layer.text || ''} onChange={(v) => set('customLayers', customLayers.map((it) => it.id === layer.id ? { ...it, text: v } : it))}
+        style={{ fontSize: 20, fontWeight: 600, color: theme.primary }} />
+    </DraggableLayer>
+  ));
+}
+
 
 function DocBusinessCard({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
   return (
     <div className="artboard" style={{ width: 1050, height: 600, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
       <DraggableLayer id="brand" selected={selectedLayer === 'brand'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.brand} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.brand) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), brand: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 64, right: 64, top: 64 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div style={{ display: 'flex', gap: 22, alignItems: 'center' }}>
@@ -519,11 +592,17 @@ function DocBusinessCard({ theme, c, set, zoom, sel, onSel, layers, selectedLaye
         </div>
       </DraggableLayer>
       <DraggableLayer id="identity" selected={selectedLayer === 'identity'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.identity} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.identity) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), identity: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 64, right: 64, top: 250 }}>
         <Editable value={c.name} onChange={(v) => set('name', v)} style={{ fontSize: 52, fontWeight: 700, letterSpacing: -1 }} />
         <Editable value={c.role} onChange={(v) => set('role', v)} style={{ fontSize: 19, color: theme.primary, marginTop: 4, letterSpacing: 1 }} />
       </DraggableLayer>
       <DraggableLayer id="contacts" selected={selectedLayer === 'contacts'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.contacts} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.contacts) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), contacts: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 64, right: 64, bottom: 64 }}>
         <div style={{ display: 'flex', gap: 56, fontSize: 15, borderTop: `1px solid ${theme.border}33`, paddingTop: 22 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -536,6 +615,7 @@ function DocBusinessCard({ theme, c, set, zoom, sel, onSel, layers, selectedLaye
           </div>
         </div>
       </DraggableLayer>
+      <CustomLayerStack theme={theme} c={c} set={set} zoom={zoom} layers={layers} selectedLayer={selectedLayer} onSelectLayer={onSelectLayer} onMoveLayer={onMoveLayer} onLayerDragStart={onLayerDragStart} />
       <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
@@ -555,6 +635,9 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, on
   return (
     <div className="artboard" style={{ width: 816, height: 1056, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
       <DraggableLayer id="header" selected={selectedLayer === 'header'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.header} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.header) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), header: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 0, right: 0, top: 0 }}>
       <div style={{ background: theme.headerBg, color: theme.headerText, padding: '34px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
@@ -574,6 +657,9 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, on
       </DraggableLayer>
 
       <DraggableLayer id="body" selected={selectedLayer === 'body'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.body} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.body) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), body: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 0, right: 0, top: 118 }}>
       <div style={{ padding: '32px 48px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 28 }}>
@@ -617,6 +703,7 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, on
         <Editable value={c.note} onChange={(v) => set('note', v)} multiline style={{ marginTop: 40, fontSize: 12.5, opacity: 0.65, lineHeight: 1.6, borderTop: `1px solid ${theme.border}33`, paddingTop: 16 }} />
       </div>
       </DraggableLayer>
+      <CustomLayerStack theme={theme} c={c} set={set} zoom={zoom} layers={layers} selectedLayer={selectedLayer} onSelectLayer={onSelectLayer} onMoveLayer={onMoveLayer} onLayerDragStart={onLayerDragStart} />
       <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
@@ -634,6 +721,9 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
   return (
     <div className="artboard" style={{ width: 816, height: 1056, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
       <DraggableLayer id="header" selected={selectedLayer === 'header'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.header} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.header) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), header: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 0, right: 0, top: 0 }}>
       <div style={{ background: theme.headerBg, color: theme.headerText, padding: '28px 48px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ width: 46, height: 46, borderRadius: 8, background: theme.headerText, color: theme.headerBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30, fontWeight: 800, lineHeight: 1 }}>
@@ -646,6 +736,9 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
       </div>
       </DraggableLayer>
       <DraggableLayer id="content" selected={selectedLayer === 'content'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.content} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.content) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), content: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 0, right: 0, top: 106 }}>
       <div style={{ padding: '34px 48px' }}>
         <Editable value={c.title} onChange={(v) => set('title', v)} style={{ fontSize: 28, fontWeight: 700, color: theme.primary, lineHeight: 1.15 }} />
@@ -676,6 +769,7 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
         <Editable value={c.footer} onChange={(v) => set('footer', v)} style={{ marginTop: 30, fontSize: 11, opacity: 0.5, borderTop: `1px solid ${theme.border}33`, paddingTop: 14, letterSpacing: 0.5 }} />
       </div>
       </DraggableLayer>
+      <CustomLayerStack theme={theme} c={c} set={set} zoom={zoom} layers={layers} selectedLayer={selectedLayer} onSelectLayer={onSelectLayer} onMoveLayer={onMoveLayer} onLayerDragStart={onLayerDragStart} />
       <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
@@ -687,6 +781,9 @@ function DocLetterhead({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
   return (
     <div className="artboard" style={{ width: 816, height: 1056, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
       <DraggableLayer id="header" selected={selectedLayer === 'header'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.header} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.header) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), header: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 0, right: 0, top: 0 }}>
       <div style={{ padding: '40px 56px 22px', borderBottom: `3px double ${theme.primary}`, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
@@ -701,12 +798,18 @@ function DocLetterhead({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
       </div>
       </DraggableLayer>
       <DraggableLayer id="meta" selected={selectedLayer === 'meta'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.meta} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.meta) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), meta: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 0, right: 0, top: 122 }}>
       <div style={{ padding: '12px 56px 0', fontSize: 10.5, letterSpacing: 0.5, opacity: 0.6, textAlign: 'center' }}>
         <Editable value={c.contact} onChange={(v) => set('contact', v)} />
       </div>
       </DraggableLayer>
       <DraggableLayer id="body" selected={selectedLayer === 'body'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.body} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.body) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), body: rows })}
+        theme={theme}
         style={{ position: 'absolute', left: 0, right: 0, top: 152 }}>
       <div style={{ padding: '40px 56px' }}>
         <Editable value={c.date} onChange={(v) => set('date', v)} style={{ fontSize: 13.5, opacity: 0.75 }} />
@@ -722,6 +825,7 @@ function DocLetterhead({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
         </div>
       </div>
       </DraggableLayer>
+      <CustomLayerStack theme={theme} c={c} set={set} zoom={zoom} layers={layers} selectedLayer={selectedLayer} onSelectLayer={onSelectLayer} onMoveLayer={onMoveLayer} onLayerDragStart={onLayerDragStart} />
       <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
@@ -733,11 +837,17 @@ function DocCertificate({ theme, c, set, zoom, sel, onSel, layers, selectedLayer
   return (
     <div className="artboard" style={{ width: 1056, height: 816, background: theme.bg, color: theme.text, fontFamily: theme.font }}>
       <DraggableLayer id="frame" selected={selectedLayer === 'frame'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.frame} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.frame) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), frame: rows })}
+        theme={theme}
         style={{ position: 'absolute', inset: 0 }}>
         <div style={{ position: 'absolute', inset: 22, border: `2px solid ${theme.primary}` }} />
         <div style={{ position: 'absolute', inset: 30, border: `1px solid ${theme.accent}66` }} />
       </DraggableLayer>
       <DraggableLayer id="content" selected={selectedLayer === 'content'} onSelect={onSelectLayer} onDragStart={onLayerDragStart} pos={layers.content} onMove={onMoveLayer} zoom={zoom}
+        extraFields={(c.extraFields && c.extraFields.content) || []}
+        onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), content: rows })}
+        theme={theme}
         style={{ position: 'absolute', inset: 0 }}>
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 120px' }}>
         <div style={{ fontSize: 40, color: theme.accent }}><Editable value={c.monogram} onChange={(v) => set('monogram', v)} /></div>
@@ -758,6 +868,7 @@ function DocCertificate({ theme, c, set, zoom, sel, onSel, layers, selectedLayer
         <Editable value={c.date} onChange={(v) => set('date', v)} style={{ fontSize: 12, marginTop: 26, opacity: 0.55 }} />
       </div>
       </DraggableLayer>
+      <CustomLayerStack theme={theme} c={c} set={set} zoom={zoom} layers={layers} selectedLayer={selectedLayer} onSelectLayer={onSelectLayer} onMoveLayer={onMoveLayer} onLayerDragStart={onLayerDragStart} />
       <CustomSvg svg={c.customSvg} />
       <Accent c={c} set={set} theme={theme} zoom={zoom} sel={sel} onSel={onSel} onDragStart={onLayerDragStart} />
     </div>
@@ -804,6 +915,7 @@ const ensureLayers = (typeId, content) => {
   const defs = LAYER_MODELS[typeId] || [];
   const next = { ...(content.layers || {}) };
   defs.forEach((d) => { if (!next[d.id]) next[d.id] = { x: 0, y: 0 }; });
+  (content.customLayers || []).forEach((d) => { if (!next[d.id]) next[d.id] = { x: 40, y: 40 }; });
   return next;
 };
 function Glyph({ name, size = 26 }) {
@@ -821,13 +933,21 @@ function Glyph({ name, size = 26 }) {
     export: <g><path d="M12 15V4" /><path d="M8 8l4-4 4 4" /><path d="M5 16v3h14v-3" /></g>,
     layers: <g><rect x="4" y="5" width="16" height="4" rx="1.2" /><rect x="6" y="10" width="12" height="4" rx="1.2" /><rect x="8" y="15" width="8" height="4" rx="1.2" /></g>,
     code: <g><path d="M9 8L5 12l4 4" /><path d="M15 8l4 4-4 4" /><path d="M13 6l-2 12" /></g>,
+    undo: <g><path d="M9 7l-4 4 4 4" /><path d="M20 11h-9a4 4 0 0 0-4 4" /></g>,
+    redo: <g><path d="M15 7l4 4-4 4" /><path d="M4 11h9a4 4 0 0 1 4 4" /></g>,
+    zin: <g><circle cx="10" cy="10" r="6" /><line x1="10" y1="7.5" x2="10" y2="12.5" /><line x1="7.5" y1="10" x2="12.5" y2="10" /><line x1="15" y1="15" x2="20" y2="20" /></g>,
+    zout: <g><circle cx="10" cy="10" r="6" /><line x1="7.5" y1="10" x2="12.5" y2="10" /><line x1="15" y1="15" x2="20" y2="20" /></g>,
+    text: <g><path d="M5 6h14" /><path d="M12 6v12" /><path d="M7 18h10" /></g>,
   };
   return <svg viewBox="0 0 24 24" style={s}>{paths[name] || paths.card}</svg>;
 }
 
 
-function Launcher({ open, onPick, onClose }) {
+function Launcher({ open, onPick, onClose, lastTypeId }) {
   if (!open) return null;
+  const list = lastTypeId
+    ? [...DOC_TYPES].sort((a, b) => (a.id === lastTypeId ? -1 : b.id === lastTypeId ? 1 : 0))
+    : DOC_TYPES;
   return (
     <div className="ws-launcher" onClick={onClose}>
       <div className="ws-launcher-card" onClick={(e) => e.stopPropagation()}>
@@ -836,10 +956,10 @@ function Launcher({ open, onPick, onClose }) {
           <span>Forge a document</span>
         </div>
         <div className="ws-launcher-grid">
-          {DOC_TYPES.map((d) => {
+          {list.map((d) => {
             const t = themeById(d.defaultTheme);
             return (
-              <button key={d.id} className="ws-launch-tile" onClick={() => onPick(d.id)}>
+              <button key={d.id} className={'ws-launch-tile' + (d.id === lastTypeId ? ' is-last' : '')} onClick={() => onPick(d.id)}>
                 <div className="ws-launch-glyph" style={{ color: t.primary }}><Glyph name={d.glyph} size={30} /></div>
                 <div className="ws-launch-name">{d.name}</div>
                 <div className="ws-launch-blurb">{d.blurb}</div>
@@ -857,24 +977,47 @@ function Launcher({ open, onPick, onClose }) {
 }
 
 
-function Dock({ onNew, onThemes, onFit, onPalette, onLayers, onSource, onExport, themesOpen, layersOpen, sourceOpen }) {
-  const items = [
-    { id: 'new', glyph: 'plus', label: 'New', fn: onNew },
-    { id: 'themes', glyph: 'palette', label: 'Themes', fn: onThemes, active: themesOpen },
-    { id: 'layers', glyph: 'layers', label: 'Layers', fn: onLayers, active: layersOpen },
-    { id: 'source', glyph: 'code', label: 'Code', fn: onSource, active: sourceOpen },
-    { id: 'fit', glyph: 'fit', label: 'Fit', fn: onFit },
-    { id: 'cmd', glyph: 'cmd', label: '⌘K', fn: onPalette },
-    { id: 'export', glyph: 'export', label: 'Export', fn: onExport },
+function Toolbar({ onNew, onUndo, onRedo, onZoomIn, onZoomOut, onFit, onAddLayer, onAddTextField, onThemes, onLayers, onSource, onExport, themesOpen, layersOpen, sourceOpen }) {
+  const groups = [
+    [{ id: 'new', glyph: 'plus', label: 'New', fn: onNew }],
+    [{ id: 'undo', glyph: 'undo', label: 'Undo', fn: onUndo }, { id: 'redo', glyph: 'redo', label: 'Redo', fn: onRedo }],
+    [{ id: 'zin', glyph: 'zin', label: 'Zoom In', fn: onZoomIn }, { id: 'zout', glyph: 'zout', label: 'Zoom Out', fn: onZoomOut }, { id: 'fit', glyph: 'fit', label: 'Fit', fn: onFit }],
+    [{ id: 'add-layer', glyph: 'plus', label: 'Add Layer', fn: onAddLayer }, { id: 'add-text', glyph: 'text', label: 'Add Text Field', fn: onAddTextField }],
+    [{ id: 'themes', glyph: 'palette', label: 'Themes', fn: onThemes, active: themesOpen }],
+    [{ id: 'layers', glyph: 'layers', label: 'Layers', fn: onLayers, active: layersOpen }, { id: 'source', glyph: 'code', label: 'Code', fn: onSource, active: sourceOpen }],
+    [{ id: 'export', glyph: 'export', label: 'Export / Print', fn: onExport }],
   ];
   return (
-    <div className="ws-dock">
-      {items.map((it) => (
-        <button key={it.id} className={'ws-dock-btn' + (it.active ? ' is-active' : '')} onClick={it.fn}>
-          <Glyph name={it.glyph} size={22} />
-          <span className="ws-dock-label">{it.label}</span>
+    <div className="ws-toolbar">
+      <div className="ws-wordmark">Write<span>Space</span></div>
+      <div className="ws-toolbar-spacer" />
+      {groups.map((group, idx) => (
+        <div key={idx} className="ws-toolbar-group">
+          {group.map((it) => (
+            <button key={it.id} className={'ws-toolbar-btn' + (it.active ? ' is-active' : '')} onClick={it.fn}>
+              <Glyph name={it.glyph} size={16} />
+              <span>{it.label}</span>
+            </button>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PageStrip({ docs, activePage, onSelectPage, onAddPage, onPageMenu }) {
+  if (!docs.length) return null;
+  return (
+    <div className="ws-pages">
+      {docs.map((d, i) => (
+        <button key={i} className={'ws-page-thumb' + (i === activePage ? ' is-active' : '')}
+          onClick={() => onSelectPage(i)}
+          onContextMenu={(e) => onPageMenu(e, i)}>
+          <div style={{ fontSize: 8, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{docTypeById(d.typeId).name}</div>
+          <small>{i + 1}</small>
         </button>
       ))}
+      <button className="ws-page-add" onClick={onAddPage}>+</button>
     </div>
   );
 }
@@ -959,7 +1102,7 @@ function ThemePanel({ open, current, onHover, onPick, onClose }) {
   );
 }
 
-function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions, onMoveLayer }) {
+function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions, onMoveLayer, onAddLayer }) {
   if (!open) return null;
   return (
     <div className="ws-inspector">
@@ -977,6 +1120,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
             <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'〜':layer.id==='brand'||layer.id==='header'?'▣':layer.id==='frame'?'◻':'≡'}</span>{layer.name}
           </button>
         ))}
+        <button className="ws-layer-add" onClick={onAddLayer}>+ Add Layer</button>
       </div>
       {selected && (() => {
               const pos = (layerPositions && layerPositions[selected]) || {x:0,y:0};
@@ -1048,18 +1192,19 @@ const MAX_UNDO_HISTORY = 120;
 const TWEAK_DEFAULTS = { mood:"graphite", accent:"ember", motion:"tasteful", dotGrid:true, spotlight:true };
 
 function fitView(w, h) {
-  const vw = window.innerWidth, vh = window.innerHeight;
-  const zoom = Math.min((vw - 220) / w, (vh - 200) / h, 1.15);
-  return { zoom, x: (vw - w * zoom) / 2, y: (vh - h * zoom) / 2 };
+  const vw = window.innerWidth - 80, vh = window.innerHeight - 48;
+  const zoom = Math.min((vw - 220) / w, (vh - 140) / h, 1.15);
+  return { zoom, x: 80 + (vw - w * zoom) / 2, y: 48 + (vh - h * zoom) / 2 };
 }
 
 function App() {
   const [t] = React.useState(TWEAK_DEFAULTS); const setTweak = () => {};
-  const [doc, setDoc] = uS(null); // { typeId, content }
-  const [themeId, setThemeId] = uS(null);
+  const [lastTypeId, setLastTypeId] = uS(() => { try { return localStorage.getItem('ws:lastTypeId') || null; } catch { return null; } });
+  const [lastThemeId, setLastThemeId] = uS(() => { try { return localStorage.getItem('ws:lastThemeId') || null; } catch { return null; } });
+  const [docs, setDocs] = uS([]);
+  const [activePage, setActivePage] = uS(0);
   const [preview, setPreview] = uS(null); // hovered theme id
   const [view, setView] = uS({ zoom: 1, x: 0, y: 0 });
-  const [docPos, setDocPos] = uS({ x: 0, y: 0 });
   const [launcher, setLauncher] = uS(true);
   const [themesOpen, setThemesOpen] = uS(false);
   const [palette, setPalette] = uS(false);
@@ -1069,8 +1214,11 @@ function App() {
   const [sourceError, setSourceError] = uS('');
   const [accentSel, setAccentSel] = uS(false);
   const [selectedLayer, setSelectedLayer] = uS(null);
+  const [pageMenu, setPageMenu] = uS(null);
   const undoRef = uR([]);
   const redoRef = uR([]);
+  const doc = docs[activePage] || null;
+  const docPos = doc?.docPos || { x: 0, y: 0 };
 
   // apply shell theme vars
   uE(() => {
@@ -1085,18 +1233,18 @@ function App() {
   }, [t.mood, t.accent, t.motion, t.dotGrid, t.spotlight]);
 
   const snapshot = uC(() => ({
-    doc: doc ? JSON.parse(JSON.stringify(doc)) : null,
-    themeId,
-    docPos: { ...docPos },
-  }), [doc, themeId, docPos]);
+    docs: JSON.parse(JSON.stringify(docs)),
+    activePage,
+  }), [docs, activePage]);
 
   const applySnapshot = uC((s) => {
-    setDoc(s.doc ? JSON.parse(JSON.stringify(s.doc)) : null);
-    setThemeId(s.themeId);
-    setDocPos(s.docPos || { x: 0, y: 0 });
+    const nextDocs = s.docs ? JSON.parse(JSON.stringify(s.docs)) : [];
+    setDocs(nextDocs);
+    setActivePage(Math.min(Math.max(0, s.activePage || 0), Math.max(0, nextDocs.length - 1)));
     setPreview(null);
     setAccentSel(false);
     setSelectedLayer(null);
+    setPageMenu(null);
   }, []);
 
   const pushHistory = uC(() => {
@@ -1105,6 +1253,9 @@ function App() {
     if (undoRef.current.length > MAX_UNDO_HISTORY) undoRef.current.shift();
     redoRef.current = [];
   }, [doc, snapshot]);
+  const updateActiveDoc = uC((updater) => {
+    setDocs((prev) => prev.map((d, i) => (i === activePage ? updater(d) : d)));
+  }, [activePage]);
 
   const undo = uC(() => {
     if (!undoRef.current.length) return;
@@ -1127,8 +1278,11 @@ function App() {
     const content = JSON.parse(JSON.stringify(d.content));
     content.accent = { pos: { ...(content.accentPos || { x: 60, y: 60 }) }, p1: { x: 14, y: 96 }, p2: { x: 216, y: 54 } };
     content.layers = ensureLayers(typeId, content);
-    setDoc({ typeId, content });
-    setThemeId(d.defaultTheme);
+    content.customLayers = content.customLayers || [];
+    content.extraFields = content.extraFields || {};
+    const themeId = (lastThemeId && themeById(lastThemeId).id === lastThemeId) ? lastThemeId : d.defaultTheme;
+    setDocs([{ typeId, themeId, content, docPos: { x: 0, y: 0 } }]);
+    setActivePage(0);
     setPreview(null);
     setLauncher(false);
     setAccentSel(false);
@@ -1136,49 +1290,145 @@ function App() {
     setLayersOpen(false);
     setSourceOpen(false);
     setSourceError('');
+    setPageMenu(null);
     undoRef.current = [];
     redoRef.current = [];
-    setDocPos({ x: 0, y: 0 });
     setView(fitView(d.w, d.h));
-  }, []);
+    setLastTypeId(typeId);
+    setLastThemeId(themeId);
+    try { localStorage.setItem('ws:lastTypeId', typeId); localStorage.setItem('ws:lastThemeId', themeId); } catch {}
+  }, [lastThemeId]);
 
   const set = uC((field, value, opts = {}) => {
     if (opts.track !== false) pushHistory();
-    setDoc((dd) => ({ ...dd, content: { ...dd.content, [field]: value } }));
-  }, [pushHistory]);
-  const setLayerPos = uC((layerId, pos) => setDoc((dd) => ({
+    updateActiveDoc((dd) => ({ ...dd, content: { ...dd.content, [field]: value } }));
+  }, [pushHistory, updateActiveDoc]);
+  const setLayerPos = uC((layerId, pos) => updateActiveDoc((dd) => ({
     ...dd,
     content: {
       ...dd.content,
       layers: { ...(dd.content.layers || {}), [layerId]: pos },
     },
-  })), []);
+  })), [updateActiveDoc]);
   const setThemeTracked = uC((id) => {
+    if (!doc) return;
     pushHistory();
-    setThemeId(id);
+    updateActiveDoc((dd) => ({ ...dd, themeId: id }));
     setPreview(null);
-  }, [pushHistory]);
+    setLastThemeId(id);
+    try { localStorage.setItem('ws:lastThemeId', id); } catch {}
+  }, [doc, pushHistory, updateActiveDoc]);
+  const addCustomLayer = uC(() => {
+    if (!doc) return;
+    pushHistory();
+    const idx = (doc.content.customLayers || []).length + 1;
+    const id = 'custom-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 6);
+    updateActiveDoc((dd) => ({
+      ...dd,
+      content: {
+        ...dd.content,
+        customLayers: [...(dd.content.customLayers || []), { id, name: 'Custom Layer ' + idx, text: 'New text' }],
+        layers: { ...(dd.content.layers || {}), [id]: { x: 40, y: 40 } },
+      },
+    }));
+    setSelectedLayer(id);
+    setAccentSel(false);
+  }, [doc, pushHistory, updateActiveDoc]);
+  const addTextField = uC(() => {
+    if (!doc) return;
+    const target = selectedLayer && selectedLayer !== 'accent'
+      ? selectedLayer
+      : ((LAYER_MODELS[doc.typeId] || []).find((l) => l.id !== 'accent') || {}).id;
+    if (!target) return;
+    pushHistory();
+    updateActiveDoc((dd) => {
+      const extra = dd.content.extraFields || {};
+      return {
+        ...dd,
+        content: {
+          ...dd.content,
+          extraFields: { ...extra, [target]: [...(extra[target] || []), 'New field'] },
+        },
+      };
+    });
+    setSelectedLayer(target);
+    setAccentSel(false);
+  }, [doc, selectedLayer, pushHistory, updateActiveDoc]);
   const applySource = uC(() => {
     if (!doc) return;
     try {
       const parsed = JSON.parse(sourceDraft);
       pushHistory();
-      setDoc((dd) => {
+      updateActiveDoc((dd) => {
         const merged = { ...dd.content, ...parsed };
-        return { ...dd, content: { ...merged, layers: ensureLayers(dd.typeId, merged) } };
+        return { ...dd, content: { ...merged, customLayers: merged.customLayers || [], extraFields: merged.extraFields || {}, layers: ensureLayers(dd.typeId, merged) } };
       });
       setSourceError('');
     } catch (err) {
       setSourceError('Invalid JSON');
     }
-  }, [doc, sourceDraft, pushHistory]);
-  const fit = uC(() => { if (doc) { const d = docTypeById(doc.typeId); setDocPos({ x: 0, y: 0 }); setView(fitView(d.w, d.h)); } }, [doc]);
-  const layerDefs = doc ? (LAYER_MODELS[doc.typeId] || []) : [];
+  }, [doc, sourceDraft, pushHistory, updateActiveDoc]);
+  const fit = uC(() => {
+    if (!doc) return;
+    const d = docTypeById(doc.typeId);
+    updateActiveDoc((dd) => ({ ...dd, docPos: { x: 0, y: 0 } }));
+    setView(fitView(d.w, d.h));
+  }, [doc, updateActiveDoc]);
+  const zoomIn = uC(() => setView((v) => ({ ...v, zoom: Math.min(2.4, v.zoom * 1.2) })), []);
+  const zoomOut = uC(() => setView((v) => ({ ...v, zoom: Math.max(0.3, v.zoom / 1.2) })), []);
+  const addPage = uC(() => {
+    if (!doc) { setLauncher(true); return; }
+    pushHistory();
+    const d = docTypeById(doc.typeId);
+    const content = JSON.parse(JSON.stringify(d.content));
+    content.accent = { pos: { ...(content.accentPos || { x: 60, y: 60 }) }, p1: { x: 14, y: 96 }, p2: { x: 216, y: 54 } };
+    content.layers = ensureLayers(doc.typeId, content);
+    content.customLayers = content.customLayers || [];
+    content.extraFields = content.extraFields || {};
+    setDocs((prev) => {
+      const next = [...prev, { typeId: doc.typeId, themeId: doc.themeId, content, docPos: { x: 0, y: 0 } }];
+      setActivePage(next.length - 1);
+      return next;
+    });
+  }, [doc, pushHistory]);
+  const duplicatePage = uC((idx) => {
+    pushHistory();
+    setDocs((prev) => {
+      if (!prev[idx]) return prev;
+      const next = [...prev, JSON.parse(JSON.stringify(prev[idx]))];
+      setActivePage(next.length - 1);
+      return next;
+    });
+  }, [pushHistory]);
+  const deletePage = uC((idx) => {
+    pushHistory();
+    setDocs((prev) => {
+      const next = prev.filter((_, i) => i !== idx);
+      setActivePage((p) => Math.max(0, Math.min(p > idx ? p - 1 : p, next.length - 1)));
+      if (!next.length) setLauncher(true);
+      return next;
+    });
+  }, [pushHistory]);
+  const layerDefs = doc ? [
+    ...(LAYER_MODELS[doc.typeId] || []),
+    ...((doc.content.customLayers || []).map((l) => ({ id: l.id, name: l.name || 'Custom Layer' }))),
+  ] : [];
 
   uE(() => {
     if (!doc || !sourceOpen) return;
     setSourceDraft(JSON.stringify(doc.content, null, 2));
   }, [doc, sourceOpen]);
+  uE(() => {
+    if (!pageMenu) return;
+    const close = () => setPageMenu(null);
+    window.addEventListener('pointerdown', close);
+    return () => window.removeEventListener('pointerdown', close);
+  }, [pageMenu]);
+  uE(() => {
+    if (!doc) return;
+    const d = docTypeById(doc.typeId);
+    setView(fitView(d.w, d.h));
+  }, [activePage]);
 
   // keyboard
   uE(() => {
@@ -1187,13 +1437,15 @@ function App() {
       else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'n') { e.preventDefault(); setLauncher(true); }
       else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z' && e.shiftKey) { e.preventDefault(); redo(); }
       else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); undo(); }
+      else if ((e.metaKey || e.ctrlKey) && e.key === '=') { e.preventDefault(); zoomIn(); }
+      else if ((e.metaKey || e.ctrlKey) && e.key === '-') { e.preventDefault(); zoomOut(); }
       else if (e.key === 'Escape') { setPalette(false); setLauncher(false); setThemesOpen(false); setLayersOpen(false); setSourceOpen(false); setAccentSel(false); setSelectedLayer(null); }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [undo, redo]);
+  }, [undo, redo, zoomIn, zoomOut]);
 
-  const effTheme = themeById(preview || themeId);
+  const effTheme = themeById(preview || doc?.themeId || lastThemeId || DOC_TYPES[0].defaultTheme);
   const DocComp = doc ? DOC_COMPONENTS[doc.typeId] : null;
   const dt = doc ? docTypeById(doc.typeId) : null;
 
@@ -1204,10 +1456,12 @@ function App() {
     { id: 'layers', label: 'Open layers panel', group: 'View', fn: () => setLayersOpen(true) },
     { id: 'source', label: 'Open source inspector', group: 'View', fn: () => setSourceOpen(true) },
     { id: 'fit', label: 'Fit to screen', group: 'View', fn: fit },
-    { id: 'zin', label: 'Zoom in', group: 'View', fn: () => setView((v) => ({ ...v, zoom: Math.min(2.4, v.zoom * 1.2) })) },
-    { id: 'zout', label: 'Zoom out', group: 'View', fn: () => setView((v) => ({ ...v, zoom: Math.max(0.3, v.zoom / 1.2) })) },
+    { id: 'zin', label: 'Zoom in', group: 'View', fn: zoomIn },
+    { id: 'zout', label: 'Zoom out', group: 'View', fn: zoomOut },
     { id: 'undo', label: 'Undo', group: 'Edit', fn: undo },
     { id: 'redo', label: 'Redo', group: 'Edit', fn: redo },
+    { id: 'add-layer', label: 'Add layer', group: 'Insert', fn: addCustomLayer },
+    { id: 'add-text', label: 'Add text field', group: 'Insert', fn: addTextField },
     { id: 'export', label: 'Export / Print document', group: 'Output', fn: doExport },
     ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme · ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
   ];
@@ -1220,11 +1474,29 @@ function App() {
 
   return (
     <div className="ws-shell">
-      <div className="ws-wordmark">Write<span>Space</span></div>
-      {doc && <div className="ws-status">{dt.name} · {effTheme.name} · {Math.round(view.zoom * 100)}%</div>}
+      <Toolbar
+        onNew={() => setLauncher(true)}
+        onUndo={undo}
+        onRedo={redo}
+        onZoomIn={zoomIn}
+        onZoomOut={zoomOut}
+        onFit={fit}
+        onAddLayer={addCustomLayer}
+        onAddTextField={addTextField}
+        onThemes={() => setThemesOpen((o) => !o)}
+        onLayers={() => setLayersOpen((o) => !o)}
+        onSource={() => setSourceOpen((o) => !o)}
+        onExport={doExport}
+        themesOpen={themesOpen}
+        layersOpen={layersOpen}
+        sourceOpen={sourceOpen}
+      />
+      {doc && <PageStrip docs={docs} activePage={activePage} onSelectPage={(i) => { setActivePage(i); setAccentSel(false); setSelectedLayer(null); }} onAddPage={addPage}
+        onPageMenu={(e, i) => { e.preventDefault(); setPageMenu({ i, x: e.clientX, y: e.clientY }); }} />}
+      {doc && <div className="ws-status">{dt.name} · {effTheme.name} · {Math.round(view.zoom * 100)}% · Page {activePage + 1} of {docs.length}</div>}
 
       {doc && (
-        <Stage view={view} setView={setView} docPos={docPos} setDocPos={setDocPos} onDeselect={() => { setAccentSel(false); setSelectedLayer(null); }}>
+        <Stage view={view} setView={setView} docPos={docPos} setDocPos={(pos) => updateActiveDoc((dd) => ({ ...dd, docPos: pos }))} onDeselect={() => { setAccentSel(false); setSelectedLayer(null); }}>
           <div className="ws-docframe">
             <DocComp
               theme={effTheme}
@@ -1247,24 +1519,17 @@ function App() {
         <div className="ws-empty"><button onClick={() => setLauncher(true)}>Forge a document</button></div>
       )}
 
-      {doc && <Dock
-        onNew={() => setLauncher(true)}
-        onThemes={() => setThemesOpen((o) => !o)}
-        onLayers={() => setLayersOpen((o) => !o)}
-        onSource={() => setSourceOpen((o) => !o)}
-        onFit={fit}
-        onPalette={() => setPalette(true)}
-        onExport={doExport}
-        themesOpen={themesOpen}
-        layersOpen={layersOpen}
-        sourceOpen={sourceOpen}
-      />}
-
-      <ThemePanel open={themesOpen} current={themeId} onHover={setPreview} onPick={setThemeTracked} onClose={() => setThemesOpen(false)} />
-      <LayerPanel open={layersOpen && !!doc} layers={layerDefs} selected={selectedLayer} onSelect={(id) => { setSelectedLayer(id); setAccentSel(id === 'accent'); }} onClose={() => setLayersOpen(false)}  layerPositions={doc?.content?.layers || {}} onMoveLayer={setLayerPos}/>
+      <ThemePanel open={themesOpen} current={doc?.themeId} onHover={setPreview} onPick={setThemeTracked} onClose={() => setThemesOpen(false)} />
+      <LayerPanel open={layersOpen && !!doc} layers={layerDefs} selected={selectedLayer} onSelect={(id) => { setSelectedLayer(id); setAccentSel(id === 'accent'); }} onClose={() => setLayersOpen(false)}  layerPositions={doc?.content?.layers || {}} onMoveLayer={setLayerPos} onAddLayer={addCustomLayer}/>
       <SourcePanel open={sourceOpen && !!doc} value={sourceDraft} onChange={setSourceDraft} onApply={applySource} error={sourceError} onClose={() => setSourceOpen(false)} />
-      <Launcher open={launcher} onPick={createDoc} onClose={() => doc && setLauncher(false)} />
+      <Launcher open={launcher} onPick={createDoc} onClose={() => doc && setLauncher(false)} lastTypeId={lastTypeId} />
       <CommandPalette open={palette} onClose={() => setPalette(false)} commands={commands} />
+      {pageMenu && (
+        <div className="ws-page-menu" style={{ left: pageMenu.x, top: pageMenu.y }} onPointerDown={(e) => e.stopPropagation()}>
+          <button onClick={() => { duplicatePage(pageMenu.i); setPageMenu(null); }}>Duplicate</button>
+          <button onClick={() => { deletePage(pageMenu.i); setPageMenu(null); }}>Delete</button>
+        </div>
+      )}
 
       
     </div>
