@@ -449,7 +449,7 @@ function DraggableLayer({ id, selected, onSelect, onDragStart, pos, onMove, zoom
   }, [selected, p.x, p.y, zoom]);
   const start = (e) => {
     if (e.button !== 0) return;
-    if (e.target.closest('.ws-editable')) return;
+    if (e.target.closest('.ws-editable') || e.target.isContentEditable) return;
     e.stopPropagation();
     onSelect?.(id);
     onDragStart?.();
@@ -1322,7 +1322,7 @@ function App() {
     if (!doc) return;
     pushHistory();
     const idx = (doc.content.customLayers || []).length + 1;
-    const id = 'custom-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 6);
+    const id = 'custom-' + (window.crypto?.randomUUID?.() || (Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10)));
     updateActiveDoc((dd) => ({
       ...dd,
       content: {
