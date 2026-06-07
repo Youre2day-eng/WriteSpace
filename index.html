@@ -144,41 +144,41 @@ body.ws-printing .artboard{box-shadow:none!important;border-radius:0!important;}
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
 <script type="text/babel">
 const THEMES = [
-  // ── Medical / Dental ──
+  // ââ Medical / Dental ââ
   { id:'clinical-white', name:'Clinical White', category:'Medical', bg:'#ffffff', text:'#0a1628', primary:'#1d4ed8', secondary:'#eff6ff', accent:'#3b82f6', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#1d4ed8', headerBg:'#1d4ed8', headerText:'#ffffff' },
   { id:'dental-pro', name:'Dental Pro', category:'Medical', bg:'#ffffff', text:'#1a2744', primary:'#1a2744', secondary:'#4a90d9', accent:'#4a90d9', font:'Georgia, serif', border:'#1a2744', headerBg:'#1a2744', headerText:'#ffffff' },
   { id:'orthodontics', name:'Orthodontics', category:'Medical', bg:'#f0fdff', text:'#0c3040', primary:'#0891b2', secondary:'#cffafe', accent:'#06b6d4', font:"'Gill Sans', Calibri, sans-serif", border:'#0891b2', headerBg:'#0891b2', headerText:'#ffffff' },
   { id:'pediatric-care', name:'Pediatric Care', category:'Medical', bg:'#fffbf0', text:'#2a1a2e', primary:'#7c3aed', secondary:'#fce7fe', accent:'#f59e0b', font:"'Trebuchet MS', sans-serif", border:'#7c3aed', headerBg:'linear-gradient(90deg,#f59e0b,#7c3aed)', headerText:'#ffffff' },
   { id:'chiropractic', name:'Chiropractic', category:'Medical', bg:'#f7f9f4', text:'#1a2e1a', primary:'#2d6a2d', secondary:'#e8f5e8', accent:'#4a9e4a', font:"Georgia, 'Times New Roman', serif", border:'#2d6a2d', headerBg:'#2d6a2d', headerText:'#f0f8f0' },
 
-  // ── Luxury ──
+  // ââ Luxury ââ
   { id:'chanel-noir', name:'Chanel Noir', category:'Luxury', bg:'#ffffff', text:'#000000', primary:'#000000', secondary:'#f4f4f4', accent:'#000000', font:"'Bodoni MT', Didot, Georgia, serif", border:'#000000', headerBg:'#000000', headerText:'#ffffff' },
   { id:'emerald-prestige', name:'Emerald Prestige', category:'Luxury', bg:'#071a0f', text:'#e8f0e4', primary:'#d4a843', secondary:'#0d3320', accent:'#d4a843', font:"'Garamond', Georgia, serif", border:'#d4a843', headerBg:'#0d3320', headerText:'#d4a843' },
-  { id:'hermes-orange', name:'Hermès Orange', category:'Luxury', bg:'#fdf5ee', text:'#2c1404', primary:'#e8622a', secondary:'#fce8d8', accent:'#c44a14', font:"Didot, 'Bodoni MT', serif", border:'#e8622a', headerBg:'#e8622a', headerText:'#fdf5ee' },
+  { id:'hermes-orange', name:'HermÃ¨s Orange', category:'Luxury', bg:'#fdf5ee', text:'#2c1404', primary:'#e8622a', secondary:'#fce8d8', accent:'#c44a14', font:"Didot, 'Bodoni MT', serif", border:'#e8622a', headerBg:'#e8622a', headerText:'#fdf5ee' },
   { id:'black-diamond', name:'Black Diamond', category:'Luxury', bg:'#f8f8f8', text:'#080808', primary:'#1a1a1a', secondary:'#f0f0f0', accent:'#888888', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#1a1a1a', headerBg:'#0a0a0a', headerText:'#e8e8e8' },
   { id:'medspa-luxe', name:'MedSpa Luxe', category:'Luxury', bg:'#fdf8f5', text:'#4a3728', primary:'#c9956b', secondary:'#e8c8b8', accent:'#b87d5a', font:"'Palatino Linotype', Palatino, serif", border:'#c9956b', headerBg:'#c9956b', headerText:'#ffffff' },
   { id:'victorian-noir', name:'Victorian Noir', category:'Luxury', bg:'#120608', text:'#e8d5b0', primary:'#c9a84c', secondary:'#8b1a1a', accent:'#c9a84c', font:"'Times New Roman', Times, serif", border:'#c9a84c', headerBg:'#1c0808', headerText:'#c9a84c' },
 
-  // ── Corporate ──
+  // ââ Corporate ââ
   { id:'law-firm', name:'Law Firm', category:'Corporate', bg:'#f8f6f0', text:'#2c2416', primary:'#8b7355', secondary:'#c9b99a', accent:'#c9a44a', font:"'Garamond', Georgia, serif", border:'#8b7355', headerBg:'#2c2416', headerText:'#c9a44a' },
   { id:'arctic-minimal', name:'Arctic Minimal', category:'Corporate', bg:'#f8fbff', text:'#1a2840', primary:'#2b5797', secondary:'#ddeeff', accent:'#1a7abf', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#b8d4e8', headerBg:'#b8d4e8', headerText:'#1a2840' },
   { id:'midnight-editorial', name:'Midnight Editorial', category:'Corporate', bg:'#07070f', text:'#c8c8e8', primary:'#6d5aed', secondary:'#13131f', accent:'#a78bfa', font:"'Inter', system-ui, sans-serif", border:'#4f46e5', headerBg:'#13131f', headerText:'#a78bfa' },
 
-  // ── Tech ──
+  // ââ Tech ââ
   { id:'dark-mode-dev', name:'Dark Mode Dev', category:'Tech', bg:'#0d1117', text:'#c9d1d9', primary:'#58a6ff', secondary:'#21262d', accent:'#3fb950', font:"'Courier New', Courier, monospace", border:'#30363d', headerBg:'#161b22', headerText:'#58a6ff' },
   { id:'saas-blue', name:'SaaS Blue', category:'Tech', bg:'#f0f4ff', text:'#1e2a4a', primary:'#3b82f6', secondary:'#dbeafe', accent:'#1d4ed8', font:"'Inter', system-ui, sans-serif", border:'#3b82f6', headerBg:'linear-gradient(135deg,#3b82f6,#6366f1)', headerText:'#ffffff' },
 
-  // ── Creative ──
+  // ââ Creative ââ
   { id:'neon-cyberpunk', name:'Neon Cyberpunk', category:'Creative', bg:'#050510', text:'#e0e0ff', primary:'#ff00cc', secondary:'#00ffee', accent:'#00ffee', font:"'Courier New', Courier, monospace", border:'#ff00cc', headerBg:'#0a0020', headerText:'#ff00cc' },
   { id:'manga-studio', name:'Manga Studio', category:'Creative', bg:'#ffffff', text:'#1a1a1a', primary:'#e60026', secondary:'#f5f5f5', accent:'#e60026', font:"'Arial Black', sans-serif", border:'#1a1a1a', headerBg:'#1a1a1a', headerText:'#e60026' },
   { id:'kraft-paper', name:'Kraft Paper', category:'Creative', bg:'#d4a96a', text:'#2c1810', primary:'#8b4513', secondary:'#c4813a', accent:'#5c2d0a', font:"'Courier New', Courier, monospace", border:'#8b4513', headerBg:'#8b4513', headerText:'#f5deb3' },
 
-  // ── Hospitality ──
+  // ââ Hospitality ââ
   { id:'restaurant-fine', name:'Restaurant Fine', category:'Hospitality', bg:'#1a0a04', text:'#f5e6c8', primary:'#c0392b', secondary:'#2c1810', accent:'#e8b96a', font:"Didot, 'Bodoni MT', Georgia, serif", border:'#c0392b', headerBg:'#c0392b', headerText:'#f5e6c8' },
   { id:'bourbon-street', name:'Bourbon Street', category:'Hospitality', bg:'#100804', text:'#f0e0c0', primary:'#d4891a', secondary:'#2a1508', accent:'#f0a030', font:"'Georgia', serif", border:'#d4891a', headerBg:'#1e0e06', headerText:'#d4891a' },
   { id:'terra-bloom', name:'Terra Bloom', category:'Hospitality', bg:'#faf0e6', text:'#3d1f0a', primary:'#c4612a', secondary:'#ffe8d6', accent:'#a0440a', font:"'Palatino Linotype', Palatino, serif", border:'#c4612a', headerBg:'#c4612a', headerText:'#fff8f0' },
 
-  // ── Gradient ──
+  // ââ Gradient ââ
   { id:'aurora-borealis', name:'Aurora Borealis', category:'Gradient', bg:'#060d1a', text:'#d0eedd', primary:'#0d9488', secondary:'#1e1040', accent:'#34d399', font:"'Inter', system-ui, sans-serif", border:'#0d9488', headerBg:'linear-gradient(135deg,#7c3aed,#0d9488)', headerText:'#ffffff' },
   { id:'sunset-blaze', name:'Sunset Blaze', category:'Gradient', bg:'#fff8f0', text:'#2d1010', primary:'#f97316', secondary:'#fff0e8', accent:'#db2777', font:"'Georgia', serif", border:'#f97316', headerBg:'linear-gradient(135deg,#f97316,#db2777)', headerText:'#ffffff' },
   { id:'ocean-depth', name:'Ocean Depth', category:'Gradient', bg:'#040c18', text:'#c0d8f0', primary:'#0891b2', secondary:'#051020', accent:'#38bdf8', font:"'Helvetica Neue', Helvetica, sans-serif", border:'#0891b2', headerBg:'linear-gradient(135deg,#0891b2,#1e3a5f)', headerText:'#ffffff' },
@@ -186,7 +186,7 @@ const THEMES = [
   { id:'velvet-luxe', name:'Velvet Luxe', category:'Gradient', bg:'#080408', text:'#f0d8e8', primary:'#9b1c4a', secondary:'#150010', accent:'#c084fc', font:"'Times New Roman', Times, serif", border:'#7f1d1d', headerBg:'linear-gradient(135deg,#7f1d1d,#4c1d95)', headerText:'#fce7f3' },
   { id:'rose-gold-rush', name:'Rose Gold Rush', category:'Gradient', bg:'#fef8f5', text:'#2d1020', primary:'#e11d48', secondary:'#fce8e8', accent:'#d4a843', font:"'Palatino Linotype', Palatino, serif", border:'#e11d48', headerBg:'linear-gradient(135deg,#e11d48,#d4a843)', headerText:'#ffffff' },
 
-  // ── Specialty ──
+  // ââ Specialty ââ
   { id:'wedding-planner', name:'Wedding Planner', category:'Specialty', bg:'#fefcf8', text:'#4a3728', primary:'#d4af8a', secondary:'#f0e6d6', accent:'#c9a060', font:"'Palatino Linotype', Palatino, serif", border:'#d4af8a', headerBg:'#fdf4e8', headerText:'#8b6040' },
 ];
 
@@ -199,13 +199,13 @@ const themeById = (id) => THEMES.find(t => t.id === id) || THEMES[0];
 
 const DOC_TYPES = [
   {
-    id:'business-card', name:'Business Card', blurb:'3.5 × 2 in · premium stock', glyph:'card',
+    id:'business-card', name:'Business Card', blurb:'3.5 Ã 2 in Â· premium stock', glyph:'card',
     defaultTheme:'black-diamond', w:1050, h:600,
     content:{
       name:'Adrian Vale', role:'Founder & Principal',
-      company:'VALE & CO.', tagline:'STRATEGY · DESIGN · CAPITAL',
+      company:'VALE & CO.', tagline:'STRATEGY Â· DESIGN Â· CAPITAL',
       phone:'+1 415 555 0147', email:'adrian@valeand.co',
-      site:'valeand.co', address:'One Market St · San Francisco',
+      site:'valeand.co', address:'One Market St Â· San Francisco',
       monogram:'V', accentPos:{x:720,y:300},
     },
   },
@@ -231,12 +231,12 @@ const DOC_TYPES = [
     defaultTheme:'clinical-white', w:816, h:1056,
     content:{
       org:'Meridian Health', dept:'Department of Internal Medicine', monogram:'+',
-      title:'Hypertension Management Protocol', code:'CP-114 · Rev. 2026.2',
+      title:'Hypertension Management Protocol', code:'CP-114 Â· Rev. 2026.2',
       intro:'This protocol standardizes the assessment and management of adult hypertension across all outpatient clinics. Apply alongside clinical judgment.',
       sections:[
-        { h:'1 · Initial Assessment', b:'Confirm elevated BP on two separate readings. Measure in both arms; use the higher value. Document heart rate, BMI, and relevant history.' },
-        { h:'2 · Staging', b:'Normal <120/80. Elevated 120–129/<80. Stage 1: 130–139 or 80–89. Stage 2: ≥140 or ≥90. Crisis: >180/120 — escalate immediately.' },
-        { h:'3 · First-Line Therapy', b:'Initiate lifestyle modification for all patients. For Stage 1 with risk factors or Stage 2, begin pharmacotherapy per the algorithm below.' },
+        { h:'1 Â· Initial Assessment', b:'Confirm elevated BP on two separate readings. Measure in both arms; use the higher value. Document heart rate, BMI, and relevant history.' },
+        { h:'2 Â· Staging', b:'Normal <120/80. Elevated 120â129/<80. Stage 1: 130â139 or 80â89. Stage 2: â¥140 or â¥90. Crisis: >180/120 â escalate immediately.' },
+        { h:'3 Â· First-Line Therapy', b:'Initiate lifestyle modification for all patients. For Stage 1 with risk factors or Stage 2, begin pharmacotherapy per the algorithm below.' },
       ],
       checklist:[
         { t:'Two confirmed elevated readings on file', done:true },
@@ -244,7 +244,7 @@ const DOC_TYPES = [
         { t:'Cardiovascular risk calculated', done:false },
         { t:'Patient counseled on lifestyle', done:false },
       ],
-      footer:'Reviewed by the Clinical Standards Committee · Confidential',
+      footer:'Reviewed by the Clinical Standards Committee Â· Confidential',
       accentPos:{x:110,y:905},
     },
   },
@@ -253,7 +253,7 @@ const DOC_TYPES = [
     defaultTheme:'law-firm', w:816, h:1056,
     content:{
       company:'Hartwell & Associates', tagline:'Attorneys at Law', monogram:'H',
-      contact:'1200 Wilshire Blvd, Suite 400 · Los Angeles, CA 90017 · (213) 555-0190',
+      contact:'1200 Wilshire Blvd, Suite 400 Â· Los Angeles, CA 90017 Â· (213) 555-0190',
       date:'June 3, 2026',
       recipient:'Ms. Eleanor Pruitt\nPruitt Holdings, LLC\n88 Kearny Street, San Francisco',
       salutation:'Dear Ms. Pruitt,',
@@ -263,10 +263,10 @@ const DOC_TYPES = [
     },
   },
   {
-    id:'certificate', name:'Certificate', blurb:'Award · landscape', glyph:'seal',
+    id:'certificate', name:'Certificate', blurb:'Award Â· landscape', glyph:'seal',
     defaultTheme:'emerald-prestige', w:1056, h:816,
     content:{
-      org:'THE EMERALD SOCIETY', monogram:'◆',
+      org:'THE EMERALD SOCIETY', monogram:'â',
       kicker:'CERTIFICATE OF ACHIEVEMENT', presented:'This certificate is proudly presented to',
       recipient:'Juliette Marchetti', reason:'In recognition of outstanding distinction and exemplary dedication to the craft, conferred with the highest honors of the Society.',
       date:'June 3, 2026', sig1:'Director', sig2:'Chair of the Board',
@@ -684,7 +684,7 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, on
               <Editable value={String(it.qty)} onChange={(v) => setItem(i, 'qty', v)} style={{ textAlign: 'right' }} />
               <Editable value={fmt(it.rate)} onChange={(v) => setItem(i, 'rate', v)} style={{ textAlign: 'right' }} />
               <div style={{ textAlign: 'right', fontWeight: 600 }}>{fmt((Number(it.qty) || 0) * (Number(it.rate) || 0))}</div>
-              <button className="ws-rowdel" onClick={() => delItem(i)} title="Remove line">×</button>
+              <button className="ws-rowdel" onClick={() => delItem(i)} title="Remove line">Ã</button>
             </div>
           ))}
           <button className="ws-addrow" style={{ color: theme.primary }} onClick={addItem}>+ Add line item</button>
@@ -759,7 +759,7 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
             {checklist.map((it, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <button className="ws-check" onClick={() => toggle(i)} style={{ borderColor: theme.primary, background: it.done ? theme.primary : 'transparent', color: theme.bg }}>{it.done ? '✓' : ''}</button>
+                <button className="ws-check" onClick={() => toggle(i)} style={{ borderColor: theme.primary, background: it.done ? theme.primary : 'transparent', color: theme.bg }}>{it.done ? 'â' : ''}</button>
                 <Editable value={it.t} onChange={(v) => setCheck(i, v)} style={{ fontSize: 13.5, textDecoration: it.done ? 'line-through' : 'none', opacity: it.done ? 0.55 : 1 }} />
               </div>
             ))}
@@ -953,7 +953,7 @@ function Launcher({ open, onPick, onClose, lastTypeId }) {
       <div className="ws-launcher-card" onClick={(e) => e.stopPropagation()}>
         <div className="ws-launcher-head">
           <span className="ws-spark" />
-          <span>Forge a document</span>
+          <span>New Document</span>
         </div>
         <div className="ws-launcher-grid">
           {list.map((d) => {
@@ -977,7 +977,7 @@ function Launcher({ open, onPick, onClose, lastTypeId }) {
 }
 
 
-function Toolbar({ onNew, onUndo, onRedo, onZoomIn, onZoomOut, onFit, onAddLayer, onAddTextField, onThemes, onLayers, onSource, onExport, themesOpen, layersOpen, sourceOpen }) {
+function Toolbar({ onNew, onUndo, onRedo, onZoomIn, onZoomOut, onFit, onAddLayer, onAddTextField, onThemes, onLayers, onSource, onExport, themesOpen, layersOpen, sourceOpen, projectName, onProjectNameChange, onSaveVersion, onShowVersions, versionsOpen, hasDoc }) {
   const groups = [
     [{ id: 'new', glyph: 'plus', label: 'New', fn: onNew }],
     [{ id: 'undo', glyph: 'undo', label: 'Undo', fn: onUndo }, { id: 'redo', glyph: 'redo', label: 'Redo', fn: onRedo }],
@@ -990,6 +990,10 @@ function Toolbar({ onNew, onUndo, onRedo, onZoomIn, onZoomOut, onFit, onAddLayer
   return (
     <div className="ws-toolbar">
       <div className="ws-wordmark">Write<span>Space</span></div>
+      {hasDoc && (<div style={{display:'flex',alignItems:'center',gap:6,marginLeft:12}}>
+        <input value={projectName||'Untitled Project'} onChange={e=>onProjectNameChange&&onProjectNameChange(e.target.value)} style={{fontSize:13,fontWeight:500,background:'transparent',border:'1px solid transparent',borderRadius:4,padding:'2px 6px',color:'var(--ws-text)',cursor:'text',maxWidth:180,outline:'none'}} onFocus={e=>e.target.style.borderColor='var(--ws-accent)'} onBlur={e=>e.target.style.borderColor='transparent'} />
+        <button onClick={onShowVersions} title="Versions" style={{padding:'3px 8px',borderRadius:4,background:versionsOpen?'var(--ws-accent)':'var(--ws-panel)',border:'1px solid var(--ws-border)',color:versionsOpen?'#fff':'var(--ws-text)',cursor:'pointer',fontSize:11,fontWeight:600}}>⎇ Versions</button>
+      </div>)}
       <div className="ws-toolbar-spacer" />
       {groups.map((group, idx) => (
         <div key={idx} className="ws-toolbar-group">
@@ -1013,7 +1017,7 @@ function PageStrip({ docs, activePage, onSelectPage, onAddPage, onPageMenu }) {
         <button key={i} className={'ws-page-thumb' + (i === activePage ? ' is-active' : '')}
           onClick={() => onSelectPage(i)}
           onContextMenu={(e) => onPageMenu(e, i)}>
-          <div style={{ fontSize: 8, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{docTypeById(d.typeId).name}</div>
+          <div style={{ fontSize: 8, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.pageName||docTypeById(d.typeId).name}</div>
           <small>{i + 1}</small>
         </button>
       ))}
@@ -1037,7 +1041,7 @@ function CommandPalette({ open, onClose, commands }) {
         <input
           ref={inputRef}
           className="ws-palette-input"
-          placeholder="Search actions, doc types, themes…"
+          placeholder="Search actions, doc types, themesâ¦"
           value={q}
           onChange={(e) => { setQ(e.target.value); setIdx(0); }}
           onKeyDown={(e) => {
@@ -1069,7 +1073,7 @@ function ThemePanel({ open, current, onHover, onPick, onClose }) {
     <div className={'ws-themepanel' + (open ? ' is-open' : '')} onMouseLeave={() => onHover(null)}>
       <div className="ws-tp-head">
         <span>Themes</span>
-        <button className="ws-tp-close" onClick={onClose}>×</button>
+        <button className="ws-tp-close" onClick={onClose}>Ã</button>
       </div>
       <div className="ws-tp-cats">
         {THEME_CATEGORIES.map((c) => (
@@ -1108,7 +1112,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
     <div className="ws-inspector">
       <div className="ws-inspector-head">
         <span>Layers</span>
-        <button className="ws-inspector-close" onClick={onClose}>×</button>
+        <button className="ws-inspector-close" onClick={onClose}>Ã</button>
       </div>
       <div className="ws-layer-list">
         {layers.map((layer) => (
@@ -1117,7 +1121,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
             className={'ws-layer-item' + (selected === layer.id ? ' is-active' : '') + (layer.id === 'accent' ? ' ws-layer-accent' : '')}
             onClick={() => onSelect(layer.id)}
           >
-            <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'〜':layer.id==='brand'||layer.id==='header'?'▣':layer.id==='frame'?'◻':'≡'}</span>{layer.name}
+            <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'ã':layer.id==='brand'||layer.id==='header'?'â£':layer.id==='frame'?'â»':'â¡'}</span>{layer.name}
           </button>
         ))}
         <button className="ws-layer-add" onClick={onAddLayer}>+ Add Layer</button>
@@ -1127,7 +1131,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
               const isAccent = selected === 'accent';
               return (
                           <div style={{borderTop:'1px solid rgba(255,255,255,0.09)',padding:'12px 14px'}}>
-                                        <div style={{fontSize:10,fontWeight:700,letterSpacing:'.5px',textTransform:'uppercase',color:'var(--muted)',marginBottom:10}}>Properties — {selected}</div>
+                                        <div style={{fontSize:10,fontWeight:700,letterSpacing:'.5px',textTransform:'uppercase',color:'var(--muted)',marginBottom:10}}>Properties â {selected}</div>
                             {!isAccent && (
                                           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
                                                             <label style={{fontSize:11,color:'var(--muted)'}}>X offset
@@ -1164,7 +1168,7 @@ function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
     <div className="ws-inspector" style={{ left: 'auto', right: 18, width: 420 }}>
       <div className="ws-inspector-head">
         <span>Source</span>
-        <button className="ws-inspector-close" onClick={onClose}>×</button>
+        <button className="ws-inspector-close" onClick={onClose}>Ã</button>
       </div>
       <div className="ws-source-wrap">
         <textarea value={value} onChange={(e) => onChange(e.target.value)} spellCheck={false} />
@@ -1177,7 +1181,7 @@ function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
     </div>
   );
 }
-// ─── WriteSpace · app shell ──────────────────────────────────────────────────
+// âââ WriteSpace Â· app shell ââââââââââââââââââââââââââââââââââââââââââââââââââ
 const { useState: uS, useEffect: uE, useCallback: uC, useRef: uR } = React;
 
 const SHELL_MOODS = {
@@ -1201,11 +1205,22 @@ function App() {
   const [t] = React.useState(TWEAK_DEFAULTS); const setTweak = () => {};
   const [lastTypeId, setLastTypeId] = uS(() => { try { return localStorage.getItem('ws:lastTypeId') || null; } catch { return null; } });
   const [lastThemeId, setLastThemeId] = uS(() => { try { return localStorage.getItem('ws:lastThemeId') || null; } catch { return null; } });
-  const [docs, setDocs] = uS([]);
+  const [docs, setDocs] = uS(() => {
+    try { const s = localStorage.getItem('ws:docs'); return s ? JSON.parse(s) : []; } catch { return []; }
+  });
   const [activePage, setActivePage] = uS(0);
+  const [projectName, setProjectName] = uS(() => {
+    try { return localStorage.getItem('ws:projectName') || 'Untitled Project'; } catch { return 'Untitled Project'; }
+  });
+  const [showVersions, setShowVersions] = uS(false);
+  const [versions, setVersions] = uS(() => {
+    try { const s = localStorage.getItem('ws:versions'); return s ? JSON.parse(s) : []; } catch { return []; }
+  });
   const [preview, setPreview] = uS(null); // hovered theme id
   const [view, setView] = uS({ zoom: 1, x: 0, y: 0 });
-  const [launcher, setLauncher] = uS(true);
+  const [launcher, setLauncher] = uS(() => {
+    try { const s = localStorage.getItem('ws:docs'); return !s || JSON.parse(s).length === 0; } catch { return true; }
+  });
   const [themesOpen, setThemesOpen] = uS(false);
   const [palette, setPalette] = uS(false);
   const [layersOpen, setLayersOpen] = uS(false);
@@ -1221,6 +1236,11 @@ function App() {
   const docPos = doc?.docPos || { x: 0, y: 0 };
 
   // apply shell theme vars
+  // Auto-save
+  uE(() => { if (docs.length > 0) try { localStorage.setItem('ws:docs', JSON.stringify(docs)); } catch {} }, [docs]);
+  uE(() => { try { localStorage.setItem('ws:projectName', projectName); } catch {} }, [projectName]);
+  uE(() => { if (versions.length > 0) try { localStorage.setItem('ws:versions', JSON.stringify(versions.slice(-20))); } catch {} }, [versions]);
+
   uE(() => {
     const m = SHELL_MOODS[t.mood] || SHELL_MOODS.graphite;
     const r = document.documentElement.style;
@@ -1272,6 +1292,18 @@ function App() {
     undoRef.current.push(current);
     applySnapshot(next);
   }, [snapshot, applySnapshot]);
+
+  const saveVersion = (label) => {
+    if (!docs.length) return;
+    const v = { id: Date.now().toString(), label: label || new Date().toLocaleString(), docs: JSON.parse(JSON.stringify(docs)), projectName, ts: Date.now() };
+    setVersions(prev => [...prev, v].slice(-20));
+  };
+  const restoreVersion = (v) => {
+    setDocs(v.docs);
+    if (v.projectName) setProjectName(v.projectName);
+    setActivePage(0);
+    setShowVersions(false);
+  };
 
   const createDoc = uC((typeId) => {
     const d = docTypeById(typeId);
@@ -1409,6 +1441,11 @@ function App() {
       return next;
     });
   }, [pushHistory]);
+
+  const renamePage = (idx, name) => {
+    setDocs(prev => prev.map((d, i) => i === idx ? {...d, pageName: name} : d));
+  };
+
   const layerDefs = doc ? [
     ...(LAYER_MODELS[doc.typeId] || []),
     ...((doc.content.customLayers || []).map((l) => ({ id: l.id, name: l.name || 'Custom Layer' }))),
@@ -1451,7 +1488,7 @@ function App() {
 
   // command palette commands
   const commands = [
-    ...DOC_TYPES.map((d) => ({ id: 'new-' + d.id, label: 'New · ' + d.name, group: 'Create', fn: () => createDoc(d.id) })),
+    ...DOC_TYPES.map((d) => ({ id: 'new-' + d.id, label: 'New Â· ' + d.name, group: 'Create', fn: () => createDoc(d.id) })),
     { id: 'themes', label: 'Browse themes', group: 'View', fn: () => setThemesOpen(true) },
     { id: 'layers', label: 'Open layers panel', group: 'View', fn: () => setLayersOpen(true) },
     { id: 'source', label: 'Open source inspector', group: 'View', fn: () => setSourceOpen(true) },
@@ -1463,7 +1500,7 @@ function App() {
     { id: 'add-layer', label: 'Add layer', group: 'Insert', fn: addCustomLayer },
     { id: 'add-text', label: 'Add text field', group: 'Insert', fn: addTextField },
     { id: 'export', label: 'Export / Print document', group: 'Output', fn: doExport },
-    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme · ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
+    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme Â· ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
   ];
 
   function doExport() {
@@ -1490,10 +1527,16 @@ function App() {
         themesOpen={themesOpen}
         layersOpen={layersOpen}
         sourceOpen={sourceOpen}
+        projectName={projectName}
+        onProjectNameChange={setProjectName}
+        onSaveVersion={saveVersion}
+        onShowVersions={() => setShowVersions(o => !o)}
+        versionsOpen={showVersions}
+        hasDoc={!!doc}
       />
       {doc && <PageStrip docs={docs} activePage={activePage} onSelectPage={(i) => { setActivePage(i); setAccentSel(false); setSelectedLayer(null); }} onAddPage={addPage}
         onPageMenu={(e, i) => { e.preventDefault(); setPageMenu({ i, x: e.clientX, y: e.clientY }); }} />}
-      {doc && <div className="ws-status">{dt.name} · {effTheme.name} · {Math.round(view.zoom * 100)}% · Page {activePage + 1} of {docs.length}</div>}
+      {doc && <div className="ws-status">{dt.name} Â· {effTheme.name} Â· {Math.round(view.zoom * 100)}% Â· Page {activePage + 1} of {docs.length}</div>}
 
       {doc && (
         <Stage view={view} setView={setView} docPos={docPos} setDocPos={(pos) => updateActiveDoc((dd) => ({ ...dd, docPos: pos }))} onDeselect={() => { setAccentSel(false); setSelectedLayer(null); }}>
@@ -1524,8 +1567,33 @@ function App() {
       <SourcePanel open={sourceOpen && !!doc} value={sourceDraft} onChange={setSourceDraft} onApply={applySource} error={sourceError} onClose={() => setSourceOpen(false)} />
       <Launcher open={launcher} onPick={createDoc} onClose={() => doc && setLauncher(false)} lastTypeId={lastTypeId} />
       <CommandPalette open={palette} onClose={() => setPalette(false)} commands={commands} />
+      {showVersions && (
+        <div style={{position:'fixed',right:0,top:0,bottom:0,width:290,background:'var(--ws-panel)',borderLeft:'1px solid var(--ws-border)',zIndex:200,display:'flex',flexDirection:'column',overflow:'hidden'}}>
+          <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ws-border)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+            <span style={{fontWeight:600,fontSize:14}}>Project Versions</span>
+            <button onClick={()=>setShowVersions(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>×</button>
+          </div>
+          <div style={{padding:'8px 12px',borderBottom:'1px solid var(--ws-border)',display:'flex',gap:8}}>
+            <input id="ws-ver-lbl" placeholder="Version name..." style={{flex:1,padding:'4px 8px',borderRadius:4,border:'1px solid var(--ws-border)',background:'var(--ws-bg)',color:'var(--ws-text)',fontSize:12,outline:'none'}} />
+            <button onClick={()=>{const lbl=document.getElementById('ws-ver-lbl');saveVersion(lbl?.value||'');if(lbl)lbl.value='';}} style={{padding:'4px 10px',borderRadius:4,background:'var(--ws-accent)',color:'#fff',border:'none',cursor:'pointer',fontSize:12,fontWeight:600}}>Save</button>
+          </div>
+          <div style={{flex:1,overflowY:'auto',padding:'8px 0'}}>
+            {versions.length===0&&<div style={{padding:'16px',color:'var(--ws-muted)',fontSize:13,textAlign:'center'}}>No saved versions yet.<br/>Click Save to snapshot current state.</div>}
+            {[...versions].reverse().map(v=>(
+              <div key={v.id} style={{padding:'10px 16px',borderBottom:'1px solid var(--ws-border)'}}>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:4}}>
+                  <span style={{fontWeight:600,fontSize:13}}>{v.label}</span>
+                  <button onClick={()=>restoreVersion(v)} style={{padding:'2px 8px',borderRadius:3,background:'var(--ws-accent)',color:'#fff',border:'none',cursor:'pointer',fontSize:11}}>Restore</button>
+                </div>
+                <span style={{fontSize:11,color:'var(--ws-muted)'}}>{new Date(v.ts).toLocaleString()}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {pageMenu && (
         <div className="ws-page-menu" style={{ left: pageMenu.x, top: pageMenu.y }} onPointerDown={(e) => e.stopPropagation()}>
+          <button onClick={()=>{const n=prompt('Page name:',docs[pageMenu.i]?.pageName||'');if(n!==null)renamePage(pageMenu.i,n);setPageMenu(null);}}>Rename</button>
           <button onClick={() => { duplicatePage(pageMenu.i); setPageMenu(null); }}>Duplicate</button>
           <button onClick={() => { deletePage(pageMenu.i); setPageMenu(null); }}>Delete</button>
         </div>
