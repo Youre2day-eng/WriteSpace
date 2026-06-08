@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0d0d0f;--bg2:#161619;--panel:rgba(28,28,32,0.86);--text:#ececf0;--muted:#8a8a93;--border:rgba(255,255,255,0.09);--accent:#e07a3c;--dur:0.32s;--ui:'Helvetica Neue',Helvetica,Arial,sans-serif;--mono:ui-monospace,'SF Mono','Menlo',monospace;}
+:root{--bg:#0d0d0f;--bg2:#161619;--panel:rgba(28,28,32,0.86);--panel-solid:#1c1c20;--text:#ececf0;--muted:#8a8a93;--border:rgba(255,255,255,0.09);--accent:#e07a3c;--dur:0.32s;--ui:'Helvetica Neue',Helvetica,Arial,sans-serif;--mono:ui-monospace,'SF Mono','Menlo',monospace;}
 *{box-sizing:border-box;}html,body{margin:0;height:100%;overflow:hidden;}
 body{background:radial-gradient(120% 90% at 50% -10%,var(--bg2),var(--bg) 60%);color:var(--text);font-family:var(--ui);-webkit-font-smoothing:antialiased;}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:30px 30px;transition:opacity var(--dur) ease;}
@@ -55,7 +55,7 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-layer-handles span:nth-child(2){right:0;top:0;transform:translate(50%,-50%);}
 .ws-layer-handles span:nth-child(3){left:0;bottom:0;transform:translate(-50%,50%);}
 .ws-layer-handles span:nth-child(4){right:0;bottom:0;transform:translate(50%,50%);}
-.ws-inspector{position:fixed;left:18px;top:68px;z-index:45;width:320px;max-height:calc(100vh - 112px);display:flex;flex-direction:column;background:var(--panel);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:14px;box-shadow:0 20px 60px -25px rgba(0,0,0,.8);}
+.ws-inspector{position:fixed;left:18px;top:68px;z-index:45;width:320px;max-height:calc(100vh - 112px);display:flex;flex-direction:column;background:var(--panel-solid);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:14px;box-shadow:0 20px 60px -25px rgba(0,0,0,.8);}
 .ws-inspector-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
 .ws-inspector-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;}
 .ws-inspector-close:hover{color:var(--text);}
@@ -72,7 +72,7 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-source-actions button{background:var(--accent);border:none;color:#fff;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;}
 .ws-source-error{color:#fda4af;font-size:11px;}
 .ws-source-help{font-size:11px;color:var(--muted);}
-.ws-themepanel{position:fixed;top:0;right:0;height:100%;width:340px;z-index:40;background:var(--panel);backdrop-filter:blur(24px);border-left:1px solid var(--border);transform:translateX(108%);transition:transform var(--dur) cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 50px -20px rgba(0,0,0,.6);}
+.ws-themepanel{position:fixed;top:0;right:0;height:100%;width:340px;z-index:40;background:var(--panel-solid);backdrop-filter:blur(24px);border-left:1px solid var(--border);transform:translateX(108%);transition:transform var(--dur) cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 50px -20px rgba(0,0,0,.6);}
 .ws-themepanel.is-open{transform:translateX(0);}
 .ws-tp-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px 12px;font-weight:700;font-size:16px;}
 .ws-tp-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;line-height:1;}
@@ -93,7 +93,7 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-tp-cat-label{font-size:10px;color:var(--muted);padding:1px 10px 0;}
 .ws-launcher{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgba(8,8,10,.55);backdrop-filter:blur(14px);animation:wsFade var(--dur) ease;}
 @keyframes wsFade{from{opacity:0;}to{opacity:1;}}
-.ws-launcher-card{width:min(760px,92vw);background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:28px;box-shadow:0 40px 100px -30px rgba(0,0,0,.8);animation:wsPop var(--dur) cubic-bezier(.2,.9,.3,1.3);}
+.ws-launcher-card{width:min(760px,92vw);background:var(--panel-solid);border:1px solid var(--border);border-radius:22px;padding:28px;box-shadow:0 40px 100px -30px rgba(0,0,0,.8);animation:wsPop var(--dur) cubic-bezier(.2,.9,.3,1.3);}
 @keyframes wsPop{from{opacity:0;transform:translateY(14px) scale(.97);}to{opacity:1;transform:none;}}
 .ws-launcher-head{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700;margin-bottom:20px;}
 .ws-spark{width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);}
@@ -109,7 +109,7 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-launcher-foot{text-align:center;font-size:11px;color:var(--muted);margin-top:22px;}
 .ws-launcher-foot kbd{font-family:var(--mono);background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px;}
 .ws-palette{position:fixed;inset:0;z-index:70;display:flex;justify-content:center;align-items:flex-start;padding-top:14vh;background:rgba(8,8,10,.5);backdrop-filter:blur(10px);animation:wsFade .18s ease;}
-.ws-palette-card{width:min(580px,92vw);background:var(--panel);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,.8);animation:wsPop .2s cubic-bezier(.2,.9,.3,1.3);}
+.ws-palette-card{width:min(580px,92vw);background:var(--panel-solid);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,.8);animation:wsPop .2s cubic-bezier(.2,.9,.3,1.3);}
 .ws-palette-input{width:100%;border:none;background:transparent;color:var(--text);font-family:var(--ui);font-size:17px;padding:18px 20px;outline:none;border-bottom:1px solid var(--border);}
 .ws-palette-list{max-height:46vh;overflow-y:auto;padding:8px;}
 .ws-palette-item{width:100%;display:flex;align-items:center;gap:10px;text-align:left;background:none;border:none;color:var(--text);padding:9px 12px;border-radius:9px;cursor:pointer;font-size:13.5px;}
@@ -120,13 +120,13 @@ body.no-spot .ws-docframe::before{opacity:0;}
 .ws-palette-empty{padding:20px;text-align:center;color:var(--muted);font-size:13px;}
 .ws-empty{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
 .ws-empty button{background:var(--accent);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:600;cursor:pointer;}
-.ws-pages{position:fixed;left:0;top:48px;bottom:0;width:80px;z-index:30;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:12px 6px;gap:8px;overflow-y:auto;}
+.ws-pages{position:fixed;left:0;top:48px;bottom:0;width:80px;z-index:30;background:var(--panel-solid);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:12px 6px;gap:8px;overflow-y:auto;}
 .ws-page-thumb{width:60px;height:42px;border-radius:4px;border:1px solid var(--border);cursor:pointer;overflow:hidden;background:#fff;color:#222;position:relative;padding:2px;}
 .ws-page-thumb.is-active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
 .ws-page-thumb small{position:absolute;right:4px;bottom:2px;font-size:9px;color:#666;}
 .ws-page-add{width:60px;height:28px;border:1px dashed var(--border);border-radius:4px;background:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;}
 .ws-page-add:hover{border-color:var(--accent);color:var(--accent);}
-.ws-page-menu{position:fixed;z-index:80;background:var(--panel);border:1px solid var(--border);border-radius:8px;min-width:120px;overflow:hidden;box-shadow:0 12px 30px -10px rgba(0,0,0,.7);}
+.ws-page-menu{position:fixed;z-index:80;background:var(--panel-solid);border:1px solid var(--border);border-radius:8px;min-width:120px;overflow:hidden;box-shadow:0 12px 30px -10px rgba(0,0,0,.7);}
 .ws-page-menu button{display:block;width:100%;text-align:left;background:none;border:none;color:var(--text);padding:8px 10px;font-size:12px;cursor:pointer;}
 .ws-page-menu button:hover{background:rgba(255,255,255,.08);}
 @media print{@page{margin:0;}}
@@ -615,9 +615,9 @@ function ElementPicker({ open, onClose, onAdd }) {
     ]},
   ];
   return (
-    <div style={{position:'fixed',inset:0,zIndex:2000,display:'flex',alignItems:'flex-start',justifyContent:'center',paddingTop:56}}
+    <div style={{position:'fixed',inset:0,zIndex:2000,display:'flex',alignItems:'flex-start',justifyContent:'center',paddingTop:56,background:'rgba(0,0,0,0.55)'}}
       onPointerDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div style={{background:'var(--ws-panel)',border:'1px solid var(--ws-border)',borderRadius:12,padding:'20px 18px 18px',width:490,maxHeight:'82vh',overflowY:'auto',boxShadow:'0 12px 48px rgba(0,0,0,0.5)'}}>
+      <div style={{background:'#1c1c20',border:'1px solid var(--ws-border)',borderRadius:12,padding:'20px 18px 18px',width:490,maxHeight:'82vh',overflowY:'auto',boxShadow:'0 12px 48px rgba(0,0,0,0.5)'}}>
         <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}}>
           <span style={{fontWeight:700,fontSize:11,letterSpacing:'0.14em',opacity:0.85}}>ADD ELEMENT</span>
           <button onClick={onClose} style={{background:'none',border:'none',color:'var(--ws-text)',cursor:'pointer',fontSize:20,lineHeight:1,opacity:0.5,padding:'0 4px'}}>x</button>
@@ -1090,7 +1090,7 @@ function Toolbar({ onNew, onUndo, onRedo, onZoomIn, onZoomOut, onFit, onAddLayer
       <div className="ws-wordmark">Write<span>Space</span></div>
       {hasDoc && (<div style={{display:'flex',alignItems:'center',gap:6,marginLeft:12}}>
         <input value={projectName||'Untitled Project'} onChange={e=>onProjectNameChange&&onProjectNameChange(e.target.value)} style={{fontSize:13,fontWeight:500,background:'transparent',border:'1px solid transparent',borderRadius:4,padding:'2px 6px',color:'var(--ws-text)',cursor:'text',maxWidth:180,outline:'none'}} onFocus={e=>e.target.style.borderColor='var(--ws-accent)'} onBlur={e=>e.target.style.borderColor='transparent'} />
-        <button onClick={onShowVersions} title="Versions" style={{padding:'3px 8px',borderRadius:4,background:versionsOpen?'var(--ws-accent)':'var(--ws-panel)',border:'1px solid var(--ws-border)',color:versionsOpen?'#fff':'var(--ws-text)',cursor:'pointer',fontSize:11,fontWeight:600}}> Versions</button>
+        <button onClick={onShowVersions} title="Versions" style={{padding:'3px 8px',borderRadius:4,background:versionsOpen?'var(--ws-accent)':'#1c1c20',border:'1px solid var(--ws-border)',color:versionsOpen?'#fff':'var(--ws-text)',cursor:'pointer',fontSize:11,fontWeight:600}}> Versions</button>
       </div>)}
       <div className="ws-toolbar-spacer" />
       {groups.map((group, idx) => (
@@ -1684,7 +1684,7 @@ function App() {
             {colorPanelOpen && doc && (()=>{
         const _thm = themeById(doc.themeId);
         return (
-          <div style={{position:'fixed',right:0,top:0,bottom:0,width:300,background:'var(--ws-panel)',borderLeft:'1px solid var(--ws-border)',zIndex:201,display:'flex',flexDirection:'column',overflow:'hidden'}}>
+          <div style={{position:'fixed',right:0,top:0,bottom:0,width:300,background:'#1c1c20',borderLeft:'1px solid var(--ws-border)',zIndex:201,display:'flex',flexDirection:'column',overflow:'hidden'}}>
             <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ws-border)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
               <span style={{fontWeight:700,fontSize:14}}>Colors</span>
               <button onClick={()=>setColorPanelOpen(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>×</button>
@@ -1724,7 +1724,7 @@ function App() {
       <Launcher open={launcher} onPick={createDoc} onClose={() => doc && setLauncher(false)} lastTypeId={lastTypeId} />
       <CommandPalette open={palette} onClose={() => setPalette(false)} commands={commands} />
       {showVersions && (
-        <div style={{position:'fixed',right:0,top:0,bottom:0,width:290,background:'var(--ws-panel)',borderLeft:'1px solid var(--ws-border)',zIndex:200,display:'flex',flexDirection:'column',overflow:'hidden'}}>
+        <div style={{position:'fixed',right:0,top:0,bottom:0,width:290,background:'#1c1c20',borderLeft:'1px solid var(--ws-border)',zIndex:200,display:'flex',flexDirection:'column',overflow:'hidden'}}>
           <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ws-border)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
             <span style={{fontWeight:600,fontSize:14}}>Project Versions</span>
             <button onClick={()=>setShowVersions(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>×</button>
