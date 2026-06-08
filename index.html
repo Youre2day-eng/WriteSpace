@@ -170,41 +170,41 @@ body.ws-printing .artboard{box-shadow:none!important;border-radius:0!important;}
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
 <script type="text/babel">
 const THEMES = [
-  // ââââââââ Medical / Dental ââââââââ
+  // ──────── Medical / Dental ────────
   { id:'clinical-white', name:'Clinical White', category:'Medical', bg:'#ffffff', text:'#0a1628', primary:'#1d4ed8', secondary:'#eff6ff', accent:'#3b82f6', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#1d4ed8', headerBg:'#1d4ed8', headerText:'#ffffff' },
   { id:'dental-pro', name:'Dental Pro', category:'Medical', bg:'#ffffff', text:'#1a2744', primary:'#1a2744', secondary:'#4a90d9', accent:'#4a90d9', font:'Georgia, serif', border:'#1a2744', headerBg:'#1a2744', headerText:'#ffffff' },
   { id:'orthodontics', name:'Orthodontics', category:'Medical', bg:'#f0fdff', text:'#0c3040', primary:'#0891b2', secondary:'#cffafe', accent:'#06b6d4', font:"'Gill Sans', Calibri, sans-serif", border:'#0891b2', headerBg:'#0891b2', headerText:'#ffffff' },
   { id:'pediatric-care', name:'Pediatric Care', category:'Medical', bg:'#fffbf0', text:'#2a1a2e', primary:'#7c3aed', secondary:'#fce7fe', accent:'#f59e0b', font:"'Trebuchet MS', sans-serif", border:'#7c3aed', headerBg:'linear-gradient(90deg,#f59e0b,#7c3aed)', headerText:'#ffffff' },
   { id:'chiropractic', name:'Chiropractic', category:'Medical', bg:'#f7f9f4', text:'#1a2e1a', primary:'#2d6a2d', secondary:'#e8f5e8', accent:'#4a9e4a', font:"Georgia, 'Times New Roman', serif", border:'#2d6a2d', headerBg:'#2d6a2d', headerText:'#f0f8f0' },
 
-  // ââââââââ Luxury ââââââââ
+  // ──────── Luxury ────────
   { id:'chanel-noir', name:'Chanel Noir', category:'Luxury', bg:'#ffffff', text:'#000000', primary:'#000000', secondary:'#f4f4f4', accent:'#000000', font:"'Bodoni MT', Didot, Georgia, serif", border:'#000000', headerBg:'#000000', headerText:'#ffffff' },
   { id:'emerald-prestige', name:'Emerald Prestige', category:'Luxury', bg:'#071a0f', text:'#e8f0e4', primary:'#d4a843', secondary:'#0d3320', accent:'#d4a843', font:"'Garamond', Georgia, serif", border:'#d4a843', headerBg:'#0d3320', headerText:'#d4a843' },
-  { id:'hermes-orange', name:'HermÃ¨s Orange', category:'Luxury', bg:'#fdf5ee', text:'#2c1404', primary:'#e8622a', secondary:'#fce8d8', accent:'#c44a14', font:"Didot, 'Bodoni MT', serif", border:'#e8622a', headerBg:'#e8622a', headerText:'#fdf5ee' },
+  { id:'hermes-orange', name:'Hermès Orange', category:'Luxury', bg:'#fdf5ee', text:'#2c1404', primary:'#e8622a', secondary:'#fce8d8', accent:'#c44a14', font:"Didot, 'Bodoni MT', serif", border:'#e8622a', headerBg:'#e8622a', headerText:'#fdf5ee' },
   { id:'black-diamond', name:'Black Diamond', category:'Luxury', bg:'#f8f8f8', text:'#080808', primary:'#1a1a1a', secondary:'#f0f0f0', accent:'#888888', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#1a1a1a', headerBg:'#0a0a0a', headerText:'#e8e8e8' },
   { id:'medspa-luxe', name:'MedSpa Luxe', category:'Luxury', bg:'#fdf8f5', text:'#4a3728', primary:'#c9956b', secondary:'#e8c8b8', accent:'#b87d5a', font:"'Palatino Linotype', Palatino, serif", border:'#c9956b', headerBg:'#c9956b', headerText:'#ffffff' },
   { id:'victorian-noir', name:'Victorian Noir', category:'Luxury', bg:'#120608', text:'#e8d5b0', primary:'#c9a84c', secondary:'#8b1a1a', accent:'#c9a84c', font:"'Times New Roman', Times, serif", border:'#c9a84c', headerBg:'#1c0808', headerText:'#c9a84c' },
 
-  // ââââââââ Corporate ââââââââ
+  // ──────── Corporate ────────
   { id:'law-firm', name:'Law Firm', category:'Corporate', bg:'#f8f6f0', text:'#2c2416', primary:'#8b7355', secondary:'#c9b99a', accent:'#c9a44a', font:"'Garamond', Georgia, serif", border:'#8b7355', headerBg:'#2c2416', headerText:'#c9a44a' },
   { id:'arctic-minimal', name:'Arctic Minimal', category:'Corporate', bg:'#f8fbff', text:'#1a2840', primary:'#2b5797', secondary:'#ddeeff', accent:'#1a7abf', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#b8d4e8', headerBg:'#b8d4e8', headerText:'#1a2840' },
   { id:'midnight-editorial', name:'Midnight Editorial', category:'Corporate', bg:'#07070f', text:'#c8c8e8', primary:'#6d5aed', secondary:'#13131f', accent:'#a78bfa', font:"'Inter', system-ui, sans-serif", border:'#4f46e5', headerBg:'#13131f', headerText:'#a78bfa' },
 
-  // ââââââââ Tech ââââââââ
+  // ──────── Tech ────────
   { id:'dark-mode-dev', name:'Dark Mode Dev', category:'Tech', bg:'#0d1117', text:'#c9d1d9', primary:'#58a6ff', secondary:'#21262d', accent:'#3fb950', font:"'Courier New', Courier, monospace", border:'#30363d', headerBg:'#161b22', headerText:'#58a6ff' },
   { id:'saas-blue', name:'SaaS Blue', category:'Tech', bg:'#f0f4ff', text:'#1e2a4a', primary:'#3b82f6', secondary:'#dbeafe', accent:'#1d4ed8', font:"'Inter', system-ui, sans-serif", border:'#3b82f6', headerBg:'linear-gradient(135deg,#3b82f6,#6366f1)', headerText:'#ffffff' },
 
-  // ââââââââ Creative ââââââââ
+  // ──────── Creative ────────
   { id:'neon-cyberpunk', name:'Neon Cyberpunk', category:'Creative', bg:'#050510', text:'#e0e0ff', primary:'#ff00cc', secondary:'#00ffee', accent:'#00ffee', font:"'Courier New', Courier, monospace", border:'#ff00cc', headerBg:'#0a0020', headerText:'#ff00cc' },
   { id:'manga-studio', name:'Manga Studio', category:'Creative', bg:'#ffffff', text:'#1a1a1a', primary:'#e60026', secondary:'#f5f5f5', accent:'#e60026', font:"'Arial Black', sans-serif", border:'#1a1a1a', headerBg:'#1a1a1a', headerText:'#e60026' },
   { id:'kraft-paper', name:'Kraft Paper', category:'Creative', bg:'#d4a96a', text:'#2c1810', primary:'#8b4513', secondary:'#c4813a', accent:'#5c2d0a', font:"'Courier New', Courier, monospace", border:'#8b4513', headerBg:'#8b4513', headerText:'#f5deb3' },
 
-  // ââââââââ Hospitality ââââââââ
+  // ──────── Hospitality ────────
   { id:'restaurant-fine', name:'Restaurant Fine', category:'Hospitality', bg:'#1a0a04', text:'#f5e6c8', primary:'#c0392b', secondary:'#2c1810', accent:'#e8b96a', font:"Didot, 'Bodoni MT', Georgia, serif", border:'#c0392b', headerBg:'#c0392b', headerText:'#f5e6c8' },
   { id:'bourbon-street', name:'Bourbon Street', category:'Hospitality', bg:'#100804', text:'#f0e0c0', primary:'#d4891a', secondary:'#2a1508', accent:'#f0a030', font:"'Georgia', serif", border:'#d4891a', headerBg:'#1e0e06', headerText:'#d4891a' },
   { id:'terra-bloom', name:'Terra Bloom', category:'Hospitality', bg:'#faf0e6', text:'#3d1f0a', primary:'#c4612a', secondary:'#ffe8d6', accent:'#a0440a', font:"'Palatino Linotype', Palatino, serif", border:'#c4612a', headerBg:'#c4612a', headerText:'#fff8f0' },
 
-  // ââââââââ Gradient ââââââââ
+  // ──────── Gradient ────────
   { id:'aurora-borealis', name:'Aurora Borealis', category:'Gradient', bg:'#060d1a', text:'#d0eedd', primary:'#0d9488', secondary:'#1e1040', accent:'#34d399', font:"'Inter', system-ui, sans-serif", border:'#0d9488', headerBg:'linear-gradient(135deg,#7c3aed,#0d9488)', headerText:'#ffffff' },
   { id:'sunset-blaze', name:'Sunset Blaze', category:'Gradient', bg:'#fff8f0', text:'#2d1010', primary:'#f97316', secondary:'#fff0e8', accent:'#db2777', font:"'Georgia', serif", border:'#f97316', headerBg:'linear-gradient(135deg,#f97316,#db2777)', headerText:'#ffffff' },
   { id:'ocean-depth', name:'Ocean Depth', category:'Gradient', bg:'#040c18', text:'#c0d8f0', primary:'#0891b2', secondary:'#051020', accent:'#38bdf8', font:"'Helvetica Neue', Helvetica, sans-serif", border:'#0891b2', headerBg:'linear-gradient(135deg,#0891b2,#1e3a5f)', headerText:'#ffffff' },
@@ -212,7 +212,7 @@ const THEMES = [
   { id:'velvet-luxe', name:'Velvet Luxe', category:'Gradient', bg:'#080408', text:'#f0d8e8', primary:'#9b1c4a', secondary:'#150010', accent:'#c084fc', font:"'Times New Roman', Times, serif", border:'#7f1d1d', headerBg:'linear-gradient(135deg,#7f1d1d,#4c1d95)', headerText:'#fce7f3' },
   { id:'rose-gold-rush', name:'Rose Gold Rush', category:'Gradient', bg:'#fef8f5', text:'#2d1020', primary:'#e11d48', secondary:'#fce8e8', accent:'#d4a843', font:"'Palatino Linotype', Palatino, serif", border:'#e11d48', headerBg:'linear-gradient(135deg,#e11d48,#d4a843)', headerText:'#ffffff' },
 
-  // ââââââââ Specialty ââââââââ
+  // ──────── Specialty ────────
   { id:'wedding-planner', name:'Wedding Planner', category:'Specialty', bg:'#fefcf8', text:'#4a3728', primary:'#d4af8a', secondary:'#f0e6d6', accent:'#c9a060', font:"'Palatino Linotype', Palatino, serif", border:'#d4af8a', headerBg:'#fdf4e8', headerText:'#8b6040' },
 ];
 
@@ -225,13 +225,13 @@ const themeById = (id) => THEMES.find(t => t.id === id) || THEMES[0];
 
 const DOC_TYPES = [
   {
-    id:'business-card', name:'Business Card', blurb:'3.5 Ã 2 in Â· premium stock', glyph:'card',
+    id:'business-card', name:'Business Card', blurb:'3.5 × 2 in · premium stock', glyph:'card',
     defaultTheme:'chanel-noir', w:1050, h:600,
     content:{
       name:'Adrian Vale', role:'Founder & Principal',
-      company:'VALE & CO.', tagline:'STRATEGY Â· DESIGN Â· CAPITAL',
+      company:'VALE & CO.', tagline:'STRATEGY · DESIGN · CAPITAL',
       phone:'+1 415 555 0147', email:'adrian@valeand.co',
-      site:'valeand.co', address:'One Market St Â· San Francisco',
+      site:'valeand.co', address:'One Market St · San Francisco',
       monogram:'V', accentPos:{x:720,y:300},
     },
   },
@@ -257,12 +257,12 @@ const DOC_TYPES = [
     defaultTheme:'chanel-noir', w:816, h:1056,
     content:{
       org:'Meridian Health', dept:'Department of Internal Medicine', monogram:'+',
-      title:'Hypertension Management Protocol', code:'CP-114 Â· Rev. 2026.2',
+      title:'Hypertension Management Protocol', code:'CP-114 · Rev. 2026.2',
       intro:'This protocol standardizes the assessment and management of adult hypertension across all outpatient clinics. Apply alongside clinical judgment.',
       sections:[
-        { h:'1 Â· Initial Assessment', b:'Confirm elevated BP on two separate readings. Measure in both arms; use the higher value. Document heart rate, BMI, and relevant history.' },
-        { h:'2 Â· Staging', b:'Normal <120/80. Elevated 120â129/<80. Stage 1: 130â139 or 80â89. Stage 2: Â¥140 or Â¥90. Crisis: >180/120 â escalate immediately.' },
-        { h:'3 Â· First-Line Therapy', b:'Initiate lifestyle modification for all patients. For Stage 1 with risk factors or Stage 2, begin pharmacotherapy per the algorithm below.' },
+        { h:'1 · Initial Assessment', b:'Confirm elevated BP on two separate readings. Measure in both arms; use the higher value. Document heart rate, BMI, and relevant history.' },
+        { h:'2 · Staging', b:'Normal <120/80. Elevated 120‘129/<80. Stage 1: 130‘139 or 80‘89. Stage 2: ¥140 or ¥90. Crisis: >180/120 ’ escalate immediately.' },
+        { h:'3 · First-Line Therapy', b:'Initiate lifestyle modification for all patients. For Stage 1 with risk factors or Stage 2, begin pharmacotherapy per the algorithm below.' },
       ],
       checklist:[
         { t:'Two confirmed elevated readings on file', done:true },
@@ -270,7 +270,7 @@ const DOC_TYPES = [
         { t:'Cardiovascular risk calculated', done:false },
         { t:'Patient counseled on lifestyle', done:false },
       ],
-      footer:'Reviewed by the Clinical Standards Committee Â· Confidential',
+      footer:'Reviewed by the Clinical Standards Committee · Confidential',
       accentPos:{x:110,y:905},
     },
   },
@@ -279,7 +279,7 @@ const DOC_TYPES = [
     defaultTheme:'chanel-noir', w:816, h:1056,
     content:{
       company:'Hartwell & Associates', tagline:'Attorneys at Law', monogram:'H',
-      contact:'1200 Wilshire Blvd, Suite 400 Â· Los Angeles, CA 90017 Â· (213) 555-0190',
+      contact:'1200 Wilshire Blvd, Suite 400 · Los Angeles, CA 90017 · (213) 555-0190',
       date:'June 3, 2026',
       recipient:'Ms. Eleanor Pruitt\nPruitt Holdings, LLC\n88 Kearny Street, San Francisco',
       salutation:'Dear Ms. Pruitt,',
@@ -289,7 +289,7 @@ const DOC_TYPES = [
     },
   },
   {
-    id:'certificate', name:'Certificate', blurb:'Award Â· landscape', glyph:'seal',
+    id:'certificate', name:'Certificate', blurb:'Award · landscape', glyph:'seal',
     defaultTheme:'chanel-noir', w:1056, h:816,
     content:{
       org:'THE EMERALD SOCIETY', monogram:'',
@@ -635,7 +635,7 @@ function ElementPicker({ open, onClose, onAdd }) {
       { elType: 'shape-rect-outline', icon: '[]', label: 'Box', preview: 'Border rect' },
       { elType: 'shape-circle', icon: 'O', label: 'Circle', preview: 'Solid circle' },
       { elType: 'shape-badge', icon: '()', label: 'Badge', preview: 'Pill label' },
-      { elType: 'shape-line', icon: 'â', label: 'Line', preview: 'Straight line' },
+      { elType: 'shape-line', icon: '─', label: 'Line', preview: 'Straight line' },
     ]},
     { label: 'LAYOUT', items: [
       { elType: 'spacer-sm', icon: '+', label: 'Gap S', preview: '20px gap' },
@@ -811,7 +811,7 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, on
               <Editable value={String(it.qty)} onChange={(v) => setItem(i, 'qty', v)} style={{ textAlign: 'right' }} />
               <Editable value={fmt(it.rate)} onChange={(v) => setItem(i, 'rate', v)} style={{ textAlign: 'right' }} />
               <div style={{ textAlign: 'right', fontWeight: 600 }}>{fmt((Number(it.qty) || 0) * (Number(it.rate) || 0))}</div>
-              <button className="ws-rowdel" onClick={() => delItem(i)} title="Remove line">Ã</button>
+              <button className="ws-rowdel" onClick={() => delItem(i)} title="Remove line">×</button>
             </div>
           ))}
           <button className="ws-addrow" style={{ color: theme.primary }} onClick={addItem}>+ Add line item</button>
@@ -886,7 +886,7 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
             {checklist.map((it, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <button className="ws-check" onClick={() => toggle(i)} style={{ borderColor: theme.primary, background: it.done ? theme.primary : 'transparent', color: theme.bg }}>{it.done ? 'â' : ''}</button>
+                <button className="ws-check" onClick={() => toggle(i)} style={{ borderColor: theme.primary, background: it.done ? theme.primary : 'transparent', color: theme.bg }}>{it.done ? '‘' : ''}</button>
                 <Editable value={it.t} onChange={(v) => setCheck(i, v)} style={{ fontSize: 13.5, textDecoration: it.done ? 'line-through' : 'none', opacity: it.done ? 0.55 : 1 }} />
               </div>
             ))}
@@ -1169,7 +1169,7 @@ function CommandPalette({ open, onClose, commands }) {
         <input
           ref={inputRef}
           className="ws-palette-input"
-          placeholder="Search actions, doc types, themesÂ¦"
+          placeholder="Search actions, doc types, themes¦"
           value={q}
           onChange={(e) => { setQ(e.target.value); setIdx(0); }}
           onKeyDown={(e) => {
@@ -1201,7 +1201,7 @@ function ThemePanel({ open, current, onHover, onPick, onClose }) {
     <div className={'ws-themepanel' + (open ? ' is-open' : '')} onMouseLeave={() => onHover(null)}>
       <div className="ws-tp-head">
         <span>Themes</span>
-        <button className="ws-tp-close" onClick={onClose}>Ã</button>
+        <button className="ws-tp-close" onClick={onClose}>×</button>
       </div>
       <div className="ws-tp-cats">
         {THEME_CATEGORIES.map((c) => (
@@ -1240,7 +1240,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
     <div className="ws-inspector">
       <div className="ws-inspector-head">
         <span>Layers</span>
-        <button className="ws-inspector-close" onClick={onClose}>Ã</button>
+        <button className="ws-inspector-close" onClick={onClose}>×</button>
       </div>
       <div className="ws-layer-list">
         {layers.map((layer) => (
@@ -1250,7 +1250,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
               className={'ws-layer-item' + (selected === layer.id ? ' is-active' : '') + (layer.id === 'accent' ? ' ws-layer-accent' : '')}
               onClick={() => onSelect(layer.id)}
             >
-            <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'':layer.id==='brand'||layer.id==='header'?'Â£':layer.id==='frame'?'Â»':'Â¡'}</span>{layer.name}
+            <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'':layer.id==='brand'||layer.id==='header'?'£':layer.id==='frame'?'»':'¡'}</span>{layer.name}
             </button>
             {layer.isCustom && onDeleteLayer && (
               <button
@@ -1268,7 +1268,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
               const isAccent = selected === 'accent';
               return (
                           <div style={{borderTop:'1px solid rgba(255,255,255,0.09)',padding:'12px 14px'}}>
-                                        <div style={{fontSize:10,fontWeight:700,letterSpacing:'.5px',textTransform:'uppercase',color:'var(--muted)',marginBottom:10}}>Properties â {selected}</div>
+                                        <div style={{fontSize:10,fontWeight:700,letterSpacing:'.5px',textTransform:'uppercase',color:'var(--muted)',marginBottom:10}}>Properties ’ {selected}</div>
                             {!isAccent && (
                                           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
                                                             <label style={{fontSize:11,color:'var(--muted)'}}>X offset
@@ -1305,7 +1305,7 @@ function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
     <div className="ws-inspector" style={{ left: 'auto', right: 18, width: 420 }}>
       <div className="ws-inspector-head">
         <span>Source</span>
-        <button className="ws-inspector-close" onClick={onClose}>Ã</button>
+        <button className="ws-inspector-close" onClick={onClose}>×</button>
       </div>
       <div className="ws-source-wrap">
         <textarea value={value} onChange={(e) => onChange(e.target.value)} spellCheck={false} />
@@ -1318,7 +1318,7 @@ function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
     </div>
   );
 }
-// ââââââââ WriteSpace Â· app shell ââââââââ
+// ──────── WriteSpace · app shell ────────
 const { useState: uS, useEffect: uE, useCallback: uC, useRef: uR } = React;
 
 const SHELL_MOODS = {
@@ -1339,190 +1339,112 @@ function fitView(w, h) {
 }
 
 
-const WS_FONTS = [
-  { label: 'Default (Theme)', value: '' },
-  { label: 'Inter', value: 'Inter, sans-serif' },
-  { label: 'DM Sans', value: "'DM Sans', sans-serif" },
-  { label: 'Georgia', value: 'Georgia, serif' },
-  { label: 'Playfair Display', value: "'Playfair Display', serif" },
-  { label: 'Roboto', value: 'Roboto, sans-serif' },
-  { label: 'Lato', value: 'Lato, sans-serif' },
-  { label: 'Open Sans', value: "'Open Sans', sans-serif" },
-  { label: 'Montserrat', value: 'Montserrat, sans-serif' },
-  { label: 'Oswald', value: 'Oswald, sans-serif' },
-  { label: 'Raleway', value: 'Raleway, sans-serif' },
-  { label: 'Courier New', value: "'Courier New', monospace" },
-  { label: 'Trebuchet MS', value: "'Trebuchet MS', sans-serif" },
-  { label: 'Verdana', value: 'Verdana, sans-serif' },
-  { label: 'Times New Roman', value: "'Times New Roman', serif" },
-];
+const WS_FONTS=[{label:'Default (Theme)',value:''},{label:'Inter',value:'Inter, sans-serif'},{label:'DM Sans',value:"'DM Sans', sans-serif"},{label:'Georgia',value:'Georgia, serif'},{label:'Playfair Display',value:"'Playfair Display', serif"},{label:'Roboto',value:'Roboto, sans-serif'},{label:'Lato',value:'Lato, sans-serif'},{label:'Open Sans',value:"'Open Sans', sans-serif"},{label:'Montserrat',value:'Montserrat, sans-serif'},{label:'Oswald',value:'Oswald, sans-serif'},{label:'Raleway',value:'Raleway, sans-serif'},{label:'Courier New',value:"'Courier New', monospace"},{label:'Trebuchet MS',value:"'Trebuchet MS', sans-serif"},{label:'Verdana',value:'Verdana, sans-serif'},{label:'Times New Roman',value:"'Times New Roman', serif"}];
 
-// ---------- TextContextMenu ----------
-function TextContextMenu({ ctx, onClose, pushHistory }) {
-  const uS = React.useState, uC = React.useCallback, uE = React.useEffect, uR = React.useRef;
-  const [, forceUpdate] = uS(0);
-
-  if (!ctx) return null;
-  const { x, y, el } = ctx;
-  if (!el) return null;
-
-  const cs = window.getComputedStyle(el);
-  const fontSize = parseFloat(el.style.fontSize || cs.fontSize) || 16;
-  const fontFamily = el.style.fontFamily || '';
-  const fontWeight = el.style.fontWeight || cs.fontWeight || '400';
-  const fontStyle = el.style.fontStyle || cs.fontStyle || 'normal';
-  const textDecoration = el.style.textDecoration || '';
-  const textAlign = el.style.textAlign || cs.textAlign || 'left';
-  const color = el.style.color || '';
-  const letterSpacing = parseFloat(el.style.letterSpacing || cs.letterSpacing) || 0;
-  const lineHeight = parseFloat(el.style.lineHeight || cs.lineHeight) || 1.4;
-  const opacity = parseFloat(el.style.opacity || cs.opacity);
-  const textTransform = el.style.textTransform || cs.textTransform || 'none';
-
-  const isBold = fontWeight >= 700 || fontWeight === 'bold';
-  const isItalic = fontStyle === 'italic';
-  const isUnderline = textDecoration.indexOf('underline') !== -1;
-  const isStrike = textDecoration.indexOf('line-through') !== -1;
-  const isUpper = textTransform === 'uppercase';
-
-  const apply = (prop, value) => {
-    pushHistory && pushHistory();
-    el.style[prop] = value;
-    // Trigger React re-render by dispatching input event
-    el.dispatchEvent(new Event('input', { bubbles: true }));
-    forceUpdate(n => n + 1);
-  };
-
-  const toggleDecoration = (type) => {
-    let td = el.style.textDecoration || '';
-    if (td.indexOf(type) !== -1) {
-      td = td.replace(type, '').trim() || '';
-    } else {
-      td = td ? td + ' ' + type : type;
-    }
-    apply('textDecoration', td);
-  };
-
+function TextContextMenu({ctx,onClose}){
+  const [,upd]=React.useState(0);
+  if(!ctx)return null;
+  const {x,y,el}=ctx;
+  if(!el)return null;
+  const cs=window.getComputedStyle(el);
+  const get=(prop,def)=>el.style[prop]||(el.style[prop]!==''?el.style[prop]:def);
+  const fontSize=parseFloat(el.style.fontSize||cs.fontSize)||16;
+  const fontFamily=el.style.fontFamily||'';
+  const fontWeight=el.style.fontWeight||cs.fontWeight||'400';
+  const fontStyle=el.style.fontStyle||cs.fontStyle||'normal';
+  const textDecoration=el.style.textDecoration||'';
+  const textAlign=el.style.textAlign||cs.textAlign||'left';
+  const color=el.style.color||'';
+  const letterSpacing=parseFloat(el.style.letterSpacing||cs.letterSpacing)||0;
+  const lineHeight=parseFloat(el.style.lineHeight||cs.lineHeight)||1.4;
+  const opacity=parseFloat(el.style.opacity!=null?el.style.opacity:cs.opacity);
+  const textTransform=el.style.textTransform||cs.textTransform||'none';
+  const isBold=fontWeight>=700||fontWeight==='bold';
+  const isItalic=fontStyle==='italic';
+  const isUnderline=textDecoration.indexOf('underline')!==-1;
+  const isStrike=textDecoration.indexOf('line-through')!==-1;
+  const isUpper=textTransform==='uppercase';
+  const apply=(prop,value)=>{el.style[prop]=value;el.dispatchEvent(new Event('input',{bubbles:true}));upd(n=>n+1);};
+  const toggleDeco=(type)=>{let td=el.style.textDecoration||'';td=td.indexOf(type)!==-1?td.replace(type,'').trim()||'':td?td+' '+type:type;apply('textDecoration',td);};
   return (
-    <div className="ws-text-ctx" style={{ left: x, top: y }} onPointerDown={(e) => e.stopPropagation()}>
+    <div className="ws-text-ctx" style={{left:x,top:y}} onPointerDown={e=>e.stopPropagation()}>
       <div className="ws-text-ctx-section">
         <div className="ws-text-ctx-label">Font Family</div>
-        <select value={fontFamily} onChange={(e) => apply('fontFamily', e.target.value)}>
-          {WS_FONTS.map(f => <option key={f.value} value={f.value}>{f.label}</option>)}
+        <select value={fontFamily} onChange={e=>apply('fontFamily',e.target.value)}>
+          {WS_FONTS.map(f=><option key={f.value} value={f.value}>{f.label}</option>)}
         </select>
       </div>
-
-      <div className="ws-text-ctx-divider" />
-
+      <div className="ws-text-ctx-divider"/>
       <div className="ws-text-ctx-section">
         <div className="ws-text-ctx-label">Font Size</div>
         <div className="ws-text-ctx-numrow">
-          <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('fontSize', Math.max(6, fontSize - 1) + 'px'); }}>−</button>
-          <input type="number" min="6" max="300" value={Math.round(fontSize)}
-            onChange={(e) => apply('fontSize', (parseFloat(e.target.value) || fontSize) + 'px')}
-            onPointerDown={(e) => e.stopPropagation()} />
-          <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('fontSize', (fontSize + 1) + 'px'); }}>+</button>
+          <button type="button" onPointerDown={e=>{e.stopPropagation();apply('fontSize',Math.max(6,fontSize-1)+'px');}}>-</button>
+          <input type="number" min="6" max="300" value={Math.round(fontSize)} onChange={e=>apply('fontSize',(parseFloat(e.target.value)||fontSize)+'px')} onPointerDown={e=>e.stopPropagation()}/>
+          <button type="button" onPointerDown={e=>{e.stopPropagation();apply('fontSize',(fontSize+1)+'px');}}>+</button>
         </div>
       </div>
-
-      <div className="ws-text-ctx-divider" />
-
+      <div className="ws-text-ctx-divider"/>
       <div className="ws-text-ctx-section">
         <div className="ws-text-ctx-label">Style</div>
         <div className="ws-text-ctx-fmtrow">
-          <button type="button" className={'ws-text-ctx-fmt' + (isBold ? ' is-on' : '')}
-            onPointerDown={(e) => { e.stopPropagation(); apply('fontWeight', isBold ? '400' : '700'); }} title="Bold">B</button>
-          <button type="button" className={'ws-text-ctx-fmt' + (isItalic ? ' is-on' : '')}
-            onPointerDown={(e) => { e.stopPropagation(); apply('fontStyle', isItalic ? 'normal' : 'italic'); }} title="Italic"
-            style={{ fontStyle: 'italic' }}>I</button>
-          <button type="button" className={'ws-text-ctx-fmt' + (isUnderline ? ' is-on' : '')}
-            onPointerDown={(e) => { e.stopPropagation(); toggleDecoration('underline'); }} title="Underline"
-            style={{ textDecoration: 'underline' }}>U</button>
-          <button type="button" className={'ws-text-ctx-fmt' + (isStrike ? ' is-on' : '')}
-            onPointerDown={(e) => { e.stopPropagation(); toggleDecoration('line-through'); }} title="Strikethrough"
-            style={{ textDecoration: 'line-through' }}>S</button>
-          <button type="button" className={'ws-text-ctx-fmt' + (isUpper ? ' is-on' : '')}
-            onPointerDown={(e) => { e.stopPropagation(); apply('textTransform', isUpper ? 'none' : 'uppercase'); }} title="Uppercase">TT</button>
+          <button type="button" className={'ws-text-ctx-fmt'+(isBold?' is-on':'')} onPointerDown={e=>{e.stopPropagation();apply('fontWeight',isBold?'400':'700');}} title="Bold">B</button>
+          <button type="button" className={'ws-text-ctx-fmt'+(isItalic?' is-on':'')} onPointerDown={e=>{e.stopPropagation();apply('fontStyle',isItalic?'normal':'italic');}} title="Italic" style={{fontStyle:'italic'}}>I</button>
+          <button type="button" className={'ws-text-ctx-fmt'+(isUnderline?' is-on':'')} onPointerDown={e=>{e.stopPropagation();toggleDeco('underline');}} title="Underline" style={{textDecoration:'underline'}}>U</button>
+          <button type="button" className={'ws-text-ctx-fmt'+(isStrike?' is-on':'')} onPointerDown={e=>{e.stopPropagation();toggleDeco('line-through');}} title="Strikethrough" style={{textDecoration:'line-through'}}>S</button>
+          <button type="button" className={'ws-text-ctx-fmt'+(isUpper?' is-on':'')} onPointerDown={e=>{e.stopPropagation();apply('textTransform',isUpper?'none':'uppercase');}} title="Uppercase">TT</button>
         </div>
       </div>
-
-      <div className="ws-text-ctx-divider" />
-
+      <div className="ws-text-ctx-divider"/>
       <div className="ws-text-ctx-section">
         <div className="ws-text-ctx-label">Alignment</div>
         <div className="ws-text-ctx-alignrow">
-          {[['left','≡','Left'],['center','⊟','Center'],['right','≡','Right'],['justify','⬚','Justify']].map(([a, icon, label]) => (
-            <button key={a} type="button" title={label}
-              className={'ws-text-ctx-align' + (textAlign === a ? ' is-on' : '')}
-              onPointerDown={(e) => { e.stopPropagation(); apply('textAlign', a); }}>
-              {icon}
-            </button>
+          {[['left','L','Left'],['center','C','Center'],['right','R','Right'],['justify','J','Justify']].map(([a,icon,label])=>(
+            <button key={a} type="button" title={label} className={'ws-text-ctx-align'+(textAlign===a?' is-on':'')} onPointerDown={e=>{e.stopPropagation();apply('textAlign',a);}}>{icon}</button>
           ))}
         </div>
       </div>
-
-      <div className="ws-text-ctx-divider" />
-
+      <div className="ws-text-ctx-divider"/>
       <div className="ws-text-ctx-section">
         <div className="ws-text-ctx-label">Color</div>
         <div className="ws-text-ctx-colorrow">
-          <input type="color" className="ws-text-ctx-colorprev"
-            value={color && color.startsWith('#') ? color : '#000000'}
-            onChange={(e) => apply('color', e.target.value)}
-            onPointerDown={(e) => e.stopPropagation()} />
-          <input className="ws-text-ctx-colorinput" placeholder="e.g. #333 or inherit"
-            value={color}
-            onChange={(e) => apply('color', e.target.value)}
-            onPointerDown={(e) => e.stopPropagation()} />
+          <input type="color" className="ws-text-ctx-colorprev" value={color&&color.startsWith('#')?color:'#000000'} onChange={e=>apply('color',e.target.value)} onPointerDown={e=>e.stopPropagation()}/>
+          <input className="ws-text-ctx-colorinput" placeholder="e.g. #333 or inherit" value={color} onChange={e=>apply('color',e.target.value)} onPointerDown={e=>e.stopPropagation()}/>
         </div>
       </div>
-
-      <div className="ws-text-ctx-divider" />
-
+      <div className="ws-text-ctx-divider"/>
       <div className="ws-text-ctx-section">
-        <div className="ws-text-ctx-label">Spacing &amp; Opacity</div>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-          <span style={{ fontSize: 10, color: 'var(--muted)', width: 42, flexShrink: 0 }}>Letter</span>
-          <div className="ws-text-ctx-numrow" style={{ flex: 1 }}>
-            <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('letterSpacing', (Math.round((letterSpacing - 0.5) * 10) / 10) + 'px'); }}>−</button>
-            <input type="number" step="0.5" value={Math.round(letterSpacing * 10) / 10}
-              onChange={(e) => apply('letterSpacing', (parseFloat(e.target.value) || 0) + 'px')}
-              onPointerDown={(e) => e.stopPropagation()} />
-            <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('letterSpacing', (Math.round((letterSpacing + 0.5) * 10) / 10) + 'px'); }}>+</button>
+        <div className="ws-text-ctx-label">Spacing and Opacity</div>
+        <div style={{display:'flex',gap:6,alignItems:'center'}}>
+          <span style={{fontSize:10,color:'var(--muted)',width:42,flexShrink:0}}>Letter</span>
+          <div className="ws-text-ctx-numrow" style={{flex:1}}>
+            <button type="button" onPointerDown={e=>{e.stopPropagation();apply('letterSpacing',(Math.round((letterSpacing-0.5)*10)/10)+'px');}}>-</button>
+            <input type="number" step="0.5" value={Math.round(letterSpacing*10)/10} onChange={e=>apply('letterSpacing',(parseFloat(e.target.value)||0)+'px')} onPointerDown={e=>e.stopPropagation()}/>
+            <button type="button" onPointerDown={e=>{e.stopPropagation();apply('letterSpacing',(Math.round((letterSpacing+0.5)*10)/10)+'px');}}>+</button>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 4 }}>
-          <span style={{ fontSize: 10, color: 'var(--muted)', width: 42, flexShrink: 0 }}>Line ht</span>
-          <div className="ws-text-ctx-numrow" style={{ flex: 1 }}>
-            <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('lineHeight', Math.max(0.8, Math.round((lineHeight - 0.1) * 10) / 10)); }}>−</button>
-            <input type="number" step="0.1" value={Math.round(lineHeight * 10) / 10}
-              onChange={(e) => apply('lineHeight', parseFloat(e.target.value) || 1.4)}
-              onPointerDown={(e) => e.stopPropagation()} />
-            <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('lineHeight', Math.round((lineHeight + 0.1) * 10) / 10); }}>+</button>
+        <div style={{display:'flex',gap:6,alignItems:'center',marginTop:4}}>
+          <span style={{fontSize:10,color:'var(--muted)',width:42,flexShrink:0}}>Line ht</span>
+          <div className="ws-text-ctx-numrow" style={{flex:1}}>
+            <button type="button" onPointerDown={e=>{e.stopPropagation();apply('lineHeight',Math.max(0.8,Math.round((lineHeight-0.1)*10)/10));}}>-</button>
+            <input type="number" step="0.1" value={Math.round(lineHeight*10)/10} onChange={e=>apply('lineHeight',parseFloat(e.target.value)||1.4)} onPointerDown={e=>e.stopPropagation()}/>
+            <button type="button" onPointerDown={e=>{e.stopPropagation();apply('lineHeight',Math.round((lineHeight+0.1)*10)/10);}}>+</button>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 4 }}>
-          <span style={{ fontSize: 10, color: 'var(--muted)', width: 42, flexShrink: 0 }}>Opacity</span>
-          <div className="ws-text-ctx-numrow" style={{ flex: 1 }}>
-            <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('opacity', Math.max(0, Math.round((opacity - 0.05) * 100) / 100)); }}>−</button>
-            <input type="number" step="0.05" min="0" max="1" value={Math.round(opacity * 100) / 100}
-              onChange={(e) => apply('opacity', parseFloat(e.target.value))}
-              onPointerDown={(e) => e.stopPropagation()} />
-            <button type="button" onPointerDown={(e) => { e.stopPropagation(); apply('opacity', Math.min(1, Math.round((opacity + 0.05) * 100) / 100)); }}>+</button>
+        <div style={{display:'flex',gap:6,alignItems:'center',marginTop:4}}>
+          <span style={{fontSize:10,color:'var(--muted)',width:42,flexShrink:0}}>Opacity</span>
+          <div className="ws-text-ctx-numrow" style={{flex:1}}>
+            <button type="button" onPointerDown={e=>{e.stopPropagation();apply('opacity',Math.max(0,Math.round((opacity-0.05)*100)/100));}}>-</button>
+            <input type="number" step="0.05" min="0" max="1" value={Math.round(opacity*100)/100} onChange={e=>apply('opacity',parseFloat(e.target.value))} onPointerDown={e=>e.stopPropagation()}/>
+            <button type="button" onPointerDown={e=>{e.stopPropagation();apply('opacity',Math.min(1,Math.round((opacity+0.05)*100)/100));}}>+</button>
           </div>
         </div>
       </div>
-
-      <div className="ws-text-ctx-divider" />
-      <button type="button" className="ws-text-ctx-action"
-        onPointerDown={(e) => { e.stopPropagation(); ['fontFamily','fontSize','fontWeight','fontStyle','textDecoration','textTransform','color','letterSpacing','lineHeight','opacity','textAlign'].forEach(p => el.style.removeProperty(p.replace(/([A-Z])/g,'-$1').toLowerCase())); el.dispatchEvent(new Event('input',{bubbles:true})); onClose(); }}>
-        Reset formatting
-      </button>
-      <button type="button" className="ws-text-ctx-action" onPointerDown={(e) => { e.stopPropagation(); onClose(); }}>Close</button>
+      <div className="ws-text-ctx-divider"/>
+      <button type="button" className="ws-text-ctx-action" onPointerDown={e=>{e.stopPropagation();['fontFamily','fontSize','fontWeight','fontStyle','textDecoration','textTransform','color','letterSpacing','lineHeight','opacity','textAlign'].forEach(p=>{const prop=p.replace(/([A-Z])/g,'-$1').toLowerCase();el.style.removeProperty(prop);});el.dispatchEvent(new Event('input',{bubbles:true}));onClose();}}>Reset formatting</button>
+      <button type="button" className="ws-text-ctx-action" onPointerDown={e=>{e.stopPropagation();onClose();}}>Close</button>
     </div>
   );
 }
-
 function App() {
   React.useEffect(() => { try { localStorage.removeItem('ws:docs'); try { localStorage.removeItem('ws:lastThemeId'); } catch {}; } catch {} }, []);
 
@@ -1804,19 +1726,15 @@ function App() {
     setView(fitView(d.w, d.h));
   }, [activePage]);
 
-  // text context menu - global contextmenu handler
+  // text context menu
   uE(() => {
     const handler = (e) => {
-      const target = e.target;
-      // Check if right-click is on a ws-editable element
-      const editable = target.closest('.ws-editable');
+      const editable = e.target.closest('.ws-editable');
       if (!editable) return;
       e.preventDefault();
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const menuW = 240, menuH = 420;
-      const x = Math.min(e.clientX + 4, vw - menuW - 8);
-      const y = Math.min(e.clientY + 4, vh - menuH - 8);
+      const menuW = 240, menuH = 430;
+      const x = Math.min(e.clientX + 4, window.innerWidth - menuW - 8);
+      const y = Math.min(e.clientY + 4, window.innerHeight - menuH - 8);
       setTextCtx({ x, y, el: editable });
     };
     document.addEventListener('contextmenu', handler);
@@ -1846,7 +1764,7 @@ function App() {
 
   // command palette commands
   const commands = [
-    ...DOC_TYPES.map((d) => ({ id: 'new-' + d.id, label: 'New Â· ' + d.name, group: 'Create', fn: () => createDoc(d.id) })),
+    ...DOC_TYPES.map((d) => ({ id: 'new-' + d.id, label: 'New · ' + d.name, group: 'Create', fn: () => createDoc(d.id) })),
     { id: 'themes', label: 'Browse themes', group: 'View', fn: () => setThemesOpen(true) },
     { id: 'layers', label: 'Open layers panel', group: 'View', fn: () => setLayersOpen(true) },
     { id: 'source', label: 'Open source inspector', group: 'View', fn: () => setSourceOpen(true) },
@@ -1858,7 +1776,7 @@ function App() {
     { id: 'add-layer', label: 'Add layer', group: 'Insert', fn: () => setElemPickerOpen(o => !o) },
     { id: 'add-text', label: 'Add text field', group: 'Insert', fn: addTextField },
     { id: 'export', label: 'Export / Print document', group: 'Output', fn: doExport },
-    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme Â· ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
+    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme · ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
   ];
 
   function doExport() {
@@ -1896,7 +1814,7 @@ function App() {
       />
       {doc && <PageStrip docs={docs} activePage={activePage} onSelectPage={(i) => { setActivePage(i); setAccentSel(false); setSelectedLayer(null); }} onAddPage={addPage}
         onPageMenu={(e, i) => { e.preventDefault(); setPageMenu({ i, x: e.clientX, y: e.clientY }); }} />}
-      {doc && <div className="ws-status">{dt.name} Â· {effTheme.name} Â· {Math.round(view.zoom * 100)}% Â· Page {activePage + 1} of {docs.length}</div>}
+      {doc && <div className="ws-status">{dt.name} · {effTheme.name} · {Math.round(view.zoom * 100)}% · Page {activePage + 1} of {docs.length}</div>}
 
       {doc && (
         <Stage view={view} setView={setView} docPos={docPos} setDocPos={(pos) => updateActiveDoc((dd) => ({ ...dd, docPos: pos }))} onDeselect={() => { setAccentSel(false); setSelectedLayer(null); }}>
@@ -1929,7 +1847,7 @@ function App() {
           <div style={{position:'fixed',right:0,top:0,bottom:0,width:300,background:'#1c1c20',borderLeft:'1px solid var(--ws-border)',zIndex:201,display:'flex',flexDirection:'column',overflow:'hidden'}}>
             <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ws-border)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
               <span style={{fontWeight:700,fontSize:14}}>Colors</span>
-              <button onClick={()=>setColorPanelOpen(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>Ã</button>
+              <button onClick={()=>setColorPanelOpen(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>×</button>
             </div>
             <div style={{flex:1,overflowY:'auto',padding:'12px'}}>
               <div style={{marginBottom:14}}>
@@ -1969,7 +1887,7 @@ function App() {
         <div style={{position:'fixed',right:0,top:0,bottom:0,width:290,background:'#1c1c20',borderLeft:'1px solid var(--ws-border)',zIndex:200,display:'flex',flexDirection:'column',overflow:'hidden'}}>
           <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ws-border)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
             <span style={{fontWeight:600,fontSize:14}}>Project Versions</span>
-            <button onClick={()=>setShowVersions(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>Ã</button>
+            <button onClick={()=>setShowVersions(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>×</button>
           </div>
           <div style={{padding:'8px 12px',borderBottom:'1px solid var(--ws-border)',display:'flex',gap:8}}>
             <input id="ws-ver-lbl" placeholder="Version name..." style={{flex:1,padding:'4px 8px',borderRadius:4,border:'1px solid var(--ws-border)',background:'var(--ws-bg)',color:'var(--ws-text)',fontSize:12,outline:'none'}} />
@@ -1989,7 +1907,7 @@ function App() {
           </div>
         </div>
       )}
-      <TextContextMenu ctx={textCtx} onClose={() => setTextCtx(null)} pushHistory={pushHistory} />
+      <TextContextMenu ctx={textCtx} onClose={() => setTextCtx(null)} />
       {pageMenu && (
         <div className="ws-page-menu" style={{ left: pageMenu.x, top: pageMenu.y }} onPointerDown={(e) => e.stopPropagation()}>
           <button onClick={()=>{const n=prompt('Page name:',docs[pageMenu.i]?.pageName||'');if(n!==null)renamePage(pageMenu.i,n);setPageMenu(null);}}>Rename</button>
