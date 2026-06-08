@@ -144,41 +144,41 @@ body.ws-printing .artboard{box-shadow:none!important;border-radius:0!important;}
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
 <script type="text/babel">
 const THEMES = [
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Medical / Dental ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Medical / Dental ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'clinical-white', name:'Clinical White', category:'Medical', bg:'#ffffff', text:'#0a1628', primary:'#1d4ed8', secondary:'#eff6ff', accent:'#3b82f6', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#1d4ed8', headerBg:'#1d4ed8', headerText:'#ffffff' },
   { id:'dental-pro', name:'Dental Pro', category:'Medical', bg:'#ffffff', text:'#1a2744', primary:'#1a2744', secondary:'#4a90d9', accent:'#4a90d9', font:'Georgia, serif', border:'#1a2744', headerBg:'#1a2744', headerText:'#ffffff' },
   { id:'orthodontics', name:'Orthodontics', category:'Medical', bg:'#f0fdff', text:'#0c3040', primary:'#0891b2', secondary:'#cffafe', accent:'#06b6d4', font:"'Gill Sans', Calibri, sans-serif", border:'#0891b2', headerBg:'#0891b2', headerText:'#ffffff' },
   { id:'pediatric-care', name:'Pediatric Care', category:'Medical', bg:'#fffbf0', text:'#2a1a2e', primary:'#7c3aed', secondary:'#fce7fe', accent:'#f59e0b', font:"'Trebuchet MS', sans-serif", border:'#7c3aed', headerBg:'linear-gradient(90deg,#f59e0b,#7c3aed)', headerText:'#ffffff' },
   { id:'chiropractic', name:'Chiropractic', category:'Medical', bg:'#f7f9f4', text:'#1a2e1a', primary:'#2d6a2d', secondary:'#e8f5e8', accent:'#4a9e4a', font:"Georgia, 'Times New Roman', serif", border:'#2d6a2d', headerBg:'#2d6a2d', headerText:'#f0f8f0' },
 
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Luxury ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Luxury ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'chanel-noir', name:'Chanel Noir', category:'Luxury', bg:'#ffffff', text:'#000000', primary:'#000000', secondary:'#f4f4f4', accent:'#000000', font:"'Bodoni MT', Didot, Georgia, serif", border:'#000000', headerBg:'#000000', headerText:'#ffffff' },
   { id:'emerald-prestige', name:'Emerald Prestige', category:'Luxury', bg:'#071a0f', text:'#e8f0e4', primary:'#d4a843', secondary:'#0d3320', accent:'#d4a843', font:"'Garamond', Georgia, serif", border:'#d4a843', headerBg:'#0d3320', headerText:'#d4a843' },
-  { id:'hermes-orange', name:'HermÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨s Orange', category:'Luxury', bg:'#fdf5ee', text:'#2c1404', primary:'#e8622a', secondary:'#fce8d8', accent:'#c44a14', font:"Didot, 'Bodoni MT', serif", border:'#e8622a', headerBg:'#e8622a', headerText:'#fdf5ee' },
+  { id:'hermes-orange', name:'HermÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨s Orange', category:'Luxury', bg:'#fdf5ee', text:'#2c1404', primary:'#e8622a', secondary:'#fce8d8', accent:'#c44a14', font:"Didot, 'Bodoni MT', serif", border:'#e8622a', headerBg:'#e8622a', headerText:'#fdf5ee' },
   { id:'black-diamond', name:'Black Diamond', category:'Luxury', bg:'#f8f8f8', text:'#080808', primary:'#1a1a1a', secondary:'#f0f0f0', accent:'#888888', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#1a1a1a', headerBg:'#0a0a0a', headerText:'#e8e8e8' },
   { id:'medspa-luxe', name:'MedSpa Luxe', category:'Luxury', bg:'#fdf8f5', text:'#4a3728', primary:'#c9956b', secondary:'#e8c8b8', accent:'#b87d5a', font:"'Palatino Linotype', Palatino, serif", border:'#c9956b', headerBg:'#c9956b', headerText:'#ffffff' },
   { id:'victorian-noir', name:'Victorian Noir', category:'Luxury', bg:'#120608', text:'#e8d5b0', primary:'#c9a84c', secondary:'#8b1a1a', accent:'#c9a84c', font:"'Times New Roman', Times, serif", border:'#c9a84c', headerBg:'#1c0808', headerText:'#c9a84c' },
 
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Corporate ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Corporate ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'law-firm', name:'Law Firm', category:'Corporate', bg:'#f8f6f0', text:'#2c2416', primary:'#8b7355', secondary:'#c9b99a', accent:'#c9a44a', font:"'Garamond', Georgia, serif", border:'#8b7355', headerBg:'#2c2416', headerText:'#c9a44a' },
   { id:'arctic-minimal', name:'Arctic Minimal', category:'Corporate', bg:'#f8fbff', text:'#1a2840', primary:'#2b5797', secondary:'#ddeeff', accent:'#1a7abf', font:"'Helvetica Neue', Helvetica, Arial, sans-serif", border:'#b8d4e8', headerBg:'#b8d4e8', headerText:'#1a2840' },
   { id:'midnight-editorial', name:'Midnight Editorial', category:'Corporate', bg:'#07070f', text:'#c8c8e8', primary:'#6d5aed', secondary:'#13131f', accent:'#a78bfa', font:"'Inter', system-ui, sans-serif", border:'#4f46e5', headerBg:'#13131f', headerText:'#a78bfa' },
 
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Tech ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Tech ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'dark-mode-dev', name:'Dark Mode Dev', category:'Tech', bg:'#0d1117', text:'#c9d1d9', primary:'#58a6ff', secondary:'#21262d', accent:'#3fb950', font:"'Courier New', Courier, monospace", border:'#30363d', headerBg:'#161b22', headerText:'#58a6ff' },
   { id:'saas-blue', name:'SaaS Blue', category:'Tech', bg:'#f0f4ff', text:'#1e2a4a', primary:'#3b82f6', secondary:'#dbeafe', accent:'#1d4ed8', font:"'Inter', system-ui, sans-serif", border:'#3b82f6', headerBg:'linear-gradient(135deg,#3b82f6,#6366f1)', headerText:'#ffffff' },
 
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Creative ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Creative ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'neon-cyberpunk', name:'Neon Cyberpunk', category:'Creative', bg:'#050510', text:'#e0e0ff', primary:'#ff00cc', secondary:'#00ffee', accent:'#00ffee', font:"'Courier New', Courier, monospace", border:'#ff00cc', headerBg:'#0a0020', headerText:'#ff00cc' },
   { id:'manga-studio', name:'Manga Studio', category:'Creative', bg:'#ffffff', text:'#1a1a1a', primary:'#e60026', secondary:'#f5f5f5', accent:'#e60026', font:"'Arial Black', sans-serif", border:'#1a1a1a', headerBg:'#1a1a1a', headerText:'#e60026' },
   { id:'kraft-paper', name:'Kraft Paper', category:'Creative', bg:'#d4a96a', text:'#2c1810', primary:'#8b4513', secondary:'#c4813a', accent:'#5c2d0a', font:"'Courier New', Courier, monospace", border:'#8b4513', headerBg:'#8b4513', headerText:'#f5deb3' },
 
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Hospitality ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Hospitality ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'restaurant-fine', name:'Restaurant Fine', category:'Hospitality', bg:'#1a0a04', text:'#f5e6c8', primary:'#c0392b', secondary:'#2c1810', accent:'#e8b96a', font:"Didot, 'Bodoni MT', Georgia, serif", border:'#c0392b', headerBg:'#c0392b', headerText:'#f5e6c8' },
   { id:'bourbon-street', name:'Bourbon Street', category:'Hospitality', bg:'#100804', text:'#f0e0c0', primary:'#d4891a', secondary:'#2a1508', accent:'#f0a030', font:"'Georgia', serif", border:'#d4891a', headerBg:'#1e0e06', headerText:'#d4891a' },
   { id:'terra-bloom', name:'Terra Bloom', category:'Hospitality', bg:'#faf0e6', text:'#3d1f0a', primary:'#c4612a', secondary:'#ffe8d6', accent:'#a0440a', font:"'Palatino Linotype', Palatino, serif", border:'#c4612a', headerBg:'#c4612a', headerText:'#fff8f0' },
 
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Gradient ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Gradient ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'aurora-borealis', name:'Aurora Borealis', category:'Gradient', bg:'#060d1a', text:'#d0eedd', primary:'#0d9488', secondary:'#1e1040', accent:'#34d399', font:"'Inter', system-ui, sans-serif", border:'#0d9488', headerBg:'linear-gradient(135deg,#7c3aed,#0d9488)', headerText:'#ffffff' },
   { id:'sunset-blaze', name:'Sunset Blaze', category:'Gradient', bg:'#fff8f0', text:'#2d1010', primary:'#f97316', secondary:'#fff0e8', accent:'#db2777', font:"'Georgia', serif", border:'#f97316', headerBg:'linear-gradient(135deg,#f97316,#db2777)', headerText:'#ffffff' },
   { id:'ocean-depth', name:'Ocean Depth', category:'Gradient', bg:'#040c18', text:'#c0d8f0', primary:'#0891b2', secondary:'#051020', accent:'#38bdf8', font:"'Helvetica Neue', Helvetica, sans-serif", border:'#0891b2', headerBg:'linear-gradient(135deg,#0891b2,#1e3a5f)', headerText:'#ffffff' },
@@ -186,7 +186,7 @@ const THEMES = [
   { id:'velvet-luxe', name:'Velvet Luxe', category:'Gradient', bg:'#080408', text:'#f0d8e8', primary:'#9b1c4a', secondary:'#150010', accent:'#c084fc', font:"'Times New Roman', Times, serif", border:'#7f1d1d', headerBg:'linear-gradient(135deg,#7f1d1d,#4c1d95)', headerText:'#fce7f3' },
   { id:'rose-gold-rush', name:'Rose Gold Rush', category:'Gradient', bg:'#fef8f5', text:'#2d1020', primary:'#e11d48', secondary:'#fce8e8', accent:'#d4a843', font:"'Palatino Linotype', Palatino, serif", border:'#e11d48', headerBg:'linear-gradient(135deg,#e11d48,#d4a843)', headerText:'#ffffff' },
 
-  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Specialty ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+  // ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Specialty ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
   { id:'wedding-planner', name:'Wedding Planner', category:'Specialty', bg:'#fefcf8', text:'#4a3728', primary:'#d4af8a', secondary:'#f0e6d6', accent:'#c9a060', font:"'Palatino Linotype', Palatino, serif", border:'#d4af8a', headerBg:'#fdf4e8', headerText:'#8b6040' },
 ];
 
@@ -199,13 +199,13 @@ const themeById = (id) => THEMES.find(t => t.id === id) || THEMES[0];
 
 const DOC_TYPES = [
   {
-    id:'business-card', name:'Business Card', blurb:'3.5 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ 2 in ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· premium stock', glyph:'card',
+    id:'business-card', name:'Business Card', blurb:'3.5 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ 2 in ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· premium stock', glyph:'card',
     defaultTheme:'chanel-noir', w:1050, h:600,
     content:{
       name:'Adrian Vale', role:'Founder & Principal',
-      company:'VALE & CO.', tagline:'STRATEGY ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· DESIGN ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· CAPITAL',
+      company:'VALE & CO.', tagline:'STRATEGY ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· DESIGN ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· CAPITAL',
       phone:'+1 415 555 0147', email:'adrian@valeand.co',
-      site:'valeand.co', address:'One Market St ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· San Francisco',
+      site:'valeand.co', address:'One Market St ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· San Francisco',
       monogram:'V', accentPos:{x:720,y:300},
     },
   },
@@ -231,12 +231,12 @@ const DOC_TYPES = [
     defaultTheme:'chanel-noir', w:816, h:1056,
     content:{
       org:'Meridian Health', dept:'Department of Internal Medicine', monogram:'+',
-      title:'Hypertension Management Protocol', code:'CP-114 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Rev. 2026.2',
+      title:'Hypertension Management Protocol', code:'CP-114 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Rev. 2026.2',
       intro:'This protocol standardizes the assessment and management of adult hypertension across all outpatient clinics. Apply alongside clinical judgment.',
       sections:[
-        { h:'1 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Initial Assessment', b:'Confirm elevated BP on two separate readings. Measure in both arms; use the higher value. Document heart rate, BMI, and relevant history.' },
-        { h:'2 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Staging', b:'Normal <120/80. Elevated 120ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ129/<80. Stage 1: 130ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ139 or 80ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ89. Stage 2: ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥140 or ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥90. Crisis: >180/120 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ escalate immediately.' },
-        { h:'3 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· First-Line Therapy', b:'Initiate lifestyle modification for all patients. For Stage 1 with risk factors or Stage 2, begin pharmacotherapy per the algorithm below.' },
+        { h:'1 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Initial Assessment', b:'Confirm elevated BP on two separate readings. Measure in both arms; use the higher value. Document heart rate, BMI, and relevant history.' },
+        { h:'2 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Staging', b:'Normal <120/80. Elevated 120ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ129/<80. Stage 1: 130ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ139 or 80ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ89. Stage 2: ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥140 or ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥90. Crisis: >180/120 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ escalate immediately.' },
+        { h:'3 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· First-Line Therapy', b:'Initiate lifestyle modification for all patients. For Stage 1 with risk factors or Stage 2, begin pharmacotherapy per the algorithm below.' },
       ],
       checklist:[
         { t:'Two confirmed elevated readings on file', done:true },
@@ -244,7 +244,7 @@ const DOC_TYPES = [
         { t:'Cardiovascular risk calculated', done:false },
         { t:'Patient counseled on lifestyle', done:false },
       ],
-      footer:'Reviewed by the Clinical Standards Committee ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Confidential',
+      footer:'Reviewed by the Clinical Standards Committee ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Confidential',
       accentPos:{x:110,y:905},
     },
   },
@@ -253,7 +253,7 @@ const DOC_TYPES = [
     defaultTheme:'chanel-noir', w:816, h:1056,
     content:{
       company:'Hartwell & Associates', tagline:'Attorneys at Law', monogram:'H',
-      contact:'1200 Wilshire Blvd, Suite 400 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Los Angeles, CA 90017 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· (213) 555-0190',
+      contact:'1200 Wilshire Blvd, Suite 400 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Los Angeles, CA 90017 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· (213) 555-0190',
       date:'June 3, 2026',
       recipient:'Ms. Eleanor Pruitt\nPruitt Holdings, LLC\n88 Kearny Street, San Francisco',
       salutation:'Dear Ms. Pruitt,',
@@ -263,10 +263,10 @@ const DOC_TYPES = [
     },
   },
   {
-    id:'certificate', name:'Certificate', blurb:'Award ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· landscape', glyph:'seal',
+    id:'certificate', name:'Certificate', blurb:'Award ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· landscape', glyph:'seal',
     defaultTheme:'chanel-noir', w:1056, h:816,
     content:{
-      org:'THE EMERALD SOCIETY', monogram:'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ',
+      org:'THE EMERALD SOCIETY', monogram:'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ',
       kicker:'CERTIFICATE OF ACHIEVEMENT', presented:'This certificate is proudly presented to',
       recipient:'Juliette Marchetti', reason:'In recognition of outstanding distinction and exemplary dedication to the craft, conferred with the highest honors of the Society.',
       date:'June 3, 2026', sig1:'Director', sig2:'Chair of the Board',
@@ -548,6 +548,102 @@ function Accent({ c, set, theme, zoom, sel, onSel, onDragStart }) {
   );
 }
 
+function renderCustomLayerContent(layer, customLayers, set, theme) {
+  const t = layer.elType || 'text-body';
+  const upd = (patch) => set('customLayers', customLayers.map((it) => it.id === layer.id ? { ...it, ...patch } : it));
+  if (t === 'divider-thin') return <div style={{ width: layer.w || 400, height: 1, background: theme.border || theme.text, opacity: 0.4 }} />;
+  if (t === 'divider-thick') return <div style={{ width: layer.w || 400, height: 5, background: theme.primary }} />;
+  if (t === 'divider-double') return <div style={{ width: layer.w || 400, borderTop: `3px double ${theme.primary}`, height: 6 }} />;
+  if (t === 'divider-dotted') return <div style={{ width: layer.w || 400, borderTop: `2px dotted ${theme.border || theme.text}`, height: 4, opacity: 0.5 }} />;
+  if (t === 'divider-dashed') return <div style={{ width: layer.w || 400, borderTop: `2px dashed ${theme.border || theme.text}`, height: 4, opacity: 0.5 }} />;
+  if (t === 'divider-ornament') return <div style={{ width: layer.w || 400, display: 'flex', alignItems: 'center', gap: 8, color: theme.accent }}>
+    <div style={{ flex: 1, height: 1, background: 'currentColor', opacity: 0.5 }} />
+    <span style={{ fontSize: 14 }}>&#9670;</span>
+    <div style={{ flex: 1, height: 1, background: 'currentColor', opacity: 0.5 }} />
+  </div>;
+  if (t === 'shape-rect-filled') return <div style={{ width: layer.w || 200, height: layer.h || 60, background: theme.primary, borderRadius: 4 }} />;
+  if (t === 'shape-rect-outline') return <div style={{ width: layer.w || 200, height: layer.h || 60, border: `2px solid ${theme.primary}`, borderRadius: 4 }} />;
+  if (t === 'shape-circle') return <div style={{ width: layer.h || 80, height: layer.h || 80, borderRadius: '50%', background: theme.accent }} />;
+  if (t === 'shape-badge') return <div style={{ display: 'inline-flex', alignItems: 'center', padding: '4px 16px', background: theme.accent, color: theme.bg, borderRadius: 20, fontSize: 13, fontWeight: 700 }}>
+    <Editable value={layer.text || 'Badge'} onChange={(v) => upd({ text: v })} style={{ color: 'inherit' }} />
+  </div>;
+  if (t === 'text-heading') return <Editable value={layer.text || 'Heading'} onChange={(v) => upd({ text: v })} style={{ fontSize: 32, fontWeight: 700, color: theme.text }} />;
+  if (t === 'text-subheading') return <Editable value={layer.text || 'Subheading'} onChange={(v) => upd({ text: v })} style={{ fontSize: 20, fontWeight: 600, color: theme.primary }} />;
+  if (t === 'text-label') return <Editable value={layer.text || 'LABEL'} onChange={(v) => upd({ text: v })} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: theme.text, opacity: 0.6 }} />;
+  if (t === 'text-quote') return <Editable value={layer.text || 'Quoted text here'} onChange={(v) => upd({ text: v })} multiline style={{ fontSize: 18, fontStyle: 'italic', color: theme.text, borderLeft: `3px solid ${theme.accent}`, paddingLeft: 16, opacity: 0.85 }} />;
+  if (t === 'text-caption') return <Editable value={layer.text || 'Caption text'} onChange={(v) => upd({ text: v })} style={{ fontSize: 11, color: theme.text, opacity: 0.55 }} />;
+  if (t === 'spacer-sm') return <div style={{ width: layer.w || 300, height: 20 }} />;
+  if (t === 'spacer-md') return <div style={{ width: layer.w || 300, height: 40 }} />;
+  if (t === 'spacer-lg') return <div style={{ width: layer.w || 300, height: 80 }} />;
+  if (t === 'data-kv') return <div style={{ display: 'flex', gap: 12, alignItems: 'baseline' }}>
+    <Editable value={layer.keyText || 'KEY'} onChange={(v) => upd({ keyText: v })} style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: theme.text, opacity: 0.5, minWidth: 60 }} />
+    <Editable value={layer.text || 'Value'} onChange={(v) => upd({ text: v })} style={{ fontSize: 14, color: theme.text }} />
+  </div>;
+  return <Editable value={layer.text || 'Text'} onChange={(v) => upd({ text: v })} multiline style={{ fontSize: 15, color: theme.text, lineHeight: 1.65, minWidth: 200 }} />;
+}
+
+function ElementPicker({ open, onClose, onAdd }) {
+  if (!open) return null;
+  const cats = [
+    { label: 'TEXT', items: [
+      { elType: 'text-heading', icon: 'T', label: 'Heading', preview: 'Large bold title' },
+      { elType: 'text-subheading', icon: 'T', label: 'Subheading', preview: 'Section subhead' },
+      { elType: 'text-body', icon: 'P', label: 'Body', preview: 'Paragraph text' },
+      { elType: 'text-label', icon: 'Aa', label: 'Label', preview: 'CAPS LABEL' },
+      { elType: 'text-quote', icon: '"', label: 'Quote', preview: 'Italic pull quote' },
+      { elType: 'text-caption', icon: '/', label: 'Caption', preview: 'Fine caption' },
+    ]},
+    { label: 'DIVIDERS', items: [
+      { elType: 'divider-thin', icon: '-', label: 'Thin Rule', preview: 'Hair line' },
+      { elType: 'divider-thick', icon: '=', label: 'Thick Rule', preview: 'Bold line' },
+      { elType: 'divider-double', icon: '=', label: 'Double Rule', preview: 'Double line' },
+      { elType: 'divider-dotted', icon: '...', label: 'Dotted', preview: 'Dot pattern' },
+      { elType: 'divider-dashed', icon: '---', label: 'Dashed', preview: 'Dash pattern' },
+      { elType: 'divider-ornament', icon: '*', label: 'Ornament', preview: 'Diamond break' },
+    ]},
+    { label: 'SHAPES', items: [
+      { elType: 'shape-rect-filled', icon: '#', label: 'Block', preview: 'Filled rect' },
+      { elType: 'shape-rect-outline', icon: '[]', label: 'Box', preview: 'Border rect' },
+      { elType: 'shape-circle', icon: 'O', label: 'Circle', preview: 'Solid circle' },
+      { elType: 'shape-badge', icon: '()', label: 'Badge', preview: 'Pill label' },
+    ]},
+    { label: 'LAYOUT', items: [
+      { elType: 'spacer-sm', icon: '+', label: 'Gap S', preview: '20px gap' },
+      { elType: 'spacer-md', icon: '+', label: 'Gap M', preview: '40px gap' },
+      { elType: 'spacer-lg', icon: '+', label: 'Gap L', preview: '80px gap' },
+      { elType: 'data-kv', icon: ':', label: 'Key+Value', preview: 'KEY  Value' },
+    ]},
+  ];
+  return (
+    <div style={{position:'fixed',inset:0,zIndex:2000,display:'flex',alignItems:'flex-start',justifyContent:'center',paddingTop:56}}
+      onPointerDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div style={{background:'var(--ws-panel)',border:'1px solid var(--ws-border)',borderRadius:12,padding:'20px 18px 18px',width:490,maxHeight:'82vh',overflowY:'auto',boxShadow:'0 12px 48px rgba(0,0,0,0.5)'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}}>
+          <span style={{fontWeight:700,fontSize:11,letterSpacing:'0.14em',opacity:0.85}}>ADD ELEMENT</span>
+          <button onClick={onClose} style={{background:'none',border:'none',color:'var(--ws-text)',cursor:'pointer',fontSize:20,lineHeight:1,opacity:0.5,padding:'0 4px'}}>x</button>
+        </div>
+        {cats.map(cat => (
+          <div key={cat.label} style={{marginBottom:16}}>
+            <div style={{fontSize:9,fontWeight:700,letterSpacing:'0.18em',opacity:0.4,marginBottom:6}}>{cat.label}</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:5}}>
+              {cat.items.map(item => (
+                <button key={item.elType} onClick={() => onAdd(item.elType, {})}
+                  style={{background:'rgba(255,255,255,0.04)',border:'1px solid var(--ws-border)',borderRadius:7,padding:'9px 10px',cursor:'pointer',textAlign:'left',display:'flex',flexDirection:'column',gap:3,transition:'background 0.15s'}}
+                  onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.11)'}
+                  onMouseLeave={e => e.currentTarget.style.background='rgba(255,255,255,0.04)'}>
+                  <span style={{fontSize:15,lineHeight:1,fontWeight:600,color:'var(--ws-text)'}}>{item.icon}</span>
+                  <span style={{fontSize:11,fontWeight:600,color:'var(--ws-text)'}}>{item.label}</span>
+                  <span style={{fontSize:9,opacity:0.4,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{item.preview}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CustomLayerStack({ theme, c, set, zoom, layers, selectedLayer, onSelectLayer, onMoveLayer, onLayerDragStart }) {
   const customLayers = c.customLayers || [];
   if (!customLayers.length) return null;
@@ -561,13 +657,12 @@ function CustomLayerStack({ theme, c, set, zoom, layers, selectedLayer, onSelect
       pos={layers[layer.id]}
       onMove={onMoveLayer}
       zoom={zoom}
-      style={{ position: 'absolute', left: 40, top: 40, minWidth: 280 }}
+      style={{ position: 'absolute', left: 40, top: 40 }}
       extraFields={(c.extraFields && c.extraFields[layer.id]) || []}
       onChangeExtraFields={(rows) => set('extraFields', { ...(c.extraFields || {}), [layer.id]: rows })}
       theme={theme}
     >
-      <Editable value={layer.text || ''} onChange={(v) => set('customLayers', customLayers.map((it) => it.id === layer.id ? { ...it, text: v } : it))}
-        style={{ fontSize: 20, fontWeight: 600, color: theme.primary }} />
+      {renderCustomLayerContent(layer, customLayers, set, theme)}
     </DraggableLayer>
   ));
 }
@@ -686,7 +781,7 @@ function DocInvoice({ theme, c, set, zoom, sel, onSel, layers, selectedLayer, on
               <Editable value={String(it.qty)} onChange={(v) => setItem(i, 'qty', v)} style={{ textAlign: 'right' }} />
               <Editable value={fmt(it.rate)} onChange={(v) => setItem(i, 'rate', v)} style={{ textAlign: 'right' }} />
               <div style={{ textAlign: 'right', fontWeight: 600 }}>{fmt((Number(it.qty) || 0) * (Number(it.rate) || 0))}</div>
-              <button className="ws-rowdel" onClick={() => delItem(i)} title="Remove line">ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
+              <button className="ws-rowdel" onClick={() => delItem(i)} title="Remove line">ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
             </div>
           ))}
           <button className="ws-addrow" style={{ color: theme.primary }} onClick={addItem}>+ Add line item</button>
@@ -761,7 +856,7 @@ function DocGuidelines({ theme, c, set, zoom, sel, onSel, layers, selectedLayer,
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
             {checklist.map((it, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <button className="ws-check" onClick={() => toggle(i)} style={{ borderColor: theme.primary, background: it.done ? theme.primary : 'transparent', color: theme.bg }}>{it.done ? 'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ' : ''}</button>
+                <button className="ws-check" onClick={() => toggle(i)} style={{ borderColor: theme.primary, background: it.done ? theme.primary : 'transparent', color: theme.bg }}>{it.done ? 'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ' : ''}</button>
                 <Editable value={it.t} onChange={(v) => setCheck(i, v)} style={{ fontSize: 13.5, textDecoration: it.done ? 'line-through' : 'none', opacity: it.done ? 0.55 : 1 }} />
               </div>
             ))}
@@ -995,7 +1090,7 @@ function Toolbar({ onNew, onUndo, onRedo, onZoomIn, onZoomOut, onFit, onAddLayer
       <div className="ws-wordmark">Write<span>Space</span></div>
       {hasDoc && (<div style={{display:'flex',alignItems:'center',gap:6,marginLeft:12}}>
         <input value={projectName||'Untitled Project'} onChange={e=>onProjectNameChange&&onProjectNameChange(e.target.value)} style={{fontSize:13,fontWeight:500,background:'transparent',border:'1px solid transparent',borderRadius:4,padding:'2px 6px',color:'var(--ws-text)',cursor:'text',maxWidth:180,outline:'none'}} onFocus={e=>e.target.style.borderColor='var(--ws-accent)'} onBlur={e=>e.target.style.borderColor='transparent'} />
-        <button onClick={onShowVersions} title="Versions" style={{padding:'3px 8px',borderRadius:4,background:versionsOpen?'var(--ws-accent)':'var(--ws-panel)',border:'1px solid var(--ws-border)',color:versionsOpen?'#fff':'var(--ws-text)',cursor:'pointer',fontSize:11,fontWeight:600}}>ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Versions</button>
+        <button onClick={onShowVersions} title="Versions" style={{padding:'3px 8px',borderRadius:4,background:versionsOpen?'var(--ws-accent)':'var(--ws-panel)',border:'1px solid var(--ws-border)',color:versionsOpen?'#fff':'var(--ws-text)',cursor:'pointer',fontSize:11,fontWeight:600}}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Versions</button>
       </div>)}
       <div className="ws-toolbar-spacer" />
       {groups.map((group, idx) => (
@@ -1044,7 +1139,7 @@ function CommandPalette({ open, onClose, commands }) {
         <input
           ref={inputRef}
           className="ws-palette-input"
-          placeholder="Search actions, doc types, themesÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¦"
+          placeholder="Search actions, doc types, themesÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¦"
           value={q}
           onChange={(e) => { setQ(e.target.value); setIdx(0); }}
           onKeyDown={(e) => {
@@ -1076,7 +1171,7 @@ function ThemePanel({ open, current, onHover, onPick, onClose }) {
     <div className={'ws-themepanel' + (open ? ' is-open' : '')} onMouseLeave={() => onHover(null)}>
       <div className="ws-tp-head">
         <span>Themes</span>
-        <button className="ws-tp-close" onClick={onClose}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
+        <button className="ws-tp-close" onClick={onClose}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
       </div>
       <div className="ws-tp-cats">
         {THEME_CATEGORIES.map((c) => (
@@ -1115,7 +1210,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
     <div className="ws-inspector">
       <div className="ws-inspector-head">
         <span>Layers</span>
-        <button className="ws-inspector-close" onClick={onClose}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
+        <button className="ws-inspector-close" onClick={onClose}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
       </div>
       <div className="ws-layer-list">
         {layers.map((layer) => (
@@ -1125,7 +1220,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
               className={'ws-layer-item' + (selected === layer.id ? ' is-active' : '') + (layer.id === 'accent' ? ' ws-layer-accent' : '')}
               onClick={() => onSelect(layer.id)}
             >
-            <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ':layer.id==='brand'||layer.id==='header'?'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£':layer.id==='frame'?'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ»':'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡'}</span>{layer.name}
+            <span style={{marginRight:6,opacity:0.6,fontSize:10}}>{layer.id==='accent'?'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ':layer.id==='brand'||layer.id==='header'?'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£':layer.id==='frame'?'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ»':'ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡'}</span>{layer.name}
             </button>
             {layer.isCustom && onDeleteLayer && (
               <button
@@ -1143,7 +1238,7 @@ function LayerPanel({ open, layers, selected, onSelect, onClose, layerPositions,
               const isAccent = selected === 'accent';
               return (
                           <div style={{borderTop:'1px solid rgba(255,255,255,0.09)',padding:'12px 14px'}}>
-                                        <div style={{fontSize:10,fontWeight:700,letterSpacing:'.5px',textTransform:'uppercase',color:'var(--muted)',marginBottom:10}}>Properties ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ {selected}</div>
+                                        <div style={{fontSize:10,fontWeight:700,letterSpacing:'.5px',textTransform:'uppercase',color:'var(--muted)',marginBottom:10}}>Properties ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ {selected}</div>
                             {!isAccent && (
                                           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
                                                             <label style={{fontSize:11,color:'var(--muted)'}}>X offset
@@ -1180,7 +1275,7 @@ function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
     <div className="ws-inspector" style={{ left: 'auto', right: 18, width: 420 }}>
       <div className="ws-inspector-head">
         <span>Source</span>
-        <button className="ws-inspector-close" onClick={onClose}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
+        <button className="ws-inspector-close" onClick={onClose}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
       </div>
       <div className="ws-source-wrap">
         <textarea value={value} onChange={(e) => onChange(e.target.value)} spellCheck={false} />
@@ -1193,7 +1288,7 @@ function SourcePanel({ open, value, onChange, onApply, error, onClose }) {
     </div>
   );
 }
-// ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ WriteSpace ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· app shell ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
+// ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ WriteSpace ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· app shell ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ
 const { useState: uS, useEffect: uE, useCallback: uC, useRef: uR } = React;
 
 const SHELL_MOODS = {
@@ -1235,6 +1330,7 @@ function App() {
   const [palette, setPalette] = uS(false);
   const [layersOpen, setLayersOpen] = uS(false);
   const [colorPanelOpen, setColorPanelOpen] = uS(false);
+  const [elemPickerOpen, setElemPickerOpen] = uS(false);
   const [sourceOpen, setSourceOpen] = uS(false);
   const [sourceDraft, setSourceDraft] = uS('');
   const [sourceError, setSourceError] = uS('');
@@ -1361,22 +1457,20 @@ function App() {
     setLastThemeId(id);
     try { localStorage.setItem('ws:lastThemeId', id); } catch {}
   }, [doc, pushHistory, updateActiveDoc]);
-  const addCustomLayer = uC(() => {
+  const addCustomLayerOfType = uC((elType, cfg) => {
     if (!doc) return;
     pushHistory();
     const idx = (doc.content.customLayers || []).length + 1;
-    const id = 'custom-' + (window.crypto?.randomUUID?.() || (Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10)));
-    updateActiveDoc((dd) => ({
-      ...dd,
-      content: {
-        ...dd.content,
-        customLayers: [...(dd.content.customLayers || []), { id, name: 'Custom Layer ' + idx, text: 'New text' }],
-        layers: { ...(dd.content.layers || {}), [id]: { x: 40, y: 40 } },
-      },
-    }));
-    setSelectedLayer(id);
+    const uid = 'custom-' + (window.crypto?.randomUUID?.() || (Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,10)));
+    const layer = { id: uid, name: elType || ('Element ' + idx), elType: elType || 'text-body', text: (cfg && cfg.text) || '', ...(cfg||{}) };
+    updateActiveDoc((dd) => ({...dd, content: {...dd.content,
+      customLayers: [...(dd.content.customLayers || []), layer],
+      layers: { ...(dd.content.layers || {}), [uid]: { x: 60, y: 60 } },
+    }}));
+    setSelectedLayer(uid);
     setAccentSel(false);
-  }, [doc, pushHistory, updateActiveDoc]);
+    setElemPickerOpen(false);
+  }, [doc, pushHistory, updateActiveDoc, setElemPickerOpen]);
   const addTextField = uC(() => {
     if (!doc) return;
     const target = selectedLayer && selectedLayer !== 'accent'
@@ -1510,7 +1604,7 @@ function App() {
 
   // command palette commands
   const commands = [
-    ...DOC_TYPES.map((d) => ({ id: 'new-' + d.id, label: 'New ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· ' + d.name, group: 'Create', fn: () => createDoc(d.id) })),
+    ...DOC_TYPES.map((d) => ({ id: 'new-' + d.id, label: 'New ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· ' + d.name, group: 'Create', fn: () => createDoc(d.id) })),
     { id: 'themes', label: 'Browse themes', group: 'View', fn: () => setThemesOpen(true) },
     { id: 'layers', label: 'Open layers panel', group: 'View', fn: () => setLayersOpen(true) },
     { id: 'source', label: 'Open source inspector', group: 'View', fn: () => setSourceOpen(true) },
@@ -1522,7 +1616,7 @@ function App() {
     { id: 'add-layer', label: 'Add layer', group: 'Insert', fn: addCustomLayer },
     { id: 'add-text', label: 'Add text field', group: 'Insert', fn: addTextField },
     { id: 'export', label: 'Export / Print document', group: 'Output', fn: doExport },
-    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
+    ...THEMES.map((th) => ({ id: 'th-' + th.id, label: 'Theme ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· ' + th.name, group: th.category, swatch: th.primary, fn: () => setThemeTracked(th.id) })),
   ];
 
   function doExport() {
@@ -1540,7 +1634,7 @@ function App() {
         onZoomIn={zoomIn}
         onZoomOut={zoomOut}
         onFit={fit}
-        onAddLayer={addCustomLayer}
+        onAddLayer={() => setElemPickerOpen(o => !o)}
         onAddTextField={addTextField}
         onThemes={() => setThemesOpen((o) => !o)}
         onLayers={() => setLayersOpen((o) => !o)}
@@ -1560,7 +1654,7 @@ function App() {
       />
       {doc && <PageStrip docs={docs} activePage={activePage} onSelectPage={(i) => { setActivePage(i); setAccentSel(false); setSelectedLayer(null); }} onAddPage={addPage}
         onPageMenu={(e, i) => { e.preventDefault(); setPageMenu({ i, x: e.clientX, y: e.clientY }); }} />}
-      {doc && <div className="ws-status">{dt.name} ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· {effTheme.name} ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· {Math.round(view.zoom * 100)}% ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Page {activePage + 1} of {docs.length}</div>}
+      {doc && <div className="ws-status">{dt.name} ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· {effTheme.name} ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· {Math.round(view.zoom * 100)}% ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Page {activePage + 1} of {docs.length}</div>}
 
       {doc && (
         <Stage view={view} setView={setView} docPos={docPos} setDocPos={(pos) => updateActiveDoc((dd) => ({ ...dd, docPos: pos }))} onDeselect={() => { setAccentSel(false); setSelectedLayer(null); }}>
@@ -1593,7 +1687,7 @@ function App() {
           <div style={{position:'fixed',right:0,top:0,bottom:0,width:300,background:'var(--ws-panel)',borderLeft:'1px solid var(--ws-border)',zIndex:201,display:'flex',flexDirection:'column',overflow:'hidden'}}>
             <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ws-border)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
               <span style={{fontWeight:700,fontSize:14}}>Colors</span>
-              <button onClick={()=>setColorPanelOpen(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>ÃÂÃÂ</button>
+              <button onClick={()=>setColorPanelOpen(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>ÃÂÃÂÃÂÃÂ</button>
             </div>
             <div style={{flex:1,overflowY:'auto',padding:'12px'}}>
               <div style={{marginBottom:14}}>
@@ -1624,6 +1718,7 @@ function App() {
           </div>
         );
       })()}
+      {elemPickerOpen && <ElementPicker open={elemPickerOpen} onClose={() => setElemPickerOpen(false)} onAdd={addCustomLayerOfType} />}
       <LayerPanel open={layersOpen && !!doc} layers={layerDefs} selected={selectedLayer} onSelect={(id) => { setSelectedLayer(id); setAccentSel(id === 'accent'); }} onClose={() => setLayersOpen(false)}  layerPositions={doc?.content?.layers || {}} onMoveLayer={setLayerPos} onAddLayer={addCustomLayer} onDeleteLayer={deleteSelectedLayer}/>
       <SourcePanel open={sourceOpen && !!doc} value={sourceDraft} onChange={setSourceDraft} onApply={applySource} error={sourceError} onClose={() => setSourceOpen(false)} />
       <Launcher open={launcher} onPick={createDoc} onClose={() => doc && setLauncher(false)} lastTypeId={lastTypeId} />
@@ -1632,7 +1727,7 @@ function App() {
         <div style={{position:'fixed',right:0,top:0,bottom:0,width:290,background:'var(--ws-panel)',borderLeft:'1px solid var(--ws-border)',zIndex:200,display:'flex',flexDirection:'column',overflow:'hidden'}}>
           <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ws-border)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
             <span style={{fontWeight:600,fontSize:14}}>Project Versions</span>
-            <button onClick={()=>setShowVersions(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
+            <button onClick={()=>setShowVersions(false)} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--ws-text)',lineHeight:1}}>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ</button>
           </div>
           <div style={{padding:'8px 12px',borderBottom:'1px solid var(--ws-border)',display:'flex',gap:8}}>
             <input id="ws-ver-lbl" placeholder="Version name..." style={{flex:1,padding:'4px 8px',borderRadius:4,border:'1px solid var(--ws-border)',background:'var(--ws-bg)',color:'var(--ws-text)',fontSize:12,outline:'none'}} />
